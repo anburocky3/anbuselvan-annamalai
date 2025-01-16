@@ -1,4 +1,3 @@
-import Image from "next/image";
 import About from "./about/page";
 import Expertise from "./expertise/page";
 import Career from "./career/page";

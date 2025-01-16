@@ -7,7 +7,7 @@ export default function Contact() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Information */}
           <div className="space-y-8">
-            <h2 className="text-2xl font-bold mb-6">Let's Connect</h2>
+            <h2 className="text-2xl font-bold mb-6">Let&apos;s Connect</h2>
             <p className="text-gray-600 dark:text-gray-300 mb-8">
               Interested in collaboration or have a project in mind? 
               Feel free to reach out through any of these channels.

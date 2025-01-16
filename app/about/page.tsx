@@ -7,9 +7,9 @@ export default function About() {
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6">
               <p className="text-lg text-gray-700 dark:text-gray-300">
-                As the founder and CEO of CyberDude, I've dedicated my career to pushing the boundaries 
+                As the founder and CEO of CyberDude, I&apos;ve dedicated my career to pushing the boundaries 
                 of technology and innovation. With over 15 years of experience in the tech industry, 
-                I've had the privilege of working across various domains and helping businesses 
+                I&apos;ve had the privilege of working across various domains and helping businesses 
                 transform their digital presence.
               </p>
               <p className="text-lg text-gray-700 dark:text-gray-300">
