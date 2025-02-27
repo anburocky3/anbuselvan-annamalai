@@ -10,5 +10,5 @@ export default function AdminLoginLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <div className="bg-blue-50 min-h-screen">{children}</div>;
 }

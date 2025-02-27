@@ -9,6 +9,7 @@ import { LuLogOut } from "react-icons/lu";
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "@/firebase/services/auth";
 import type { User } from "firebase/auth";
+import { route } from "@/config/routes";
 
 export function Navigation() {
   const pathname = usePathname();
@@ -36,16 +37,35 @@ export function Navigation() {
   };
 
   return (
-    <header className="border-b">
+    <header className="bg-white border-b">
       <nav className="container mx-auto px-4 py-4">
         <div className="flex justify-between items-center">
+          <Link
+            href={route("home")}
+            className={`text-sm transition-color text-primary font-bold`}
+          >
+            ANBU SELVAN
+          </Link>
           <ul className="flex gap-6">
             <li>
               <Link
-                href="/youtube-reviews"
+                href={route("reviewsAbout")}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
-                  pathname === "/youtube-reviews"
+                  pathname === route("reviewsAbout")
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                )}
+              >
+                About
+              </Link>
+            </li>
+            <li>
+              <Link
+                href={route("youtube")}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  pathname === route("youtube")
                     ? "text-primary"
                     : "text-muted-foreground"
                 )}
@@ -55,28 +75,15 @@ export function Navigation() {
             </li>
             <li>
               <Link
-                href="/event-reviews"
+                href={route("events")}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
-                  pathname === "/event-reviews"
+                  pathname === route("events")
                     ? "text-primary"
                     : "text-muted-foreground"
                 )}
               >
                 Event Reviews
-              </Link>
-            </li>
-            <li>
-              <Link
-                href="/about"
-                className={cn(
-                  "text-sm font-medium transition-colors hover:text-primary",
-                  pathname === "/about"
-                    ? "text-primary"
-                    : "text-muted-foreground"
-                )}
-              >
-                About
               </Link>
             </li>
           </ul>

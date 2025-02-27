@@ -35,3 +35,13 @@ export const generatePageTitle = (title: string) => {
   const baseSiteName = "Workshop Reviews";
   return title ? `${title} | ${baseSiteName}` : baseSiteName;
 };
+
+export const socialLinks = {
+  facebook: "https://facebook.com/anburocky3",
+  instagram: "https://instagram.com/anbuselvanrocky",
+  linkedin: "https://linkedin.com/in/anburocky3",
+  github: "https://github.com/anburocky3",
+  youtube: "https://youtube.com/@anbuselvanrocky",
+  cyberdude: "https://youtube.com/@cyberdudenetworks",
+  x: "https://x.com/anbuselvanrocky",
+};

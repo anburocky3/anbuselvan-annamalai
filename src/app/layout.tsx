@@ -1,21 +1,10 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Navigation } from "@/components/navigation";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
-  title: "Workshop Reviews",
-  description: "Share your feedback about our workshops",
+  title: "Anbuselvan Annamalai - Technology Enthusiast",
+  description:
+    "Anbuselvan Annamalai is a technology enthusiast and a software developer. He is the founder of CyberDude Networks Private Limited.",
 };
 
 export default function RootLayout({
@@ -25,11 +14,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        <Navigation />
-        <main className="container mx-auto px-4 py-6">{children}</main>
+      <body className={`antialiased`}>
+        <main>{children}</main>
       </body>
     </html>
   );

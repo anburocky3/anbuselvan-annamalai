@@ -11,6 +11,9 @@ import { loginSchema, type LoginInput } from "@/lib/validations";
 import { login, getCurrentUser } from "@/firebase/services/auth";
 import { useState, useEffect } from "react";
 import { usePageTitle } from "@/hooks/usePageTitle";
+import Link from "next/link";
+import { route } from "@/config/routes";
+import { FaHome } from "react-icons/fa";
 
 export default function AdminLogin() {
   usePageTitle("Admin Login");
@@ -110,6 +113,15 @@ export default function AdminLogin() {
               {isSubmitting ? "Signing in..." : "Sign In"}
             </Button>
           </form>
+          <div className="flex justify-start mt-2">
+            <Link
+              href={route("home")}
+              className="text-xs text-muted-foreground hover:text-blue-500 flex items-center"
+            >
+              <FaHome className="mr-2" />
+              Go Home
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </div>
