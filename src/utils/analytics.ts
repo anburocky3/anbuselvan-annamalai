@@ -12,9 +12,27 @@ declare global {
   }
 }
 
+export const ANALYTICS_ACTIONS = {
+  REVEAL_EMAIL: "reveal_email",
+  MENU_CLICK: "menu_click",
+  DOWNLOAD_RESUME: "download_resume",
+  SOCIAL_LINK_CLICK: "social_link_click",
+  FORM_SUBMIT: "form_submit",
+  SECTION_VIEW: "section_view",
+  PORTFOLIO_VIEW: "portfolio_view",
+  CONTACT_INITIATE: "contact_initiate",
+} as const;
+
+export const ANALYTICS_CATEGORIES = {
+  NAVIGATION: "navigation",
+  INTERACTION: "interaction",
+  ENGAGEMENT: "engagement",
+  SOCIAL: "social",
+} as const;
+
 type EventParams = {
-  action: string;
-  category: string;
+  action: (typeof ANALYTICS_ACTIONS)[keyof typeof ANALYTICS_ACTIONS];
+  category: (typeof ANALYTICS_CATEGORIES)[keyof typeof ANALYTICS_CATEGORIES];
   label?: string;
   value?: number;
 };
@@ -32,14 +50,6 @@ export const trackEvent = ({ action, category, label, value }: EventParams) => {
     console.error("Error tracking event:", error);
   }
 };
-
-// Predefined event categories
-export const ANALYTICS_CATEGORIES = {
-  NAVIGATION: "Navigation",
-  INTERACTION: "Interaction",
-  ENGAGEMENT: "Engagement",
-  SOCIAL: "Social",
-} as const;
 
 // Example usage:
 // trackEvent({

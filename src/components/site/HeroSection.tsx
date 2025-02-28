@@ -5,7 +5,11 @@ import { Sora } from "next/font/google";
 import TechnologyMarquee from "./TechnologyMarquee";
 import Marquee from "react-fast-marquee";
 import { motion } from "framer-motion";
-import { ANALYTICS_CATEGORIES, trackEvent } from "@/utils/analytics";
+import {
+  ANALYTICS_ACTIONS,
+  ANALYTICS_CATEGORIES,
+  trackEvent,
+} from "@/utils/analytics";
 
 const fontSora = Sora({
   subsets: ["latin"],
@@ -184,7 +188,7 @@ export default function HeroSection() {
                   className="px-6 py-3 text-white border-2 border-white rounded-full hover:bg-purple-100 hover:text-gray-900 font-medium transition-colors"
                   onClick={() => {
                     trackEvent({
-                      action: "click",
+                      action: ANALYTICS_ACTIONS.CONTACT_INITIATE,
                       category: ANALYTICS_CATEGORIES.INTERACTION,
                       label: "Hero Contact Button",
                     });
@@ -200,7 +204,7 @@ export default function HeroSection() {
                   className="flex items-center px-6 py-3 font-medium bg-blue-600 text-white rounded-full hover:bg-blue-700 transition-colors"
                   onClick={() => {
                     trackEvent({
-                      action: "click",
+                      action: ANALYTICS_ACTIONS.CONTACT_INITIATE,
                       category: ANALYTICS_CATEGORIES.INTERACTION,
                       label: "Hero Lets Talk Button",
                     });

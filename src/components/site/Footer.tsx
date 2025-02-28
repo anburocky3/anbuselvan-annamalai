@@ -3,7 +3,11 @@
 import { motion } from "framer-motion";
 import { socialLinks } from "@/lib/utils";
 import Logo from "./Logo";
-import { ANALYTICS_CATEGORIES, trackEvent } from "@/utils/analytics";
+import {
+  ANALYTICS_ACTIONS,
+  ANALYTICS_CATEGORIES,
+  trackEvent,
+} from "@/utils/analytics";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -96,7 +100,7 @@ export default function Footer() {
               rel="noopener noreferrer"
               onClick={() => {
                 trackEvent({
-                  action: "click",
+                  action: ANALYTICS_ACTIONS.SOCIAL_LINK_CLICK,
                   category: ANALYTICS_CATEGORIES.SOCIAL,
                   label: link.url,
                 });

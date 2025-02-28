@@ -6,7 +6,11 @@ import MenuButton from "./navigations/MenuButton";
 import { FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa6";
 import Logo from "./Logo";
 import { socialLinks } from "@/lib/utils";
-import { ANALYTICS_CATEGORIES, trackEvent } from "@/utils/analytics";
+import {
+  ANALYTICS_ACTIONS,
+  ANALYTICS_CATEGORIES,
+  trackEvent,
+} from "@/utils/analytics";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -233,7 +237,7 @@ export default function Header() {
                         scrollToSection(link.href, e);
                         updateIndicator(index);
                         trackEvent({
-                          action: "click",
+                          action: ANALYTICS_ACTIONS.MENU_CLICK,
                           category: ANALYTICS_CATEGORIES.NAVIGATION,
                           label: link.name,
                         });
@@ -264,7 +268,7 @@ export default function Header() {
                   href={social.href}
                   onClick={() => {
                     trackEvent({
-                      action: "click",
+                      action: ANALYTICS_ACTIONS.SOCIAL_LINK_CLICK,
                       category: ANALYTICS_CATEGORIES.SOCIAL,
                       label: social.href,
                     });
