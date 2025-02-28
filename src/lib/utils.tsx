@@ -9,6 +9,7 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { ReactElement } from "react";
+import { FaX, FaYoutube } from "react-icons/fa6";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -37,11 +38,39 @@ export const generatePageTitle = (title: string) => {
 };
 
 export const socialLinks = {
-  facebook: "https://facebook.com/anburocky3",
-  instagram: "https://instagram.com/anbuselvanrocky",
-  linkedin: "https://linkedin.com/in/anburocky3",
-  github: "https://github.com/anburocky3",
-  youtube: "https://youtube.com/@anbuselvanrocky",
-  cyberdude: "https://youtube.com/@cyberdudenetworks",
-  x: "https://x.com/anbuselvanrocky",
+  facebook: {
+    name: "Facebook",
+    url: "https://facebook.com/anburocky3",
+    icon: <FaFacebook />,
+  },
+  instagram: {
+    name: "Instagram",
+    url: "https://instagram.com/anbuselvanrocky",
+    icon: <FaInstagram />,
+  },
+  linkedin: {
+    name: "LinkedIn",
+    url: "https://linkedin.com/in/anburocky3",
+    icon: <FaLinkedinIn />,
+  },
+  youtube: {
+    name: "YouTube",
+    url: "https://youtube.com/@anbuselvanrocky",
+    icon: <FaYoutube />,
+  },
+  x: {
+    name: "X",
+    url: "https://x.com/anbuselvanrocky",
+    icon: <FaX />,
+  },
+  github: {
+    name: "GitHub",
+    url: "https://github.com/anburocky3",
+    icon: <FaGithub />,
+  },
+  cyberdude: {
+    name: "CyberDude YouTube",
+    url: "https://youtube.com/@cyberdudenetworks",
+    icon: <FaYoutube />,
+  },
 };
