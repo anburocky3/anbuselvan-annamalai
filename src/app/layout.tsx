@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Sora } from "next/font/google";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "./globals.css";
 
 const fontSora = Sora({
@@ -50,7 +51,12 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head></head>
-      <body className={`${fontSora.className} antialiased`}>{children}</body>
+      <body className={`${fontSora.className} antialiased`}>
+        {children}
+        <GoogleAnalytics
+          gaId={process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || ""}
+        />
+      </body>
     </html>
   );
 }

@@ -4,6 +4,7 @@ import { motion, useAnimation } from "framer-motion";
 import { FaArrowAltCircleRight } from "react-icons/fa";
 import { useState } from "react";
 import AnimatedHeading from "./AnimatedHeading";
+import { ANALYTICS_CATEGORIES, trackEvent } from "@/utils/analytics";
 
 export default function ContactSection() {
   const [isEmailRevealed, setIsEmailRevealed] = useState(false);
@@ -19,6 +20,11 @@ export default function ContactSection() {
       await controls.start({
         scale: [1, 1.1, 1],
         transition: { duration: 0.3 },
+      });
+      trackEvent({
+        action: "click",
+        category: ANALYTICS_CATEGORIES.INTERACTION,
+        label: "Contact Section - Reveal Email",
       });
       setIsEmailRevealed(true);
     }

@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { socialLinks } from "@/lib/utils";
 import Logo from "./Logo";
+import { ANALYTICS_CATEGORIES, trackEvent } from "@/utils/analytics";
 
 const navLinks = [
   { name: "About", href: "#about" },
@@ -93,6 +94,13 @@ export default function Footer() {
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => {
+                trackEvent({
+                  action: "click",
+                  category: ANALYTICS_CATEGORIES.SOCIAL,
+                  label: link.url,
+                });
+              }}
               className="text-gray-400 hover:text-white transition-colors duration-300 relative group"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
@@ -167,7 +175,7 @@ export default function Footer() {
           >
             © {new Date().getFullYear()} All rights reserved by{" "}
             <motion.a
-              href="https://anbuselvan.com"
+              href="https://anbuselvan-annamalai.com"
               target="_blank"
               rel="noopener noreferrer"
               className="text-purple-400 hover:text-purple-300 relative inline-block group"

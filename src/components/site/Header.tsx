@@ -6,6 +6,7 @@ import MenuButton from "./navigations/MenuButton";
 import { FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa6";
 import Logo from "./Logo";
 import { socialLinks } from "@/lib/utils";
+import { ANALYTICS_CATEGORIES, trackEvent } from "@/utils/analytics";
 
 const navLinks = [
   { name: "Home", href: "#home" },
@@ -231,6 +232,11 @@ export default function Header() {
                       onClick={(e) => {
                         scrollToSection(link.href, e);
                         updateIndicator(index);
+                        trackEvent({
+                          action: "click",
+                          category: ANALYTICS_CATEGORIES.NAVIGATION,
+                          label: link.name,
+                        });
                       }}
                       className={`text-white hover:text-purple-400 transition-colors duration-300 px-4 py-2 ${
                         activeSection === link.href.replace("#", "")
@@ -256,6 +262,13 @@ export default function Header() {
                 <motion.a
                   key={index}
                   href={social.href}
+                  onClick={() => {
+                    trackEvent({
+                      action: "click",
+                      category: ANALYTICS_CATEGORIES.SOCIAL,
+                      label: social.href,
+                    });
+                  }}
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}

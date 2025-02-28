@@ -31,7 +31,7 @@ export const testimonialsData: Testimonial[] = [
     text: "Mr. Anbuselvan is my mentor, guide and motivator. He teach me everything what I know so far. I know him for the past 6-month as an employee of his company.",
   },
   {
-    name: "Arul Ellapan",
+    name: "Arul Ellappan",
     role: "Software Engineer, TeamLease",
     image: "/images/site/testimonials/arul-ellapan.jpg",
     text: "Absolutely loved working with this team. The results were amazing!",
