@@ -158,7 +158,7 @@ export default function HeroSection() {
                     variants={itemVariants}
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 to-indigo-400 inline-block text-transparent bg-clip-text"
                   >
-                    Entreprenuer | Mentor
+                    Entrepreneur | Mentor
                   </motion.h1>
                 </div>
 
