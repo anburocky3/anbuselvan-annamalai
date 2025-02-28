@@ -99,31 +99,31 @@ export default async function AboutPage() {
         <div className="flex-1">
           <ul className="space-y-4 my-10  sm:w-[450px]">
             <LinkComponent
-              href={socialLinks.facebook}
+              href={socialLinks.facebook.url}
               type="facebook"
               text={"Facebook"}
               username={"anburocky3"}
             />
             <LinkComponent
-              href={socialLinks.instagram}
+              href={socialLinks.instagram.url}
               type="instagram"
               text={"Instagram"}
               username={"anbuselvanrocky"}
             />
             <LinkComponent
-              href={socialLinks.linkedin}
+              href={socialLinks.linkedin.url}
               type={"linkedin"}
               text={"Linkedin"}
               username={"anburocky3"}
             />
             <LinkComponent
-              href={socialLinks.x}
+              href={socialLinks.x.url}
               type={"twitter"}
               text={"Twitter"}
               username={"anbuselvanrocky"}
             />
             <LinkComponent
-              href={socialLinks.github}
+              href={socialLinks.github.url}
               type={"github"}
               text={"Github"}
               username={"anburocky3"}
@@ -145,31 +145,31 @@ export default async function AboutPage() {
           </p>
           <div className="flex justify-center gap-4">
             <Button variant="outline" size="icon" asChild>
-              <Link href={socialLinks.x} target="_blank">
+              <Link href={socialLinks.x.url} target="_blank">
                 <LuTwitter className="h-5 w-5" />
                 <span className="sr-only">Twitter</span>
               </Link>
             </Button>
             <Button variant="outline" size="icon" asChild>
-              <Link href={socialLinks.github} target="_blank">
+              <Link href={socialLinks.github.url} target="_blank">
                 <LuGithub className="h-5 w-5" />
                 <span className="sr-only">GitHub</span>
               </Link>
             </Button>
             <Button variant="outline" size="icon" asChild>
-              <Link href={socialLinks.linkedin} target="_blank">
+              <Link href={socialLinks.linkedin.url} target="_blank">
                 <LuLinkedin className="h-5 w-5" />
                 <span className="sr-only">LinkedIn</span>
               </Link>
             </Button>
             <Button variant="outline" size="icon" asChild>
-              <Link href={socialLinks.youtube} target="_blank">
+              <Link href={socialLinks.youtube.url} target="_blank">
                 <LuYoutube className="h-5 w-5" />
                 <span className="sr-only">YouTube</span>
               </Link>
             </Button>
             <Button variant="outline" size="icon" asChild>
-              <Link href={socialLinks.cyberdude} target="_blank">
+              <Link href={socialLinks.cyberdude.url} target="_blank">
                 <LuBook className="h-5 w-5" />
                 <span className="sr-only">CyberDude Youtube</span>
               </Link>

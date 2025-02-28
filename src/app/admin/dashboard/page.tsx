@@ -7,8 +7,15 @@ import { Separator } from "@/components/ui/separator";
 // import ReviewList from "./review-list";
 import WorkshopSurveyTabs from "@/components/workshop-survey-tabs";
 import ProtectedRoute from "@/components/protected-route";
+import { useState, useEffect } from "react";
 
 export default function AdminDashboard() {
+  const [origin, setOrigin] = useState("");
+
+  useEffect(() => {
+    setOrigin(window.location.origin);
+  }, []);
+
   // const [reviews, setReviews] = useState<ReviewInput[]>([]);
   // const [loading, setLoading] = useState(true);
 
@@ -39,19 +46,13 @@ export default function AdminDashboard() {
               <CardTitle className="text-sm text-muted-foreground mb-2">
                 YouTube Review QR
               </CardTitle>
-              <QRCodeSVG
-                value={`${window.location.origin}/youtube-reviews`}
-                size={100}
-              />
+              <QRCodeSVG value={`${origin}/youtube-reviews`} size={100} />
             </Card>
             <Card className="p-4">
               <CardTitle className="text-sm text-muted-foreground mb-2">
                 Event Review QR
               </CardTitle>
-              <QRCodeSVG
-                value={`${window.location.origin}/event-reviews`}
-                size={100}
-              />
+              <QRCodeSVG value={`${origin}/event-reviews`} size={100} />
             </Card>
           </div>
         </div>
