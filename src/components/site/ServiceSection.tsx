@@ -207,9 +207,9 @@ export default function ServicesSection() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="text-white mt-4 space-y-3"
                 >
-                  <h3 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  <h4 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
                     {service.title}
-                  </h3>
+                  </h4>
                   <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">
                     {service.description}
                   </p>

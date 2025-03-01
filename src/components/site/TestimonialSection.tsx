@@ -155,9 +155,9 @@ export default function Testimonials() {
                   </motion.p>
 
                   <motion.div className="mt-4 space-y-1">
-                    <h3 className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-indigo-300 text-transparent bg-clip-text">
+                    <h4 className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-indigo-300 text-transparent bg-clip-text">
                       {testimonial.name}
-                    </h3>
+                    </h4>
                     <p className="text-gray-500 text-sm">{testimonial.role}</p>
                   </motion.div>
                 </motion.div>

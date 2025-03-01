@@ -74,8 +74,10 @@ export default function HeroSection() {
   };
 
   return (
-    <section
+    <header
       id="home"
+      role="banner"
+      aria-label="Hero Section"
       className={`${fontSora.className} relative min-h-screen flex items-center bg-gradient-to-r from-slate-900 to-purple-900 text-white overflow-hidden`}
     >
       {/* Background text */}
@@ -84,8 +86,9 @@ export default function HeroSection() {
         animate={{ opacity: 0.1, scale: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
         className="absolute inset-0 flex items-center justify-center pointer-events-none"
+        aria-hidden="true"
       >
-        <svg viewBox="0 0 1320 300">
+        <svg viewBox="0 0 1320 300" role="presentation">
           <text
             x="50%"
             y="50%"
@@ -98,14 +101,14 @@ export default function HeroSection() {
       </motion.div>
 
       <div className="container mx-auto px-4">
-        <motion.div
+        <motion.article
           variants={containerVariants}
           initial="hidden"
           animate="visible"
           className="flex flex-col md:flex-row items-center"
         >
           {/* Image - Hidden on mobile, shown on md and up */}
-          <motion.div
+          <motion.figure
             variants={imageVariants}
             className="hidden md:block md:w-5/12"
           >
@@ -116,24 +119,26 @@ export default function HeroSection() {
               >
                 <Image
                   src="/images/anbuselvan-annamalai.png"
-                  alt="Anbuselvan Annamalai"
+                  alt="Anbuselvan Annamalai - Entrepreneur and Technology Mentor"
                   width={0}
                   height={0}
                   sizes="100vw"
                   className="mx-auto w-96 h-96 rounded-full object-cover border-2 border-purple-500"
                   priority
+                  loading="eager"
+                  title="Anbuselvan Annamalai - Entrepreneur and Technology Mentor"
                 />
               </motion.div>
             </div>
-          </motion.div>
+          </motion.figure>
 
           {/* Content */}
           <motion.div variants={itemVariants} className="md:w-6/12">
             <div className="space-y-8 sm:space-y-6">
               {/* Mobile Image */}
-              <motion.div
+              <motion.figure
                 variants={imageVariants}
-                className="md:hidden text-center "
+                className="md:hidden text-center"
               >
                 <motion.div
                   whileHover={{ scale: 1.05 }}
@@ -141,30 +146,33 @@ export default function HeroSection() {
                 >
                   <Image
                     src="/images/anbuselvan-annamalai.png"
-                    alt="Anbuselvan Annamalai"
+                    alt="Anbuselvan Annamalai - Entrepreneur and Technology Mentor"
                     width={0}
                     height={0}
                     sizes="100vw"
                     className="mx-auto w-64 h-64 rounded-full object-cover border-2 border-purple-500"
                     priority
+                    loading="eager"
+                    title="Anbuselvan Annamalai - Entrepreneur and Technology Mentor"
                   />
                 </motion.div>
-              </motion.div>
+              </motion.figure>
 
               <div>
                 <div className="flex flex-col gap-2 mt-10 sm:space-y-2">
-                  <motion.span
+                  <motion.h1
                     variants={itemVariants}
                     className="inline-block text-xl sm:text-4xl font-bold text-white"
                   >
                     Hi, I am Anbuselvan.
-                  </motion.span>
-                  <motion.h1
+                  </motion.h1>
+                  <motion.h3
                     variants={itemVariants}
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 to-indigo-400 inline-block text-transparent bg-clip-text"
+                    title="Entrepreneur | Mentor"
                   >
                     Entrepreneur | Mentor
-                  </motion.h1>
+                  </motion.h3>
                 </div>
 
                 <motion.p
@@ -176,9 +184,10 @@ export default function HeroSection() {
                 </motion.p>
               </div>
 
-              <motion.div
+              <motion.nav
                 variants={itemVariants}
                 className="flex flex-wrap gap-4"
+                aria-label="Primary Call to Action"
               >
                 <motion.a
                   variants={buttonVariants}
@@ -193,6 +202,8 @@ export default function HeroSection() {
                       label: "Hero Contact Button",
                     });
                   }}
+                  role="button"
+                  aria-label="Start a project"
                 >
                   Got a project?
                 </motion.a>
@@ -209,16 +220,18 @@ export default function HeroSection() {
                       label: "Hero Lets Talk Button",
                     });
                   }}
+                  role="button"
+                  aria-label="Contact for discussion"
                 >
                   Lets talk!
                 </motion.a>
-              </motion.div>
+              </motion.nav>
             </div>
           </motion.div>
-        </motion.div>
+        </motion.article>
       </div>
 
-      <motion.section
+      <motion.aside
         initial={{ opacity: 0, y: 100, rotate: 0 }}
         animate={{ opacity: 1, y: 0, rotate: -2 }}
         transition={{
@@ -227,6 +240,7 @@ export default function HeroSection() {
           rotate: { duration: 1.2, ease: "easeOut" },
         }}
         className="bg-gradient-to-r from-purple-950 to-black px-10 py-6 absolute bottom-5 sm:bottom-24 -left-10 w-[calc(100%+5rem)] flex justify-center items-center"
+        aria-label="Technology Skills"
       >
         <Marquee speed={20}>
           <TechnologyMarquee key={1} title="Design" />
@@ -242,7 +256,7 @@ export default function HeroSection() {
           <TechnologyMarquee key={11} title="MongoDB" />
           <TechnologyMarquee key={12} title="PostgreSQL" />
         </Marquee>
-      </motion.section>
-    </section>
+      </motion.aside>
+    </header>
   );
 }
