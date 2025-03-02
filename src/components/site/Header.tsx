@@ -3,7 +3,13 @@
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import MenuButton from "./navigations/MenuButton";
-import { FaTwitter, FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa6";
+import {
+  FaTwitter,
+  FaLinkedin,
+  FaGithub,
+  FaInstagram,
+  FaX,
+} from "react-icons/fa6";
 import Logo from "./Logo";
 import { socialLinks } from "@/lib/utils";
 import {
@@ -258,7 +264,7 @@ export default function Header() {
             {/* Social Icons - Desktop */}
             <div className="hidden lg:flex space-x-4">
               {[
-                { icon: <FaTwitter />, href: socialLinks.x.url },
+                { icon: <FaX />, href: socialLinks.x.url },
                 { icon: <FaInstagram />, href: socialLinks.instagram.url },
                 { icon: <FaLinkedin />, href: socialLinks.linkedin.url },
                 { icon: <FaGithub />, href: socialLinks.github.url },
