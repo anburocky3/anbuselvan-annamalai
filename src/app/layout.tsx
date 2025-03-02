@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     template: "%s | Anbuselvan Annamalai",
   },
   description:
-    "Explore the portfolio of Anbuselvan Annamalai, Founder & CEO of CyberDude Networks, technology leader, cybersecurity expert, and educator with over 13 years of expertise in full-stack development, cybersecurity, and ethical hacking. Discover his achievements, including the Chief Minister's award for Excellence in e-Governance, winning the DAIMLER Mobile App Garage competition, and mentoring Smart India Hackathon winners. Learn about his contributions to tech innovation, open-source projects, and educating over 12 million students worldwide. He also has another name called 'Anbuselvan Rocky'.",
+    "Award-winning technology leader and founder of CyberDude Networks. Expert in full-stack development, cybersecurity, and tech education, impacting millions globally.",
   applicationName: "Anbuselvan Annamalai Portfolio",
   authors: [
     { name: "Anbuselvan Annamalai", url: "https://anbuselvan-annamalai.com" },
@@ -30,6 +30,12 @@ export const metadata: Metadata = {
     "Cybersecurity Expert",
     "Tech Educator",
     "CyberDude Networks",
+    "Chief Minister's award",
+    "e-Governance",
+    "DAIMLER Mobile App",
+    "Smart India Hackathon",
+    "ethical hacking",
+    "tech innovation",
   ],
   referrer: "origin-when-cross-origin",
   icons: {
@@ -46,7 +52,7 @@ export const metadata: Metadata = {
     siteName: "Anbuselvan Annamalai",
     title: "Anbuselvan Annamalai - Entrepreneur | Technology Leader",
     description:
-      "Explore the portfolio of Anbuselvan Annamalai, Founder & CEO of CyberDude Networks, technology leader, cybersecurity expert, and educator with over 13 years of expertise in full-stack development, cybersecurity, and ethical hacking. Discover his achievements, including the Chief Minister's award for Excellence in e-Governance, winning the DAIMLER Mobile App Garage competition, and mentoring Smart India Hackathon winners. Learn about his contributions to tech innovation, open-source projects, and educating over 12 million students worldwide. He also has another name called 'Anbuselvan Rocky'.",
+      "Award-winning technology leader and founder of CyberDude Networks. Expert in full-stack development, cybersecurity, and tech education, impacting millions globally.",
     images: [
       {
         url: "/images/og-image.png",
@@ -60,9 +66,26 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Anbuselvan Annamalai - Entrepreneur | Technology Leader",
     description:
-      "Explore the portfolio of Anbuselvan Annamalai, Founder & CEO of CyberDude Networks, technology leader, cybersecurity expert, and educator with over 13 years of expertise in full-stack development, cybersecurity, and ethical hacking. Discover his achievements, including the Chief Minister's award for Excellence in e-Governance, winning the DAIMLER Mobile App Garage competition, and mentoring Smart India Hackathon winners. Learn about his contributions to tech innovation, open-source projects, and educating over 12 million students worldwide. He also has another name called 'Anbuselvan Rocky'.",
+      "Award-winning technology leader and founder of CyberDude Networks. Expert in full-stack development, cybersecurity, and tech education, impacting millions globally.",
     images: ["/images/og-image.png"],
     creator: "@anbuselvanrocky",
+  },
+  alternates: {
+    canonical: "https://anbuselvan-annamalai.com",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
   },
 };
 

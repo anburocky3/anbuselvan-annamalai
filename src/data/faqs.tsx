@@ -17,7 +17,7 @@ export const faqsData: Faqs[] = [
   {
     question: "Can I use your project for my clients?",
     answer:
-      "Yes, if it is publically available on our github repository, you can use it for your clients as long as it aligns with our licensing terms.",
+      "Yes, if it is publicly available on our github repository, you can use it for your clients as long as it aligns with our licensing terms.",
   },
   {
     question: "I have a tutorial request, how to contact you?",
