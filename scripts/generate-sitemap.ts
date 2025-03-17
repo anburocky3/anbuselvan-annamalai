@@ -1,28 +1,78 @@
 import fs from "fs";
 import path from "path";
+import { MetadataRoute } from "next";
 import dotenv from "dotenv";
 
 // Load environment variables
 dotenv.config();
 
-// Get the base URL from environment variables
-const baseUrl: string =
+const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://anbuselvan-annamalai.com";
 
-// Define types
-type RouteCollection = {
-  mainRoutes: string[];
-  reviewRoutes: string[];
+// Define image sitemap interfaces
+interface ImageSitemap {
+  url: string;
+  title?: string;
+  caption?: string;
+  license_url?: string;
+}
+
+type SitemapEntry = {
+  url: string;
+  lastModified?: string | Date;
+  changeFrequency?:
+    | "always"
+    | "hourly"
+    | "daily"
+    | "weekly"
+    | "monthly"
+    | "yearly"
+    | "never";
+  priority?: number;
+  images?: ImageSitemap[];
+};
+
+// Define the main site images
+const mainImages = {
+  home: [
+    {
+      url: `${baseUrl}/images/anbuselvan-annamalai.png`,
+      title: "Anbuselvan Annamalai - Technology Mentor & Entrepreneur",
+      caption: "Anbuselvan Annamalai's profile picture",
+    },
+    {
+      url: `${baseUrl}/images/anbuselvan-annamalai-og.png`,
+      title: "Anbuselvan Annamalai - Social Share Image",
+      caption: "Anbuselvan Annamalai's social media preview image",
+    },
+  ],
+  about: [
+    {
+      url: `${baseUrl}/images/sessions/anbuselvan-annamalai-vit-talk.jpg`,
+      title: "Anbuselvan Annamalai speaking at VIT",
+      caption: "Guest lecture at VIT University",
+    },
+    {
+      url: `${baseUrl}/images/sessions/anbuselvan-annamalai-freshworks-talk.jpg`,
+      title: "Anbuselvan Annamalai at Freshworks",
+      caption: "Speaking at Freshworks FSSA",
+    },
+    {
+      url: `${baseUrl}/images/sessions/anbuselvan-annamalai-kongu-talks-1.jpg`,
+      title: "Workshop at Kongu Engineering College",
+      caption: "Conducting React Development Workshop",
+    },
+  ],
 };
 
 // Function to get all routes from the file system
-function getAllRoutes(): RouteCollection {
-  const appDirectory: string = path.join(process.cwd(), "src/app");
+function getAllRoutes() {
+  const appDirectory = path.join(process.cwd(), "src/app");
   const mainRoutes: string[] = [];
   const reviewRoutes: string[] = [];
 
   // Helper function to recursively get routes
-  function getRoutesFromDir(dir: string, basePath: string = ""): void {
+  function getRoutesFromDir(dir: string, basePath: string = "") {
     const entries = fs.readdirSync(dir, { withFileTypes: true });
 
     for (const entry of entries) {
@@ -73,95 +123,133 @@ function getAllRoutes(): RouteCollection {
   return { mainRoutes, reviewRoutes };
 }
 
-// Function to generate a random date within the last month
-function getRandomDate(): string {
-  const now = new Date();
-  const oneMonthAgo = new Date(now);
-  oneMonthAgo.setMonth(now.getMonth() - 1);
-
-  const randomTimestamp =
-    oneMonthAgo.getTime() +
-    Math.random() * (now.getTime() - oneMonthAgo.getTime());
-  return new Date(randomTimestamp).toISOString();
+// Helper function to get images for a route
+function getImagesForRoute(route: string): ImageSitemap[] | undefined {
+  if (route === "") {
+    return mainImages.home;
+  }
+  if (route === "about") {
+    return mainImages.about;
+  }
+  return undefined;
 }
 
-// Function to generate a random priority between 0.5 and 1.0
-function getRandomPriority(): number {
-  return (Math.floor(Math.random() * 6) + 5) / 10; // 0.5 to 1.0 in steps of 0.1
-}
-
-// Function to randomly select a change frequency
-function getRandomChangeFreq(): string {
-  const frequencies = [
-    "always",
-    "hourly",
-    "daily",
-    "weekly",
-    "monthly",
-    "yearly",
-    "never",
-  ] as const;
-
-  return frequencies[Math.floor(Math.random() * frequencies.length)];
-}
-
-// Generate the sitemap XML content
-function generateSitemapXml(): string {
+// Function to generate XML sitemap with images
+async function generateXMLSitemap() {
+  console.log("Starting sitemap generation...");
   const { mainRoutes, reviewRoutes } = getAllRoutes();
-  const allRoutes: string[] = [...mainRoutes, ...reviewRoutes];
+  let allEntries: SitemapEntry[] = [];
 
-  // Shuffle the routes for randomness
-  allRoutes.sort(() => Math.random() - 0.5);
+  // Add main routes
+  allEntries = [
+    ...mainRoutes.map((route) => {
+      const url = route === "" ? baseUrl : `${baseUrl}/${route}`;
+      const images = getImagesForRoute(route);
 
-  let xmlContent = `<?xml version="1.0" encoding="UTF-8"?>
+      return {
+        url,
+        lastModified: new Date(),
+        changeFrequency: route === "" ? "weekly" : "monthly",
+        priority: route === "" ? 1.0 : 0.8,
+        ...(images && { images }),
+      } as SitemapEntry;
+    }),
+    // Add review routes
+    ...reviewRoutes.map(
+      (route) =>
+        ({
+          url: `${baseUrl}/${route}`,
+          lastModified: new Date(),
+          changeFrequency: "weekly",
+          priority: route === "reviews" ? 0.9 : 0.8,
+        } as SitemapEntry)
+    ),
+  ];
+
+  // Generate XML
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-      xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
-      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-`;
-
-  // Add each route to the sitemap
-  allRoutes.forEach((route) => {
-    const url = route === "" ? baseUrl : `${baseUrl}/${route}`;
-    const lastmod = getRandomDate();
-    const changefreq = getRandomChangeFreq();
-    const priority = getRandomPriority();
-
-    xmlContent += `
-<url>
-  <loc>${url}</loc>
-  <lastmod>${lastmod}</lastmod>
-  <changefreq>${changefreq}</changefreq>
-  <priority>${priority}</priority>
-</url>`;
-  });
-
-  xmlContent += `
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+${allEntries
+  .map(
+    (entry) => `  <url>
+    <loc>${entry.url}</loc>
+    <lastmod>${
+      entry.lastModified instanceof Date
+        ? entry.lastModified.toISOString()
+        : new Date().toISOString()
+    }</lastmod>
+    <changefreq>${entry.changeFrequency || "monthly"}</changefreq>
+    <priority>${entry.priority || 0.5}</priority>
+    ${
+      entry.images
+        ? entry.images
+            .map(
+              (image: ImageSitemap) => `    <image:image>
+      <image:loc>${image.url}</image:loc>
+      ${image.title ? `      <image:title>${image.title}</image:title>` : ""}
+      ${
+        image.caption
+          ? `      <image:caption>${image.caption}</image:caption>`
+          : ""
+      }
+      ${
+        image.license_url
+          ? `      <image:license>${image.license_url}</image:license>`
+          : ""
+      }
+    </image:image>`
+            )
+            .join("\n")
+        : ""
+    }
+  </url>`
+  )
+  .join("\n")}
 </urlset>`;
 
-  return xmlContent;
+  // Write the XML sitemap
+  fs.writeFileSync(path.join(process.cwd(), "public", "sitemap.xml"), xml);
+  console.log("Sitemap written to public/sitemap.xml");
 }
 
-// Main function to generate and save sitemap
-function generateSitemap(): void {
-  try {
-    // Ensure the public directory exists
-    const publicDir = path.join(process.cwd(), "public");
-    if (!fs.existsSync(publicDir)) {
-      fs.mkdirSync(publicDir, { recursive: true });
-    }
-
-    // Generate and write the sitemap
-    const sitemapContent = generateSitemapXml();
-    fs.writeFileSync(path.join(publicDir, "sitemap.xml"), sitemapContent);
-
-    console.log("Sitemap generated successfully at public/sitemap.xml");
-  } catch (error) {
+// Main execution
+generateXMLSitemap()
+  .then(() => console.log("✅ Sitemap generated successfully!"))
+  .catch((error: Error) => {
     console.error("Error generating sitemap:", error);
     process.exit(1);
-  }
-}
+  });
 
-// Execute the main function
-generateSitemap();
+// Next.js sitemap function
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  const { mainRoutes, reviewRoutes } = getAllRoutes();
+
+  // Generate entries for main routes
+  const mainEntries = mainRoutes.map((route) => {
+    const url = route === "" ? baseUrl : `${baseUrl}/${route}`;
+    return {
+      url,
+      lastModified: new Date(),
+      changeFrequency: (route === ""
+        ? "weekly"
+        : "monthly") as MetadataRoute.Sitemap[number]["changeFrequency"],
+      priority: route === "" ? 1.0 : 0.8,
+    };
+  });
+
+  // Generate entries for review routes
+  const reviewEntries = reviewRoutes.map((route) => ({
+    url: `${baseUrl}/${route}`,
+    lastModified: new Date(),
+    changeFrequency:
+      "weekly" as MetadataRoute.Sitemap[number]["changeFrequency"],
+    priority: route === "reviews" ? 0.9 : 0.8,
+  }));
+
+  // Generate XML sitemap with images
+  await generateXMLSitemap();
+
+  // Return combined entries for Next.js sitemap
+  return [...mainEntries, ...reviewEntries];
+}

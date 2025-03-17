@@ -74,3 +74,21 @@ export const socialLinks = {
     icon: <FaYoutube />,
   },
 };
+
+export const getAllRoutes = () => {
+  const mainRoutes: string[] = [];
+  const reviewRoutes: string[] = [];
+
+  // Add main routes
+  mainRoutes.push("", "about", "services", "skills", "projects", "contact");
+
+  // Add review routes
+  reviewRoutes.push(
+    "reviews",
+    "reviews/about",
+    "reviews/events",
+    "reviews/youtube"
+  );
+
+  return { mainRoutes, reviewRoutes };
+};

@@ -118,6 +118,19 @@ export default function RootLayout({
         <Analytics />
         <SpeedInsights />
 
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebSite",
+              name: "Anbuselvan Annamalai",
+              alternateName: ["Anbuselvan Annamalai", "Anbuselvan Rocky"],
+              url: "https://anbuselvan-annamalai.com",
+            }),
+          }}
+        />
+
         {/* Structured Data for Person */}
         <script
           type="application/ld+json"
