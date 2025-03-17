@@ -61,6 +61,10 @@ const colleges = [
     name: "Sreenivasa Institute of Technology and Management Studies",
     url: "https://www.sitams.ac.in",
   },
+  {
+    name: "Vidyasagar College of Arts & Science",
+    url: "https://vidyasagarcollege.org",
+  },
 ];
 
 export default function AboutPage() {
@@ -562,6 +566,22 @@ export default function AboutPage() {
                     "@type": "Person",
                     name: "Anbuselvan Annamalai",
                   },
+                  organizer: {
+                    "@type": "Organization",
+                    name: "VIT Vellore",
+                    url: "https://www.vit.ac.in",
+                  },
+                  eventAttendanceMode:
+                    "https://schema.org/OfflineEventAttendanceMode",
+                  eventStatus: "https://schema.org/EventScheduled",
+                  image: [
+                    {
+                      "@type": "ImageObject",
+                      url: "https://anbuselvan-annamalai.com/images/sessions/anbuselvan-annamalai-vit-talk.jpg",
+                    },
+                  ],
+                  startDate: "2024-04-10",
+                  endDate: "2024-04-10",
                   location: {
                     "@type": "Place",
                     name: "VIT Vellore",
@@ -579,12 +599,38 @@ export default function AboutPage() {
                 position: 2,
                 item: {
                   "@type": "Event",
-                  name: "TEDx Talk on The Future of Web Development",
+                  name: "TEDx Talk on Freshworks FSSA",
                   description:
                     "A TEDx talk discussing the future of web development and its impact on society",
                   performer: {
                     "@type": "Person",
                     name: "Anbuselvan Annamalai",
+                  },
+                  startDate: "2025-03-13",
+                  endDate: "2025-03-13",
+                  organizer: {
+                    "@type": "Organization",
+                    name: "Freshworks",
+                    url: "https://www.freshworks.com",
+                  },
+                  eventAttendanceMode:
+                    "https://schema.org/OfflineEventAttendanceMode",
+                  eventStatus: "https://schema.org/EventScheduled",
+                  image: [
+                    {
+                      "@type": "ImageObject",
+                      url: "https://anbuselvan-annamalai.com/images/sessions/anbuselvan-annamalai-freshworks-talk.jpg",
+                    },
+                  ],
+                  location: {
+                    "@type": "Place",
+                    name: "Freshworks FSSA",
+                    address: {
+                      "@type": "PostalAddress",
+                      addressLocality: "Chennai",
+                      addressRegion: "Tamil Nadu",
+                      addressCountry: "India",
+                    },
                   },
                 },
               },
@@ -599,6 +645,35 @@ export default function AboutPage() {
                   performer: {
                     "@type": "Person",
                     name: "Anbuselvan Annamalai",
+                  },
+                  organizer: {
+                    "@type": "Organization",
+                    name: "Kongu Engineering College",
+                    url: "https://www.kongu.edu",
+                  },
+                  image: [
+                    {
+                      "@type": "ImageObject",
+                      url: "https://anbuselvan-annamalai.com/images/sessions/anbuselvan-annamalai-kongu-talks-1.jpg",
+                    },
+                    {
+                      "@type": "ImageObject",
+                      url: "https://anbuselvan-annamalai.com/images/sessions/anbuselvan-annamalai-kongu-talks-2.jpg",
+                    },
+                  ],
+                  eventAttendanceMode:
+                    "https://schema.org/OfflineEventAttendanceMode",
+                  eventStatus: "https://schema.org/EventScheduled",
+                  startDate: "2024-03-01",
+                  location: {
+                    "@type": "Place",
+                    name: "Kongu Engineering College",
+                    address: {
+                      "@type": "PostalAddress",
+                      addressLocality: "Erode",
+                      addressRegion: "Tamil Nadu",
+                      addressCountry: "India",
+                    },
                   },
                 },
               },
