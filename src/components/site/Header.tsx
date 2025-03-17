@@ -181,8 +181,17 @@ export default function Header() {
     };
   }, [pathname]);
 
+  // Reset body overflow when pathname changes
+  useEffect(() => {
+    // Reset body overflow to ensure scrolling works after navigation
+    document.body.style.overflow = "auto";
+    // Close menu when pathname changes
+    setIsMenuOpen(false);
+  }, [pathname]);
+
   const handleNavClick = (name: string, href: string, sectionId: string) => {
     setIsMenuOpen(false);
+    document.body.style.overflow = "auto"; // Reset body overflow when navigating
 
     // If on home page and clicking a section, handle smooth scroll
     if (pathname === "/" && href === "/") {
@@ -266,7 +275,7 @@ export default function Header() {
       <motion.header
         variants={headerVariants}
         animate={isScrolled ? "scrolled" : "top"}
-        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-6 backdrop-blur-sm`}
+        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-3 backdrop-blur-sm`}
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
