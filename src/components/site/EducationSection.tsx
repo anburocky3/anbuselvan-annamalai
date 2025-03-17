@@ -79,7 +79,7 @@ export default function EducationSection() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mt-20">
           {/* Education */}
           <motion.div variants={titleVariants}>
-            <h3 className="text-3xl font-semibold">Education</h3>
+            <h3 className="text-2xl font-semibold">Education</h3>
             <div className="space-y-10 mt-10 relative">
               {/* Connecting Line */}
               <div className="absolute left-[4rem] top-6 bottom-6 w-0.5 bg-gradient-to-b from-purple-500/50 to-purple-900/20" />
@@ -107,11 +107,11 @@ export default function EducationSection() {
                     </motion.p>
                     <motion.h4
                       whileHover={{ color: "#A855F7" }}
-                      className="text-xl font-bold transition-colors duration-300"
+                      className="text-base font-bold transition-colors duration-300"
                     >
                       {item.title}
                     </motion.h4>
-                    <p className="text-gray-400 font-medium">
+                    <p className="text-sm text-gray-400 font-medium">
                       {item.institution}
                     </p>
                   </div>
@@ -122,7 +122,7 @@ export default function EducationSection() {
 
           {/* Work Experience */}
           <motion.div variants={titleVariants}>
-            <h3 className="text-3xl font-semibold">Work Experience</h3>
+            <h3 className="text-2xl font-semibold">Work Experience</h3>
             <div className="space-y-10 mt-10 relative">
               {/* Connecting Line */}
               <div className="absolute left-[4rem] top-6 bottom-6 w-0.5 bg-gradient-to-b from-purple-500/50 to-purple-900/20" />
@@ -150,11 +150,13 @@ export default function EducationSection() {
                     </motion.p>
                     <motion.h4
                       whileHover={{ color: "#A855F7" }}
-                      className="text-xl font-bold transition-colors duration-300"
+                      className="text-base font-bold transition-colors duration-300"
                     >
                       {item.title}
                     </motion.h4>
-                    <p className="text-gray-400 font-medium">{item.company}</p>
+                    <p className="text-sm text-gray-400 font-medium">
+                      {item.company}
+                    </p>
                   </div>
                 </motion.div>
               ))}

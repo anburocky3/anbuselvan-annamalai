@@ -1,61 +1,64 @@
-import type { Metadata } from "next";
-import { Sora } from "next/font/google";
-import { GoogleAnalytics } from "@next/third-parties/google";
+import { Metadata, Viewport } from "next";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Toaster } from "react-hot-toast";
+import Header from "@/components/site/Header";
+import Footer from "@/components/site/Footer";
 import "./globals.css";
-import ServiceWorkerProvider from "../components/ServiceWorkerProvider";
-
-const fontSora = Sora({
-  subsets: ["latin"],
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
-});
+import ScrollHandler from "@/components/ScrollHandler";
+import { socialLinks } from "@/lib/utils";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anbuselvan-annamalai.com"),
   title: {
-    default: "Anbuselvan Annamalai - Entrepreneur | Technology Leader",
+    default: "Anbuselvan Annamalai - Entrepreneur | Technology Mentor",
     template: "%s | Anbuselvan Annamalai",
   },
   description:
-    "Award-winning technology leader and founder of CyberDude Networks. Expert in full-stack development, cybersecurity, and tech education, impacting millions globally.",
+    "Award-winning technology leader and entrepreneur. Expert in full-stack development, React, React Native, Node.js, and mobile app development with over 10 years of experience.",
   applicationName: "Anbuselvan Annamalai Portfolio",
   authors: [
     { name: "Anbuselvan Annamalai", url: "https://anbuselvan-annamalai.com" },
   ],
   keywords: [
     "Anbuselvan Annamalai",
-    "Anbuselvan Rocky",
-    "Technology Leader",
+    "Technology Mentor",
     "Entrepreneur",
     "Full Stack Developer",
-    "Cybersecurity Expert",
-    "Tech Educator",
+    "React Developer",
+    "React Native Developer",
+    "Mobile App Development",
+    "Web Development",
+    "Node.js Expert",
+    "Technology Consultant",
     "CyberDude Networks",
-    "Chief Minister's award",
-    "e-Governance",
-    "DAIMLER Mobile App",
-    "Smart India Hackathon",
-    "ethical hacking",
-    "tech innovation",
   ],
+  creator: "Anbuselvan Annamalai",
+  publisher: "Anbuselvan Annamalai",
+  formatDetection: {
+    email: true,
+    address: true,
+    telephone: true,
+  },
   referrer: "origin-when-cross-origin",
+  category: "technology",
   icons: {
     icon: "/favicon.ico",
     shortcut: "/favicon.ico",
     apple: "/apple-icon.png",
   },
-
   manifest: "/manifest.json",
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://anbuselvan-annamalai.com",
     siteName: "Anbuselvan Annamalai",
-    title: "Anbuselvan Annamalai - Entrepreneur | Technology Leader",
+    title: "Anbuselvan Annamalai - Entrepreneur | Technology Mentor",
     description:
-      "Award-winning technology leader and founder of CyberDude Networks. Expert in full-stack development, cybersecurity, and tech education, impacting millions globally.",
+      "Award-winning technology leader and entrepreneur. Expert in full-stack development, React, React Native, Node.js, and mobile app development.",
     images: [
       {
-        url: "/images/og-image.png",
+        url: "/images/anbuselvan-annamalai-og.png",
         width: 1200,
         height: 630,
         alt: "Anbuselvan Annamalai - Technology Leader and Entrepreneur",
@@ -64,14 +67,17 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Anbuselvan Annamalai - Entrepreneur | Technology Leader",
+    title: "Anbuselvan Annamalai - Entrepreneur | Technology Mentor",
     description:
-      "Award-winning technology leader and founder of CyberDude Networks. Expert in full-stack development, cybersecurity, and tech education, impacting millions globally.",
-    images: ["/images/og-image.png"],
-    creator: "@anbuselvanrocky",
+      "Award-winning technology leader and entrepreneur. Expert in full-stack development, React, React Native, Node.js, and mobile app development.",
+    images: ["/images/anbuselvan-annamalai-og.png"],
+    creator: "@anbuselvan",
   },
   alternates: {
     canonical: "https://anbuselvan-annamalai.com",
+    languages: {
+      "en-US": "https://anbuselvan-annamalai.com",
+    },
   },
   robots: {
     index: true,
@@ -84,9 +90,13 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION,
-  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#1e1b4b",
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({
@@ -97,22 +107,44 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <meta name="theme-color" content="#4f46e5" />
-        <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta
-          name="apple-mobile-web-app-title"
-          content="Anbuselvan Annamalai"
-        />
+        <link rel="canonical" href="https://anbuselvan-annamalai.com" />
       </head>
-      <body className={`${fontSora.className} antialiased`}>
-        <ServiceWorkerProvider />
-        {children}
-        <GoogleAnalytics
-          gaId={process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID || ""}
+      <body className="bg-slate-900">
+        <Header />
+        <main>{children}</main>
+        <Footer />
+        <ScrollHandler />
+        <Toaster position="bottom-right" />
+        <Analytics />
+        <SpeedInsights />
+
+        {/* Structured Data for Person */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: "Anbuselvan Annamalai",
+              url: "https://anbuselvan-annamalai.com",
+              image:
+                "https://anbuselvan-annamalai.com/images/anbuselvan-annamalai.png",
+              sameAs: [
+                socialLinks.x.url,
+                socialLinks.linkedin.url,
+                socialLinks.github.url,
+                socialLinks.instagram.url,
+                socialLinks.youtube.url,
+              ],
+              jobTitle: "Entrepreneur & Technology Mentor",
+              worksFor: {
+                "@type": "Organization",
+                name: "CyberDude Networks Pvt Ltd",
+              },
+              description:
+                "Award-winning technology leader and entrepreneur. Expert in full-stack development, React, React Native, Node.js, and mobile app development.",
+            }),
+          }}
         />
       </body>
     </html>

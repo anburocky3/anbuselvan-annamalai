@@ -1,9 +1,28 @@
-import { LuCalendar, LuLink, LuYoutube } from "react-icons/lu";
+import { route } from "@/config/routes";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { route } from "@/config/routes";
+import { LuYoutube, LuCalendar, LuLink } from "react-icons/lu";
 
-export default function ReviewHome() {
+export const metadata: Metadata = {
+  title: "Reviews & Testimonials | Anbuselvan Annamalai",
+  description:
+    "Read what clients and students say about Anbuselvan Annamalai's expertise in web development, mobile app development, and technology mentorship.",
+  alternates: {
+    canonical: "https://anbuselvan-annamalai.com/reviews",
+  },
+  openGraph: {
+    title: "Reviews & Testimonials | Anbuselvan Annamalai",
+    description:
+      "Read what clients and students say about Anbuselvan Annamalai's expertise in web development, mobile app development, and technology mentorship.",
+    url: "https://anbuselvan-annamalai.com/reviews",
+    siteName: "Anbuselvan Annamalai",
+    locale: "en_US",
+    type: "website",
+  },
+};
+
+export default function ReviewsPage() {
   return (
     <>
       {/* Gradient Header */}

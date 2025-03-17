@@ -163,12 +163,12 @@ export default function SkillSection() {
                   {skill.proficiency}
                 </motion.p>
               </motion.div>
-              <motion.p
+              <motion.div
                 variants={itemVariants}
                 className="font-medium text-gray-300"
               >
                 {skill.name}
-              </motion.p>
+              </motion.div>
             </motion.div>
           ))}
         </motion.div>

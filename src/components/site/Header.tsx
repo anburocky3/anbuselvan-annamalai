@@ -1,7 +1,12 @@
 "use client";
 
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import {
+  motion,
+  AnimatePresence,
+  useScroll,
+  useMotionValueEvent,
+} from "framer-motion";
 import MenuButton from "./navigations/MenuButton";
 import {
   FaTwitter,
@@ -17,169 +22,222 @@ import {
   ANALYTICS_CATEGORIES,
   trackEvent,
 } from "@/utils/analytics";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { Sora } from "next/font/google";
+
+const fontSora = Sora({
+  subsets: ["latin"],
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800"],
+});
 
 const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Project", href: "#projects" },
-  { name: "Services", href: "#services" },
-  { name: "About", href: "#about" },
-  { name: "Skill", href: "#skills" },
-  { name: "Contact", href: "#contact" },
+  { name: "Home", href: "/", sectionId: "home" },
+  { name: "Projects", href: "/projects", sectionId: "projects" },
+  { name: "Services", href: "/services", sectionId: "services" },
+  { name: "About", href: "/about", sectionId: "about" },
+  { name: "Skills", href: "/skills", sectionId: "skills" },
+  { name: "Contact", href: "/contact", sectionId: "contact" },
 ];
 
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("");
-  const [indicatorStyle, setIndicatorStyle] = useState({
-    width: 0,
-    left: 0,
-  });
+  const pathname = usePathname();
   const navRef = useRef<HTMLUListElement>(null);
+  const observerRef = useRef<IntersectionObserver | null>(null);
+  const { scrollY } = useScroll();
 
-  const updateIndicator = (index: number) => {
-    const navItems = navRef.current?.children;
-    if (navItems && navItems[index]) {
-      const item = navItems[index] as HTMLElement;
-      setIndicatorStyle({
-        width: item.offsetWidth,
-        left: item.offsetLeft,
-      });
+  // Function to check if a link is active
+  const isLinkActive = (href: string, sectionId: string) => {
+    if (pathname === "/") {
+      // Special case for home section
+      if (sectionId === "home" && activeSection === "") {
+        return true;
+      }
+      // On home page, use section-based active state
+      return activeSection === sectionId;
     }
+    // On other pages, use route-based active state
+    if (href === "/") {
+      return pathname === "/";
+    }
+    return pathname.startsWith(href);
   };
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
-    document.body.style.overflow = isMenuOpen ? "auto" : "hidden";
-  };
-
-  const scrollToSection = (sectionId: string, event?: React.MouseEvent) => {
-    event?.preventDefault();
-    const element = document.getElementById(sectionId.replace("#", ""));
-    if (element) {
-      const offsetTop = element.offsetTop - 100;
-      window.scrollTo({
-        top: offsetTop,
-        behavior: "smooth",
-      });
-
-      // If scrolling to home section, reset the indicator
-      if (sectionId === "#home") {
-        setActiveSection("");
-        setIndicatorStyle({ width: 0, left: 0 });
-      } else {
-        const newActiveSection = sectionId.replace("#", "");
-        setActiveSection(newActiveSection);
-        const index = navLinks.findIndex((link) => link.href === sectionId);
-        if (index !== -1) {
-          updateIndicator(index);
-        }
-      }
-
-      setIsMenuOpen(false);
-      document.body.style.overflow = "auto";
+    if (typeof window !== "undefined") {
+      document.body.style.overflow = isMenuOpen ? "auto" : "hidden";
     }
   };
 
+  // Handle mounting
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      setIsScrolled(scrollPosition > 50);
+    setMounted(true);
+  }, []);
 
-      // Find the current section
-      const sections = navLinks.map((link) => link.href.replace("#", ""));
-      for (const section of sections) {
-        const element = document.getElementById(section);
+  // Use Framer Motion's useScroll hook for smooth header background transition
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    setIsScrolled(latest > 50);
+  });
+
+  // Setup Intersection Observer for section detection
+  useEffect(() => {
+    if (typeof window === "undefined" || pathname !== "/") return;
+
+    // Cleanup previous observer
+    if (observerRef.current) {
+      observerRef.current.disconnect();
+    }
+
+    const options = {
+      rootMargin: "-20% 0px -20% 0px",
+      threshold: [0, 0.25, 0.5, 0.75, 1],
+    };
+
+    // Keep track of section visibility ratios
+    const sectionVisibility = new Map();
+
+    // Special handling for projects section
+    let projectsInView = false;
+
+    observerRef.current = new IntersectionObserver((entries) => {
+      // Special handling for projects section
+      entries.forEach((entry) => {
+        if (entry.target.id === "projects") {
+          projectsInView = entry.isIntersecting;
+        }
+      });
+
+      // Update visibility ratios for all entries
+      entries.forEach((entry) => {
+        // Give projects section a slight boost in visibility if it's in view
+        const visibilityRatio =
+          entry.target.id === "projects" && projectsInView
+            ? Math.max(entry.intersectionRatio, 0.2) // Ensure projects has at least 0.2 ratio when visible
+            : entry.intersectionRatio;
+
+        sectionVisibility.set(entry.target.id, visibilityRatio);
+      });
+
+      // Find the most visible section
+      let maxRatio = 0;
+      let mostVisibleSection = "";
+
+      sectionVisibility.forEach((ratio, sectionId) => {
+        // Only consider sections that are actually visible
+        if (ratio > 0 && ratio > maxRatio) {
+          maxRatio = ratio;
+          mostVisibleSection = sectionId;
+        }
+      });
+
+      // Only update if we found a visible section
+      if (mostVisibleSection && maxRatio > 0.1) {
+        setActiveSection(mostVisibleSection);
+      }
+    }, options);
+
+    // Observe all sections with a slight delay to ensure DOM is ready
+    setTimeout(() => {
+      // First, try to find all sections by ID
+      navLinks.forEach(({ sectionId }) => {
+        const element = document.getElementById(sectionId);
         if (element) {
-          const rect = element.getBoundingClientRect();
-          // Check if the section is in view (with some buffer)
-          if (rect.top <= 150 && rect.bottom >= 150) {
-            // Skip updating indicator if we're in the home/hero section
+          observerRef.current?.observe(element);
+          // Initialize visibility map
+          sectionVisibility.set(sectionId, 0);
+        }
+      });
 
-            if (activeSection !== section) {
-              setActiveSection(section);
-              const index = sections.indexOf(section);
+      // Special handling for projects section - try to find it by other means if not found by ID
+      if (!document.getElementById("projects")) {
+        // Try to find by class or other attributes
+        const possibleProjectsSections = document.querySelectorAll(
+          'section[data-section="projects"], .projects-section, section:nth-of-type(3)'
+        );
 
-              updateIndicator(index + 1);
-            }
-            break;
+        if (possibleProjectsSections.length > 0) {
+          // Use the first match
+          const projectsSection = possibleProjectsSections[0];
+          // Set ID if missing
+          if (!projectsSection.id) {
+            projectsSection.id = "projects";
+          }
+          observerRef.current?.observe(projectsSection);
+          sectionVisibility.set("projects", 0);
+        }
+      }
+    }, 100);
+
+    return () => {
+      if (observerRef.current) {
+        observerRef.current.disconnect();
+      }
+      document.body.style.overflow = "auto";
+    };
+  }, [pathname]);
+
+  const handleNavClick = (name: string, href: string, sectionId: string) => {
+    setIsMenuOpen(false);
+
+    // If on home page and clicking a section, handle smooth scroll
+    if (pathname === "/" && href === "/") {
+      // Force set the active section immediately for better UX
+      setActiveSection(sectionId);
+
+      // Try to find the element
+      let element = document.getElementById(sectionId);
+
+      // Special handling for projects section
+      if (!element && sectionId === "projects") {
+        const possibleProjectsSections = document.querySelectorAll(
+          'section[data-section="projects"], .projects-section, section:nth-of-type(3)'
+        );
+        if (possibleProjectsSections.length > 0) {
+          element = possibleProjectsSections[0] as HTMLElement;
+          // Set ID if missing
+          if (!element.id) {
+            element.id = "projects";
           }
         }
       }
-    };
 
-    window.addEventListener("scroll", handleScroll);
+      if (element) {
+        // Calculate offset based on header height
+        const headerHeight = 100; // Adjust based on your header height
+        const offsetTop = element.offsetTop - headerHeight;
 
-    // Initial check for active section
-    setTimeout(handleScroll, 100);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-      document.body.style.overflow = "auto";
-    };
-  }, [activeSection]);
-
-  // Handle window resize
-  useEffect(() => {
-    const handleResize = () => {
-      const index = navLinks.findIndex(
-        (link) => link.href === `#${activeSection}`
-      );
-      if (index !== -1) {
-        updateIndicator(index);
+        window.scrollTo({
+          top: offsetTop,
+          behavior: "smooth",
+        });
       }
-    };
+    }
 
-    window.addEventListener("resize", handleResize);
-    return () => window.removeEventListener("resize", handleResize);
-  }, [activeSection]);
-
-  const menuVariants = {
-    closed: {
-      opacity: 0,
-      clipPath: "circle(0% at 95% 5%)",
-      transition: {
-        duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.05,
-        staggerDirection: -1,
-      },
-    },
-    open: {
-      opacity: 1,
-      clipPath: "circle(150% at 95% 5%)",
-      transition: {
-        duration: 0.7,
-        ease: [0.22, 1, 0.36, 1],
-        staggerChildren: 0.07,
-        delayChildren: 0.2,
-      },
-    },
+    trackEvent({
+      action: ANALYTICS_ACTIONS.MENU_CLICK,
+      category: ANALYTICS_CATEGORIES.INTERACTION,
+      label: `Header Navigation - ${name}`,
+    });
   };
 
-  const itemVariants = {
-    closed: {
+  // Animation variants
+  const underlineVariants = {
+    inactive: {
+      width: 0,
+      x: "50%",
       opacity: 0,
-      y: 50,
       transition: { duration: 0.3 },
     },
-    open: {
+    active: {
+      width: "100%",
+      x: 0,
       opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
-
-  const socialVariants = {
-    closed: {
-      opacity: 0,
-      y: 20,
       transition: { duration: 0.3 },
-    },
-    open: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1], delay: 0.3 },
     },
   };
 
@@ -187,13 +245,20 @@ export default function Header() {
     top: {
       backgroundColor: "rgba(0, 0, 0, 0)",
       boxShadow: "none",
+      transition: { duration: 0.3, ease: "easeInOut" },
     },
     scrolled: {
       backgroundColor: "rgba(0, 0, 0, 0.9)",
       boxShadow:
         "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
+      transition: { duration: 0.3, ease: "easeInOut" },
     },
   };
+
+  // Don't render anything until mounted to prevent hydration mismatch
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <>
@@ -201,8 +266,7 @@ export default function Header() {
       <motion.header
         variants={headerVariants}
         animate={isScrolled ? "scrolled" : "top"}
-        transition={{ duration: 0.3 }}
-        className={`fixed top-0 left-0 w-full z-50 py-6 backdrop-blur-sm`}
+        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-6 backdrop-blur-sm`}
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
@@ -217,18 +281,6 @@ export default function Header() {
             {/* Desktop Menu */}
             <nav className="hidden lg:block relative">
               <ul ref={navRef} className="flex space-x-8 font-medium relative">
-                <motion.div
-                  className="absolute bottom-0 h-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full -mb-2"
-                  animate={{
-                    width: indicatorStyle.width,
-                    x: indicatorStyle.left,
-                  }}
-                  transition={{
-                    type: "spring",
-                    stiffness: 350,
-                    damping: 30,
-                  }}
-                />
                 {navLinks.map((link, index) => (
                   <motion.li
                     key={link.name}
@@ -237,25 +289,25 @@ export default function Header() {
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     className="relative py-2"
                   >
-                    <a
+                    <Link
                       href={link.href}
-                      onClick={(e) => {
-                        scrollToSection(link.href, e);
-                        updateIndicator(index);
-                        trackEvent({
-                          action: ANALYTICS_ACTIONS.MENU_CLICK,
-                          category: ANALYTICS_CATEGORIES.NAVIGATION,
-                          label: link.name,
-                        });
-                      }}
-                      className={`text-white hover:text-purple-400 transition-colors duration-300 px-4 py-2 ${
-                        activeSection === link.href.replace("#", "")
-                          ? "text-purple-400"
-                          : ""
-                      }`}
+                      onClick={() =>
+                        handleNavClick(link.name, link.href, link.sectionId)
+                      }
+                      className="text-white hover:text-purple-400 transition-colors duration-300 px-4 py-2 relative"
                     >
                       {link.name}
-                    </a>
+                      <motion.div
+                        variants={underlineVariants}
+                        initial="inactive"
+                        animate={
+                          isLinkActive(link.href, link.sectionId)
+                            ? "active"
+                            : "inactive"
+                        }
+                        className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full"
+                      />
+                    </Link>
                   </motion.li>
                 ))}
               </ul>
@@ -308,7 +360,6 @@ export default function Header() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            variants={menuVariants}
             initial="closed"
             animate="open"
             exit="closed"
@@ -320,20 +371,38 @@ export default function Header() {
                   {navLinks.map((link) => (
                     <motion.li
                       key={link.name}
-                      variants={itemVariants}
+                      initial={{ opacity: 0, y: -20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{
+                        duration: 0.5,
+                        delay:
+                          link.name === "Home"
+                            ? 0.1
+                            : link.name === "Projects"
+                            ? 0.2
+                            : link.name === "Services"
+                            ? 0.3
+                            : link.name === "About"
+                            ? 0.4
+                            : link.name === "Skills"
+                            ? 0.5
+                            : 0.6,
+                      }}
                       className="overflow-hidden"
                     >
-                      <a
+                      <Link
                         href={link.href}
-                        onClick={(e) => scrollToSection(link.href, e)}
+                        onClick={() =>
+                          handleNavClick(link.name, link.href, link.sectionId)
+                        }
                         className={`relative inline-block text-gray-300 hover:text-white text-2xl font-medium transition-colors duration-300 py-2 px-4 ${
-                          activeSection === link.href.replace("#", "")
-                            ? "text-purple-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-0.5 after:bg-gradient-to-r after:from-purple-400 after:to-purple-600"
+                          isLinkActive(link.href, link.sectionId)
+                            ? "text-purple-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-purple-400 after:to-purple-600"
                             : ""
                         }`}
                       >
                         {link.name}
-                      </a>
+                      </Link>
                     </motion.li>
                   ))}
                 </motion.ul>
@@ -341,7 +410,9 @@ export default function Header() {
 
               {/* Social Icons - Mobile */}
               <motion.div
-                variants={socialVariants}
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.3 }}
                 className="flex justify-center space-x-8 mt-12"
               >
                 <motion.a

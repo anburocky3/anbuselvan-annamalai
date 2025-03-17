@@ -8,6 +8,7 @@ export interface Project {
   features: string[];
   tags: string[];
   link: string;
+  techLinks?: { name: string; url: string }[];
 }
 
 export const projects: Project[] = [
@@ -24,6 +25,12 @@ export const projects: Project[] = [
     ],
     tags: ["branding", "Graphic design", "Development"],
     link: "https://varam.app",
+    techLinks: [
+      { name: "React Native", url: "https://reactnative.dev" },
+      { name: "Node.js", url: "https://nodejs.org" },
+      { name: "MongoDB", url: "https://www.mongodb.com" },
+      { name: "Firebase", url: "https://firebase.google.com" },
+    ],
   },
   {
     type: "app",
@@ -39,6 +46,12 @@ export const projects: Project[] = [
     ],
     tags: ["branding", "Graphic design", "Development"],
     link: "https://cyberdudenetworks.com",
+    techLinks: [
+      { name: "React", url: "https://react.dev" },
+      { name: "Next.js", url: "https://nextjs.org" },
+      { name: "TypeScript", url: "https://www.typescriptlang.org" },
+      { name: "Tailwind CSS", url: "https://tailwindcss.com" },
+    ],
   },
   {
     type: "app",
@@ -54,6 +67,12 @@ export const projects: Project[] = [
     ],
     tags: ["branding", "Graphic design", "Development"],
     link: "https://farm2bag.com",
+    techLinks: [
+      { name: "React", url: "https://react.dev" },
+      { name: "React Native", url: "https://reactnative.dev" },
+      { name: "Node.js", url: "https://nodejs.org" },
+      { name: "Express", url: "https://expressjs.com" },
+    ],
   },
   {
     type: "app",
@@ -69,5 +88,11 @@ export const projects: Project[] = [
     ],
     tags: ["branding", "Graphic design", "Development"],
     link: socialLinks.cyberdude.url,
+    techLinks: [
+      { name: "YouTube API", url: "https://developers.google.com/youtube/v3" },
+      { name: "React", url: "https://react.dev" },
+      { name: "Firebase", url: "https://firebase.google.com" },
+      { name: "Node.js", url: "https://nodejs.org" },
+    ],
   },
 ];

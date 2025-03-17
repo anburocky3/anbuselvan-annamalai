@@ -119,7 +119,7 @@ export default function HeroSection() {
               >
                 <Image
                   src="/images/anbuselvan-annamalai.png"
-                  alt="Anbuselvan Annamalai - Entrepreneur and Technology Mentor"
+                  alt="Anbuselvan Annamalai - Award-winning Entrepreneur and Technology Mentor specializing in React, React Native, and full-stack development"
                   width={0}
                   height={0}
                   sizes="100vw"
@@ -146,7 +146,7 @@ export default function HeroSection() {
                 >
                   <Image
                     src="/images/anbuselvan-annamalai.png"
-                    alt="Anbuselvan Annamalai - Entrepreneur and Technology Mentor"
+                    alt="Anbuselvan Annamalai - Award-winning Entrepreneur and Technology Mentor with expertise in React, React Native, and Node.js"
                     width={0}
                     height={0}
                     sizes="100vw"
@@ -164,15 +164,15 @@ export default function HeroSection() {
                     variants={itemVariants}
                     className="inline-block text-xl sm:text-4xl font-bold text-white"
                   >
-                    Hi, I am Anbuselvan.
+                    Hi, I am Anbuselvan Annamalai.
                   </motion.h1>
-                  <motion.h3
+                  <motion.h2
                     variants={itemVariants}
                     className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 to-indigo-400 inline-block text-transparent bg-clip-text"
                     title="Entrepreneur | Mentor"
                   >
                     Entrepreneur | Mentor
-                  </motion.h3>
+                  </motion.h2>
                 </div>
 
                 <motion.p
@@ -203,7 +203,7 @@ export default function HeroSection() {
                     });
                   }}
                   role="button"
-                  aria-label="Start a project"
+                  aria-label="Start a project with Anbuselvan Annamalai"
                 >
                   Got a project?
                 </motion.a>
@@ -221,9 +221,9 @@ export default function HeroSection() {
                     });
                   }}
                   role="button"
-                  aria-label="Contact for discussion"
+                  aria-label="Contact Anbuselvan Annamalai for consultation"
                 >
-                  Lets talk!
+                  Let&apos;s talk!
                 </motion.a>
               </motion.nav>
             </div>
@@ -240,7 +240,7 @@ export default function HeroSection() {
           rotate: { duration: 1.2, ease: "easeOut" },
         }}
         className="bg-gradient-to-r from-purple-950 to-black px-10 py-6 absolute bottom-5 sm:bottom-24 -left-10 w-[calc(100%+5rem)] flex justify-center items-center"
-        aria-label="Technology Skills"
+        aria-label="Anbuselvan Annamalai's Technology Skills"
       >
         <Marquee speed={20}>
           <TechnologyMarquee key={1} title="Design" />
