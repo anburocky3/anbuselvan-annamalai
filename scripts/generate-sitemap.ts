@@ -32,6 +32,26 @@ type SitemapEntry = {
   images?: ImageSitemap[];
 };
 
+// Function to escape XML special characters
+function escapeXml(unsafe: string): string {
+  return unsafe.replace(/[<>&'"]/g, (c) => {
+    switch (c) {
+      case "<":
+        return "&lt;";
+      case ">":
+        return "&gt;";
+      case "&":
+        return "&amp;";
+      case "'":
+        return "&apos;";
+      case '"':
+        return "&quot;";
+      default:
+        return c;
+    }
+  });
+}
+
 // Define the main site images
 const mainImages = {
   home: [
@@ -173,7 +193,7 @@ async function generateXMLSitemap() {
 ${allEntries
   .map(
     (entry) => `  <url>
-    <loc>${entry.url}</loc>
+    <loc>${escapeXml(entry.url)}</loc>
     <lastmod>${
       entry.lastModified instanceof Date
         ? entry.lastModified.toISOString()
@@ -186,16 +206,22 @@ ${allEntries
         ? entry.images
             .map(
               (image: ImageSitemap) => `    <image:image>
-      <image:loc>${image.url}</image:loc>
-      ${image.title ? `      <image:title>${image.title}</image:title>` : ""}
+      <image:loc>${escapeXml(image.url)}</image:loc>
+      ${
+        image.title
+          ? `      <image:title>${escapeXml(image.title)}</image:title>`
+          : ""
+      }
       ${
         image.caption
-          ? `      <image:caption>${image.caption}</image:caption>`
+          ? `      <image:caption>${escapeXml(image.caption)}</image:caption>`
           : ""
       }
       ${
         image.license_url
-          ? `      <image:license>${image.license_url}</image:license>`
+          ? `      <image:license>${escapeXml(
+              image.license_url
+            )}</image:license>`
           : ""
       }
     </image:image>`
