@@ -19,13 +19,13 @@ export const timelineData: TimelineData = {
   education: [
     {
       year: "2023 - 2025",
-      title: "MANAGEMENT OF BUSINESS APPLICATION",
-      institution: "University Of Madras",
+      title: "Master of Business Administration",
+      institution: "University of Madras",
       icon: <FaGraduationCap className="w-6 h-6" />,
     },
     {
       year: "2013 - 2017",
-      title: "BACHELOR OF ENGINEERING (C.S.E)",
+      title: "Bachelor of Engineering (C.S.E.)",
       institution: "Anna University",
       icon: <FaGraduationCap className="w-6 h-6" />,
     },
