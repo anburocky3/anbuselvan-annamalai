@@ -58,7 +58,7 @@ export default async function AboutPage() {
   const headersList = await headers();
   const domain = headersList.get("host") || "localhost:3000";
   const protocol = process.env.NODE_ENV === "development" ? "http" : "https";
-  const fullUrl = `${protocol}://${domain}/reviews/about`;
+  const fullUrl = `${protocol}://${domain}/reviews`;
 
   return (
     <main className="bg-white flex flex-col  items-center p-5 sm:h-screen">

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function ProjectsPage() {
   return (
-    <div className="pt-10">
+    <div className="pt-10 bg-black">
       <MyWork />
     </div>
   );

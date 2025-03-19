@@ -2,11 +2,11 @@ import { Metadata, Viewport } from "next";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "react-hot-toast";
-import Header from "@/components/site/Header";
 import Footer from "@/components/site/Footer";
 import "./globals.css";
 import ScrollHandler from "@/components/ScrollHandler";
 import { socialLinks } from "@/lib/utils";
+import { ConditionalNavigation } from "@/components/conditional-navigation";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anbuselvan-annamalai.com"),
@@ -110,7 +110,7 @@ export default function RootLayout({
         <link rel="canonical" href="https://anbuselvan-annamalai.com" />
       </head>
       <body className="bg-slate-900">
-        <Header />
+        <ConditionalNavigation />
         <main>{children}</main>
         <Footer />
         <ScrollHandler />

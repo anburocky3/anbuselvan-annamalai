@@ -566,6 +566,11 @@ export default function AboutPage() {
                     "@type": "Person",
                     name: "Anbuselvan Annamalai",
                   },
+                  offers: {
+                    "@type": "Offer",
+                    price: "Free",
+                    priceCurrency: "INR",
+                  },
                   organizer: {
                     "@type": "Organization",
                     name: "VIT Vellore",
@@ -613,6 +618,11 @@ export default function AboutPage() {
                     name: "Freshworks",
                     url: "https://www.freshworks.com",
                   },
+                  offers: {
+                    "@type": "Offer",
+                    price: "Free",
+                    priceCurrency: "INR",
+                  },
                   eventAttendanceMode:
                     "https://schema.org/OfflineEventAttendanceMode",
                   eventStatus: "https://schema.org/EventScheduled",
@@ -651,6 +661,11 @@ export default function AboutPage() {
                     name: "Kongu Engineering College",
                     url: "https://www.kongu.edu",
                   },
+                  offers: {
+                    "@type": "Offer",
+                    price: "Free",
+                    priceCurrency: "INR",
+                  },
                   image: [
                     {
                       "@type": "ImageObject",
@@ -665,6 +680,7 @@ export default function AboutPage() {
                     "https://schema.org/OfflineEventAttendanceMode",
                   eventStatus: "https://schema.org/EventScheduled",
                   startDate: "2024-03-01",
+                  endDate: "2024-03-03",
                   location: {
                     "@type": "Place",
                     name: "Kongu Engineering College",

@@ -1,21 +1,11 @@
 "use client";
 
-import { Card, CardTitle } from "@/components/ui/card";
-import { QRCodeSVG } from "qrcode.react";
 // import type { ReviewInput } from "@/lib/validations";
-import { Separator } from "@/components/ui/separator";
 // import ReviewList from "./review-list";
 import WorkshopSurveyTabs from "@/components/workshop-survey-tabs";
 import ProtectedRoute from "@/components/protected-route";
-import { useState, useEffect } from "react";
 
 export default function AdminDashboard() {
-  const [origin, setOrigin] = useState("");
-
-  useEffect(() => {
-    setOrigin(window.location.origin);
-  }, []);
-
   // const [reviews, setReviews] = useState<ReviewInput[]>([]);
   // const [loading, setLoading] = useState(true);
 
@@ -39,7 +29,7 @@ export default function AdminDashboard() {
   return (
     <ProtectedRoute>
       <div className="container mx-auto py-6 space-y-6">
-        <div className="flex justify-between items-center">
+        {/* <div className="flex justify-between items-center">
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
           <div className="flex gap-4">
             <Card className="p-4">
@@ -55,7 +45,7 @@ export default function AdminDashboard() {
               <QRCodeSVG value={`${origin}/event-reviews`} size={100} />
             </Card>
           </div>
-        </div>
+        </div> */}
 
         {/* <Card>
           <CardHeader>
@@ -72,7 +62,7 @@ export default function AdminDashboard() {
         {/* <Separator /> */}
         {/* <WorkshopSurveyDetailed /> */}
 
-        <Separator />
+        {/* <Separator /> */}
 
         <WorkshopSurveyTabs />
 

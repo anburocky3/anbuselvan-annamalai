@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 
 export default function SkillsPage() {
   return (
-    <div className="pt-10">
+    <div className="pt-10 bg-[#0A0618]">
       <SkillSection />
     </div>
   );

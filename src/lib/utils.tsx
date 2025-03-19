@@ -15,6 +15,22 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+// List of institutions for the review form
+export const institutions = [
+  "Anna University",
+  "SRM University",
+  "VIT University",
+  "PSG College of Technology",
+  "Kongu Engineering College",
+  "Thiagarajar College of Engineering",
+  "Government College of Technology",
+  "Sri Krishna College of Engineering",
+  "Kumaraguru College of Technology",
+  "Other",
+] as const;
+
+export type Institution = (typeof institutions)[number];
+
 export const applySocialIcons = (social: string): ReactElement => {
   switch (social) {
     case "facebook":

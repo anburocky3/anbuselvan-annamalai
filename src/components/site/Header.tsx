@@ -257,7 +257,7 @@ export default function Header() {
       transition: { duration: 0.3, ease: "easeInOut" },
     },
     scrolled: {
-      backgroundColor: "rgba(0, 0, 0, 0.9)",
+      backgroundColor: "rgba(22, 7, 42, 0.9)",
       boxShadow:
         "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
       transition: { duration: 0.3, ease: "easeInOut" },
@@ -275,7 +275,7 @@ export default function Header() {
       <motion.header
         variants={headerVariants}
         animate={isScrolled ? "scrolled" : "top"}
-        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-3 backdrop-blur-sm`}
+        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-3 sm:py-5 backdrop-blur-sm`}
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
