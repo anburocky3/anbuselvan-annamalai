@@ -1,0 +1,124 @@
+/* Monokai theme for Sugar High syntax highlighting */
+.mdx-content {
+  /* Base styles for code blocks */
+  --sh-class: #66d9ef;                /* Classes, types */
+  --sh-identifier: #f8f8f2;           /* Variables, identifiers */
+  --sh-sign: #f8f8f2;                 /* Operators, symbols */
+  --sh-property: #a6e22e;             /* Properties */
+  --sh-entity: #a6e22e;               /* Entity */
+  --sh-jsxliterals: #e6db74;          /* JSX literals */
+  --sh-string: #e6db74;               /* Strings */
+  --sh-keyword: #f92672;              /* Keywords */
+  --sh-comment: #75715e;              /* Comments */
+  --sh-function: #66d9ef;             /* Functions */
+  --sh-number: #ae81ff;               /* Numbers */
+  --sh-highlight: rgba(255,255,255,0.1);  /* Highlights */
+  --sh-misc: #fd971f;                 /* Misc */
+  --sh-tag: #f92672;                  /* HTML/XML tags */
+  --sh-attrname: #a6e22e;             /* Attribute names */
+  --sh-attrvalue: #e6db74;            /* Attribute values */
+  --sh-punctuation: #f8f8f2;          /* Punctuation */
+  --sh-special: #fd971f;              /* Special chars */
+  --sh-variable: #f8f8f2;             /* Variables */
+  --sh-selector: #a6e22e;             /* CSS selectors */
+  --sh-decorator: #75715e;            /* Decorators */
+  --sh-regex: #e6db74;                /* Regex */
+  --sh-boolean: #ae81ff;              /* Boolean */
+}
+
+/* Custom background and text colors for code blocks */
+.mdx-content pre {
+  background-color: #272822 !important;
+  color: #f8f8f2 !important;
+  border: 1px solid #3e3d32;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+  position: relative; /* Ensure relative positioning for absolute copy button */
+}
+
+/* Copy button styling for Monokai theme */
+.mdx-content pre button {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  color: #f8f8f2 !important;
+  border: 1px solid #3e3d32;
+  transition: all 0.2s ease;
+}
+
+.mdx-content pre button:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-color: #f8f8f2;
+}
+
+/* Override sugar-high classes with Monokai theme */
+.mdx-content .sh__line {
+  color: #f8f8f2;
+}
+
+.mdx-content .sh__line .sh__comment {
+  color: var(--sh-comment);
+  font-style: italic;
+}
+
+.mdx-content .sh__line .sh__string {
+  color: var(--sh-string);
+}
+
+.mdx-content .sh__line .sh__number {
+  color: var(--sh-number);
+}
+
+.mdx-content .sh__line .sh__keyword {
+  color: var(--sh-keyword);
+  font-style: italic;
+}
+
+.mdx-content .sh__line .sh__function {
+  color: var(--sh-function);
+}
+
+.mdx-content .sh__line .sh__class {
+  color: var(--sh-class);
+  font-style: italic;
+}
+
+.mdx-content .sh__line .sh__variable {
+  color: var(--sh-variable);
+}
+
+.mdx-content .sh__line .sh__operator {
+  color: var(--sh-sign);
+}
+
+.mdx-content .sh__line .sh__punctuation {
+  color: var(--sh-punctuation);
+}
+
+.mdx-content .sh__line .sh__property {
+  color: var(--sh-property);
+}
+
+.mdx-content .sh__line .sh__tag {
+  color: var(--sh-tag);
+}
+
+.mdx-content .sh__line .sh__attr {
+  color: var(--sh-attrname);
+}
+
+.mdx-content .sh__line .sh__module {
+  color: var(--sh-class);
+}
+
+/* Line highlighting */
+.mdx-content .sh__line.sh__highlight {
+  background-color: var(--sh-highlight);
+}
+
+/* Inline code styling */
+.mdx-content :not(pre) > code {
+  background-color: rgba(39, 40, 34, 0.5);
+  color: #f8f8f2;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+  font-size: 0.9em;
+  border: 1px solid #3e3d32;
+} 

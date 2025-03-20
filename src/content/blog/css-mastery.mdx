@@ -1,0 +1,261 @@
+---
+title: "CSS Mastery: Styling the Web"
+date: "2024-03-16"
+author: "Anbuselvan Annamalai"
+excerpt: "Master CSS with this comprehensive guide covering selectors, layouts, animations, and modern CSS features. Learn how to create beautiful and responsive web designs."
+tags: ["CSS", "Web Design", "Frontend", "Styling", "Tutorial"]
+---
+
+# CSS Mastery: Styling the Web
+
+CSS (Cascading Style Sheets) is the language used to style and layout web pages. In this comprehensive guide, I'll cover everything from basic styling to advanced CSS techniques.
+
+## Understanding CSS
+
+CSS describes how HTML elements should be displayed. It can control the layout of multiple web pages all at once, making it a powerful tool for web design.
+
+## Basic CSS Syntax
+
+```css
+/* Selector { Property: Value; } */
+body {
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+/* Class Selector */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ID Selector */
+#header {
+  background-color: #333;
+  color: white;
+  padding: 1rem;
+}
+```
+
+## CSS Selectors
+
+Understanding selectors is crucial for CSS mastery:
+
+```css
+/* Element Selector */
+p {
+  color: #333;
+}
+
+/* Class Selector */
+.highlight {
+  background-color: yellow;
+}
+
+/* ID Selector */
+#main-content {
+  width: 80%;
+}
+
+/* Attribute Selector */
+input[type="text"] {
+  border: 1px solid #ccc;
+}
+
+/* Pseudo-classes */
+a:hover {
+  color: blue;
+}
+
+/* Combinators */
+div > p {
+  margin-bottom: 1rem;
+}
+```
+
+## Box Model
+
+The CSS box model is fundamental to layout:
+
+```css
+.box {
+  width: 300px;
+  height: 200px;
+  padding: 20px;
+  border: 2px solid #333;
+  margin: 10px;
+  box-sizing: border-box;
+}
+```
+
+## Flexbox Layout
+
+Modern layout with Flexbox:
+
+```css
+.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.item {
+  flex: 1;
+  min-width: 200px;
+}
+```
+
+## Grid Layout
+
+CSS Grid for complex layouts:
+
+```css
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 20px;
+  padding: 20px;
+}
+
+.grid-item {
+  background-color: #f0f0f0;
+  padding: 20px;
+  border-radius: 5px;
+}
+```
+
+## Responsive Design
+
+Making your site responsive:
+
+```css
+/* Mobile First Approach */
+.container {
+  width: 100%;
+  padding: 15px;
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  .container {
+    width: 750px;
+    margin: 0 auto;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .container {
+    width: 960px;
+  }
+}
+```
+
+## CSS Variables
+
+Using CSS custom properties:
+
+```css
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #6c757d;
+  --spacing-unit: 8px;
+}
+
+.button {
+  background-color: var(--primary-color);
+  padding: var(--spacing-unit);
+  color: white;
+}
+```
+
+## Animations and Transitions
+
+Adding motion to your designs:
+
+```css
+/* Transition */
+.button {
+  transition: background-color 0.3s ease;
+}
+
+.button:hover {
+  background-color: #0056b3;
+}
+
+/* Animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+```
+
+## Modern CSS Features
+
+### CSS Grid Areas
+
+```css
+.layout {
+  display: grid;
+  grid-template-areas:
+    "header header"
+    "sidebar main"
+    "footer footer";
+  grid-template-columns: 200px 1fr;
+}
+
+.header {
+  grid-area: header;
+}
+.sidebar {
+  grid-area: sidebar;
+}
+.main {
+  grid-area: main;
+}
+.footer {
+  grid-area: footer;
+}
+```
+
+### CSS Custom Properties
+
+```css
+:root {
+  --theme-primary: #4a90e2;
+  --theme-secondary: #f5f5f5;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+}
+```
+
+## Best Practices
+
+1. **Use CSS Reset**: Normalize browser styles
+2. **Mobile First**: Design for mobile first, then enhance
+3. **BEM Naming**: Use consistent naming conventions
+4. **Performance**: Minimize CSS file size
+5. **Maintainability**: Keep CSS organized and documented
+
+## Next Steps
+
+1. Learn CSS preprocessors (SASS/SCSS)
+2. Explore CSS frameworks
+3. Study CSS architecture patterns
+4. Practice responsive design
+
+Remember, CSS is an art as much as it is a science. Keep practicing and experimenting to master the craft! 🎨

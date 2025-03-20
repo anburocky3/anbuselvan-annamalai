@@ -1,0 +1,154 @@
+---
+title: "HTML Fundamentals: Building the Web's Foundation"
+date: "2024-03-17"
+author: "Anbuselvan Annamalai"
+excerpt: "Learn the essential HTML elements and best practices for creating well-structured web pages. A comprehensive guide for beginners and a refresher for experienced developers."
+tags: ["HTML", "Web Development", "Frontend", "Tutorial"]
+---
+
+# HTML Fundamentals: Building the Web's Foundation
+
+HTML (HyperText Markup Language) is the standard language for creating web pages. In this comprehensive guide, I'll walk you through the essential concepts and best practices of HTML.
+
+## What is HTML?
+
+HTML is a markup language that defines the structure of your web content. It consists of a series of elements that you use to enclose, or wrap, different parts of the content to make it appear or act in a certain way.
+
+## Basic HTML Structure
+
+Every HTML document follows this basic structure:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My First Web Page</title>
+  </head>
+  <body>
+    <h1>Welcome to My Website</h1>
+    <p>This is my first paragraph.</p>
+  </body>
+</html>
+```
+
+## Essential HTML Elements
+
+### Text Elements
+
+```html
+<h1>Main Heading</h1>
+<h2>Subheading</h2>
+<p>Paragraph text</p>
+<strong>Bold text</strong>
+<em>Italic text</em>
+<mark>Highlighted text</mark>
+```
+
+### Links and Images
+
+```html
+<!-- Links -->
+<a href="https://example.com">Visit Example</a>
+
+<!-- Images -->
+<img src="image.jpg" alt="Description" width="300" height="200" />
+```
+
+### Lists
+
+```html
+<!-- Unordered List -->
+<ul>
+  <li>Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+
+<!-- Ordered List -->
+<ol>
+  <li>First step</li>
+  <li>Second step</li>
+  <li>Third step</li>
+</ol>
+```
+
+### Forms
+
+```html
+<form action="/submit" method="POST">
+  <label for="name">Name:</label>
+  <input type="text" id="name" name="name" required />
+
+  <label for="email">Email:</label>
+  <input type="email" id="email" name="email" required />
+
+  <button type="submit">Submit</button>
+</form>
+```
+
+## Semantic HTML
+
+Modern HTML emphasizes semantic elements that clearly describe their purpose:
+
+```html
+<header>
+  <nav>
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main>
+  <article>
+    <h1>Article Title</h1>
+    <p>Article content...</p>
+  </article>
+</main>
+
+<footer>
+  <p>&copy; 2024 My Website</p>
+</footer>
+```
+
+## Best Practices
+
+1. **Use Semantic Elements**: Choose elements that describe their content
+2. **Include Alt Text**: Always add alt text to images
+3. **Proper Nesting**: Maintain correct element hierarchy
+4. **Accessibility**: Use ARIA attributes when needed
+5. **Clean Code**: Keep your HTML well-formatted and organized
+
+## HTML5 Features
+
+Modern HTML5 includes many powerful features:
+
+```html
+<!-- Video Element -->
+<video controls>
+  <source src="video.mp4" type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+
+<!-- Audio Element -->
+<audio controls>
+  <source src="audio.mp3" type="audio/mpeg" />
+  Your browser does not support the audio tag.
+</audio>
+
+<!-- Canvas Element -->
+<canvas id="myCanvas" width="200" height="100"></canvas>
+```
+
+## Next Steps
+
+1. Learn CSS for styling
+2. Explore JavaScript for interactivity
+3. Study responsive design principles
+4. Practice building real websites
+
+Remember, HTML is the foundation of web development. Master these basics, and you'll be well on your way to becoming a web developer! 🌐

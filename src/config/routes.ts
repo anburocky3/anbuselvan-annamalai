@@ -4,6 +4,7 @@ export const routes = {
   youtube: "/reviews/youtube",
   events: "/reviews/events",
   reviewsAbout: "/reviews/about",
+  blog: "/blog",
 } as const;
 
 // Type-safe route helper function

@@ -130,7 +130,7 @@ export default function Error({
             asChild
             variant="outline"
             size="lg"
-            className="border-red-500 text-red-500 hover:bg-red-500/10 rounded-full px-8"
+            className="border-red-500 text-red-500 hover:bg-red-500/10 rounded-full px-8 hover:text-white"
           >
             <Link href="/">
               <FaHome className="mr-2" />

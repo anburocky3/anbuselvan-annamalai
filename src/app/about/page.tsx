@@ -1,4 +1,5 @@
 import EducationSection from "@/components/site/EducationSection";
+import { route } from "@/config/routes";
 import { socialLinks } from "@/lib/utils";
 import { Metadata } from "next";
 import Link from "next/link";
@@ -118,7 +119,17 @@ export default function AboutPage() {
           >
             Node.js
           </Link>
-          , and more.
+          , and more.{" "}
+        </p>
+
+        <p className="mb-4">
+          I write about my{" "}
+          <Link
+            href={route("blog")}
+            className="text-purple-300 hover:underline"
+          >
+            journey and experiences in my blog.
+          </Link>
         </p>
 
         <p className="mb-4">

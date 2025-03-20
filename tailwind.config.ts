@@ -1,5 +1,6 @@
 import type { Config } from "tailwindcss";
 import animate from "tailwindcss-animate";
+import typography from "@tailwindcss/typography";
 
 const config: Config = {
   content: [
@@ -68,9 +69,48 @@ const config: Config = {
           },
         },
       },
+      typography: {
+        DEFAULT: {
+          css: {
+            maxWidth: "none",
+            color: "#e2e8f0",
+            a: {
+              color: "#c4b5fd",
+              "&:hover": {
+                color: "#a78bfa",
+              },
+            },
+            h1: {
+              color: "#ffffff",
+            },
+            h2: {
+              color: "#ffffff",
+            },
+            h3: {
+              color: "#ffffff",
+            },
+            h4: {
+              color: "#ffffff",
+            },
+            strong: {
+              color: "#ffffff",
+            },
+            code: {
+              color: "#c4b5fd",
+            },
+            "pre code": {
+              color: "#e2e8f0",
+            },
+            blockquote: {
+              color: "#94a3b8",
+              borderLeftColor: "#475569",
+            },
+          },
+        },
+      },
     },
   },
-  plugins: [animate],
+  plugins: [animate, typography],
 } satisfies Config;
 
 export default config;

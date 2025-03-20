@@ -1,0 +1,109 @@
+---
+title: "Building Mobile Apps with React Native"
+date: "2024-03-18"
+author: "Anbuselvan Annamalai"
+excerpt: "Discover how to build cross-platform mobile applications using React Native and leverage your React knowledge for mobile development."
+tags: ["React Native", "Mobile Development", "JavaScript", "iOS", "Android"]
+---
+
+# Building Mobile Apps with React Native
+
+React Native has made it possible to build native mobile applications using React. In this post, I'll share my experience and insights about mobile app development with React Native.
+
+## What is React Native?
+
+React Native is a framework that lets you build native mobile applications using React. It uses native components under the hood, providing a truly native experience while allowing you to write code in JavaScript/TypeScript.
+
+## Key Benefits
+
+1. **Cross-Platform Development**: Write once, run anywhere
+2. **Native Performance**: Direct access to native components
+3. **Hot Reloading**: Instant feedback during development
+4. **Large Ecosystem**: Access to native modules and libraries
+
+## Getting Started
+
+First, set up your development environment:
+
+```bash
+npm install -g react-native-cli
+npx react-native init MyAwesomeApp
+```
+
+## Basic Components
+
+React Native provides its own set of components:
+
+```jsx
+import { View, Text, TouchableOpacity } from "react-native";
+
+function WelcomeScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+      <Text style={{ fontSize: 24 }}>Welcome to React Native!</Text>
+      <TouchableOpacity
+        style={{ backgroundColor: "#007AFF", padding: 10, borderRadius: 5 }}
+        onPress={() => alert("Button pressed!")}
+      >
+        <Text style={{ color: "white" }}>Press Me</Text>
+      </TouchableOpacity>
+    </View>
+  );
+}
+```
+
+## Platform-Specific Code
+
+Sometimes you need to write platform-specific code:
+
+```jsx
+import { Platform } from "react-native";
+
+const styles = {
+  container: {
+    ...Platform.select({
+      ios: {
+        shadowColor: "#000",
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+      },
+      android: {
+        elevation: 5,
+      },
+    }),
+  },
+};
+```
+
+## Best Practices
+
+1. Use functional components and hooks
+2. Implement proper error handling
+3. Optimize performance with proper list rendering
+4. Follow platform-specific design guidelines
+
+## Testing Your App
+
+React Native provides excellent testing capabilities:
+
+```jsx
+import { render, fireEvent } from "@testing-library/react-native";
+
+test("button press shows alert", () => {
+  const { getByText } = render(<WelcomeScreen />);
+  fireEvent.press(getByText("Press Me"));
+  // Add your assertions here
+});
+```
+
+## Deployment
+
+To deploy your app:
+
+1. For iOS: Use Xcode to build and submit to the App Store
+2. For Android: Generate a signed APK/Bundle and submit to Google Play
+
+Remember to follow the respective platform's guidelines and requirements for app submission.
+
+Happy mobile development! 📱

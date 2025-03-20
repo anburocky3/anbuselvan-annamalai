@@ -34,9 +34,10 @@ const fontSora = Sora({
 const navLinks = [
   { name: "Home", href: "/", sectionId: "home" },
   { name: "Projects", href: "/projects", sectionId: "projects" },
-  { name: "Services", href: "/services", sectionId: "services" },
   { name: "About", href: "/about", sectionId: "about" },
+  { name: "Blog", href: "/blog", sectionId: "blog" },
   { name: "Skills", href: "/skills", sectionId: "skills" },
+  { name: "Services", href: "/services", sectionId: "services" },
   { name: "Contact", href: "/contact", sectionId: "contact" },
 ];
 

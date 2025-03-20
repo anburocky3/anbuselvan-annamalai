@@ -1,0 +1,113 @@
+/* CyberDude theme for Sugar High syntax highlighting */
+.mdx-content {
+  /* Base styles for code blocks */
+  --sh-class: #00ffff;                /* Classes, types - Cyan */
+  --sh-identifier: #f8f8f2;           /* Variables, identifiers - White */
+  --sh-sign: #ff00dd;                 /* Operators, symbols - Magenta */
+  --sh-property: #00ff9f;             /* Properties - Neon Green */
+  --sh-entity: #00ff9f;               /* Entity - Neon Green */
+  --sh-jsxliterals: #ffe600;          /* JSX literals - Yellow */
+  --sh-string: #ffe600;               /* Strings - Yellow */
+  --sh-keyword: #fe53bb;              /* Keywords - Pink */
+  --sh-comment: #7a7a8c;              /* Comments - Gray */
+  --sh-function: #5555ff;             /* Functions - Blue */
+  --sh-number: #d264ff;               /* Numbers - Purple */
+  --sh-highlight: rgba(255,0,136,0.1);/* Highlights - Neon Pink (faded) */
+  --sh-misc: #ff9f00;                 /* Misc - Orange */
+  --sh-tag: #ff3e3e;                  /* HTML/XML tags - Red */
+  --sh-attrname: #00ff9f;             /* Attribute names - Neon Green */
+  --sh-attrvalue: #ffe600;            /* Attribute values - Yellow */
+  --sh-punctuation: #f8f8f2;          /* Punctuation - White */
+  --sh-special: #ff9f00;              /* Special chars - Orange */
+  --sh-variable: #f8f8f2;             /* Variables - White */
+  --sh-selector: #00ff9f;             /* CSS selectors - Neon Green */
+  --sh-decorator: #d264ff;            /* Decorators - Purple */
+  --sh-regex: #ffe600;                /* Regex - Yellow */
+  --sh-boolean: #d264ff;              /* Boolean - Purple */
+}
+
+/* Custom background and text colors for code blocks */
+.mdx-content pre {
+  background-color: #131313 !important;
+  color: #f8f8f2 !important;
+  border: 1px solid #333;
+  box-shadow: 0 0 15px rgba(255, 0, 136, 0.5),
+              0 0 5px rgba(0, 255, 255, 0.3);
+  border-radius: 8px;
+}
+
+/* Override sugar-high classes with CyberDude theme */
+.mdx-content .sh__line {
+  color: #f8f8f2;
+}
+
+.mdx-content .sh__line .sh__comment {
+  color: var(--sh-comment);
+  font-style: italic;
+}
+
+.mdx-content .sh__line .sh__string {
+  color: var(--sh-string);
+}
+
+.mdx-content .sh__line .sh__number {
+  color: var(--sh-number);
+}
+
+.mdx-content .sh__line .sh__keyword {
+  color: var(--sh-keyword);
+  font-weight: bold;
+}
+
+.mdx-content .sh__line .sh__function {
+  color: var(--sh-function);
+}
+
+.mdx-content .sh__line .sh__class {
+  color: var(--sh-class);
+  font-weight: bold;
+}
+
+.mdx-content .sh__line .sh__variable {
+  color: var(--sh-variable);
+}
+
+.mdx-content .sh__line .sh__operator {
+  color: var(--sh-sign);
+}
+
+.mdx-content .sh__line .sh__punctuation {
+  color: var(--sh-punctuation);
+}
+
+.mdx-content .sh__line .sh__property {
+  color: var(--sh-property);
+}
+
+.mdx-content .sh__line .sh__tag {
+  color: var(--sh-tag);
+}
+
+.mdx-content .sh__line .sh__attr {
+  color: var(--sh-attrname);
+}
+
+.mdx-content .sh__line .sh__module {
+  color: var(--sh-class);
+}
+
+/* Line highlighting */
+.mdx-content .sh__line.sh__highlight {
+  background-color: var(--sh-highlight);
+}
+
+/* Inline code styling */
+.mdx-content :not(pre) > code {
+  background-color: rgba(19, 19, 19, 0.8);
+  color: #f8f8f2;
+  padding: 0.2em 0.4em;
+  border-radius: 0.3em;
+  font-size: 0.9em;
+  border: 1px solid #333;
+  box-shadow: 0 0 5px rgba(255, 0, 136, 0.3);
+} 

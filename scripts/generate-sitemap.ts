@@ -2,11 +2,12 @@ import fs from "fs";
 import path from "path";
 import { MetadataRoute } from "next";
 import dotenv from "dotenv";
+import { getAllPosts } from "../src/lib/blog";
 
 // Load environment variables
 dotenv.config();
 
-const baseUrl =
+export const baseUrl =
   process.env.NEXT_PUBLIC_SITE_URL || "https://anbuselvan-annamalai.com";
 
 // Define image sitemap interfaces
@@ -110,7 +111,8 @@ function getAllRoutes() {
         entry.name.endsWith(".png") ||
         entry.name.endsWith(".svg") ||
         entry.name.endsWith(".json") ||
-        (entry.name.endsWith(".ts") && !entry.name.includes("sitemap"))
+        (entry.name.endsWith(".ts") && !entry.name.includes("sitemap")) ||
+        entry.name.startsWith("[") // Skip dynamic route directories
       ) {
         continue;
       }
@@ -160,6 +162,22 @@ async function generateXMLSitemap() {
   const { mainRoutes, reviewRoutes } = getAllRoutes();
   let allEntries: SitemapEntry[] = [];
 
+  // Get all blog posts
+  const blogPosts = await getAllPosts();
+  const blogEntries = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as
+      | "always"
+      | "hourly"
+      | "daily"
+      | "weekly"
+      | "monthly"
+      | "yearly"
+      | "never",
+    priority: 0.8,
+  }));
+
   // Add main routes
   allEntries = [
     ...mainRoutes.map((route) => {
@@ -184,6 +202,8 @@ async function generateXMLSitemap() {
           priority: route === "reviews" ? 0.9 : 0.8,
         } as SitemapEntry)
     ),
+    // Add blog posts
+    ...blogEntries,
   ];
 
   // Generate XML
@@ -250,6 +270,7 @@ generateXMLSitemap()
 // Next.js sitemap function
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const { mainRoutes, reviewRoutes } = getAllRoutes();
+  const blogPosts = await getAllPosts();
 
   // Generate entries for main routes
   const mainEntries = mainRoutes.map((route) => {
@@ -273,9 +294,18 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route === "reviews" ? 0.9 : 0.8,
   }));
 
+  // Generate entries for blog posts
+  const blogEntries = blogPosts.map((post) => ({
+    url: `${baseUrl}/blog/${post.slug}`,
+    lastModified: new Date(post.date),
+    changeFrequency:
+      "monthly" as MetadataRoute.Sitemap[number]["changeFrequency"],
+    priority: 0.8,
+  }));
+
   // Generate XML sitemap with images
   await generateXMLSitemap();
 
   // Return combined entries for Next.js sitemap
-  return [...mainEntries, ...reviewEntries];
+  return [...mainEntries, ...reviewEntries, ...blogEntries];
 }

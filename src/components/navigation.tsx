@@ -86,6 +86,19 @@ export function Navigation() {
                 Event Reviews
               </Link>
             </li>
+            <li>
+              <Link
+                href={route("blog")}
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-primary",
+                  pathname === route("blog")
+                    ? "text-primary"
+                    : "text-muted-foreground"
+                )}
+              >
+                Blog
+              </Link>
+            </li>
           </ul>
 
           {user && (

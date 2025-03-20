@@ -4,8 +4,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/site/Footer";
 import "./globals.css";
+// import "@/styles/monokai-theme.css"; // Default theme
+import "@/styles/cyberdude-theme.css"; // Uncomment to use CyberDude theme instead
 import ScrollHandler from "@/components/ScrollHandler";
-import { socialLinks } from "@/lib/utils";
 import { ConditionalNavigation } from "@/components/conditional-navigation";
 
 export const metadata: Metadata = {
@@ -78,6 +79,9 @@ export const metadata: Metadata = {
     languages: {
       "en-US": "https://anbuselvan-annamalai.com",
     },
+    types: {
+      "application/rss+xml": "https://anbuselvan-annamalai.com/rss.xml",
+    },
   },
   robots: {
     index: true,
@@ -117,48 +121,6 @@ export default function RootLayout({
         <Toaster position="bottom-right" />
         <Analytics />
         <SpeedInsights />
-
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Anbuselvan Annamalai",
-              alternateName: ["Anbuselvan Annamalai", "Anbuselvan Rocky"],
-              url: "https://anbuselvan-annamalai.com",
-            }),
-          }}
-        />
-
-        {/* Structured Data for Person */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Anbuselvan Annamalai",
-              url: "https://anbuselvan-annamalai.com",
-              image:
-                "https://anbuselvan-annamalai.com/images/anbuselvan-annamalai.png",
-              sameAs: [
-                socialLinks.x.url,
-                socialLinks.linkedin.url,
-                socialLinks.github.url,
-                socialLinks.instagram.url,
-                socialLinks.youtube.url,
-              ],
-              jobTitle: "Entrepreneur & Technology Mentor",
-              worksFor: {
-                "@type": "Organization",
-                name: "CyberDude Networks Pvt Ltd",
-              },
-              description:
-                "Award-winning technology leader and entrepreneur. Expert in full-stack development, React, React Native, Node.js, and mobile app development.",
-            }),
-          }}
-        />
       </body>
     </html>
   );

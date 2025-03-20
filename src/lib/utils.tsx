@@ -9,10 +9,18 @@ import {
   FaTwitter,
 } from "react-icons/fa";
 import { ReactElement } from "react";
-import { FaX, FaYoutube } from "react-icons/fa6";
+import { FaMedium, FaX, FaYoutube } from "react-icons/fa6";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
+}
+
+export function formatDate(dateString: string): string {
+  return new Date(dateString).toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
 
 // List of institutions for the review form
@@ -88,6 +96,11 @@ export const socialLinks = {
     name: "CyberDude YouTube",
     url: "https://youtube.com/@cyberdudenetworks",
     icon: <FaYoutube />,
+  },
+  medium: {
+    name: "Medium",
+    url: "https://medium.com/@anbuselvan-annamalai",
+    icon: <FaMedium />,
   },
 };
 
