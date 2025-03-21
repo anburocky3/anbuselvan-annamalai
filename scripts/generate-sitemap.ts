@@ -157,7 +157,7 @@ function getImagesForRoute(route: string): ImageSitemap[] | undefined {
 }
 
 // Function to generate XML sitemap with images
-async function generateXMLSitemap() {
+export async function generateXMLSitemap() {
   console.log("Starting sitemap generation...");
   const { mainRoutes, reviewRoutes } = getAllRoutes();
   let allEntries: SitemapEntry[] = [];
@@ -254,18 +254,31 @@ ${allEntries
   .join("\n")}
 </urlset>`;
 
-  // Write the XML sitemap
-  fs.writeFileSync(path.join(process.cwd(), "public", "sitemap.xml"), xml);
-  console.log("Sitemap written to public/sitemap.xml");
+  // Only write to filesystem when not in Vercel deployment environment
+  if (process.env.VERCEL !== "1") {
+    try {
+      fs.writeFileSync(path.join(process.cwd(), "public", "sitemap.xml"), xml);
+      console.log("Sitemap written to public/sitemap.xml");
+    } catch (error) {
+      console.error("Error writing sitemap to filesystem:", error);
+      // Continue execution without failing build
+    }
+  } else {
+    console.log("Skipping sitemap file writing in Vercel environment");
+  }
+
+  return xml;
 }
 
-// Main execution
-generateXMLSitemap()
-  .then(() => console.log("✅ Sitemap generated successfully!"))
-  .catch((error: Error) => {
-    console.error("Error generating sitemap:", error);
-    process.exit(1);
-  });
+// Main execution - only run when script is called directly
+if (import.meta.url.endsWith("generate-sitemap.ts")) {
+  generateXMLSitemap()
+    .then(() => console.log("✅ Sitemap generated successfully!"))
+    .catch((error: Error) => {
+      console.error("Error generating sitemap:", error);
+      process.exit(1);
+    });
+}
 
 // Next.js sitemap function
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -302,9 +315,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       "monthly" as MetadataRoute.Sitemap[number]["changeFrequency"],
     priority: 0.8,
   }));
-
-  // Generate XML sitemap with images
-  await generateXMLSitemap();
 
   // Return combined entries for Next.js sitemap
   return [...mainEntries, ...reviewEntries, ...blogEntries];
