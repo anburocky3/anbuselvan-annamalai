@@ -5,6 +5,8 @@ export const routes = {
   events: "/reviews/events",
   reviewsAbout: "/reviews/about",
   blog: "/blog",
+  tutorials: "/tutorials",
+  tutorialsSlug: "/tutorials/:slug",
 } as const;
 
 // Type-safe route helper function

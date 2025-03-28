@@ -240,7 +240,7 @@ export default function AboutPage() {
               where I teach hands-on coding for free. I have taught over 10
               Million people around the world, the count is growing.
             </p>
-            <blockquote className="mt-2">
+            <blockquote className="mt-2 space-y-2">
               <p className="text-gray-400 italic">
                 👉{" "}
                 <a
@@ -255,9 +255,20 @@ export default function AboutPage() {
                 <a
                   href="https://www.google.com/search?q=cyberdude"
                   target="_blank"
+                  title="Google Search"
                 >
                   Google Search
                 </a>
+              </p>
+              <p className="text-gray-400">
+                💻{" "}
+                <Link
+                  href={route("tutorials")}
+                  className="text-purple-300 hover:underline"
+                  title="Learn technology on our cyberdude playlists"
+                >
+                  Learn technology on our cyberdude playlists
+                </Link>
               </p>
             </blockquote>
           </div>

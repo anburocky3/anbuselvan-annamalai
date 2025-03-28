@@ -3,7 +3,7 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
   <url>
     <loc>https://anbuselvan-annamalai.com/about</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
         <image:image>
@@ -27,42 +27,49 @@
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com/blog</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com/contact</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com/projects</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com/services</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com/skills</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1</priority>
         <image:image>
@@ -79,29 +86,53 @@
     </image:image>
   </url>
   <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/0BRC_6_0zVU/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLCJjGm_i1ymKDPZZAtsTW7KVpFvsA&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Backend Development</image:title>
+            <image:caption>Learn about backend development in this series.</image:caption>
+      
+    </image:image>
+    <image:image>
+      <image:loc>https://i.ytimg.com/vi/hPgK1gWV6XE/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLC0G2oyAJxmqvmAgkElWO2kKBIpZg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Mock interview for practice</image:title>
+            <image:caption>Practice yourself by analysing the mock interview questions asked by the community, unplanned. Watch this series in tamil.</image:caption>
+      
+    </image:image>
+    <image:image>
+      <image:loc>https://i.ytimg.com/vi/7c9Tw3u2NMs/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLAz1RuD4NHU-KsvgG01X5kRotyG-g&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Javascript Array Methods in Tamil</image:title>
+            <image:caption>Learn about javascript array methods with practical examples in tamil. You can practice all popular methods like reduce(), every(), some(), find(), filter(),...</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
     <loc>https://anbuselvan-annamalai.com/reviews</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
     
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com/reviews/about</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com/reviews/events</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     
   </url>
   <url>
     <loc>https://anbuselvan-annamalai.com/reviews/youtube</loc>
-    <lastmod>2025-03-21T11:05:08.129Z</lastmod>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     
@@ -133,5 +164,269 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
     
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/backend-development</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/0BRC_6_0zVU/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLCJjGm_i1ymKDPZZAtsTW7KVpFvsA&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Backend Development</image:title>
+            <image:caption>Learn about backend development in this series.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/mock-interview-for-practice</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/hPgK1gWV6XE/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLC0G2oyAJxmqvmAgkElWO2kKBIpZg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Mock interview for practice</image:title>
+            <image:caption>Practice yourself by analysing the mock interview questions asked by the community, unplanned. Watch this series in tamil.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/javascript-array-methods-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/7c9Tw3u2NMs/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLAz1RuD4NHU-KsvgG01X5kRotyG-g&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Javascript Array Methods in Tamil</image:title>
+            <image:caption>Learn about javascript array methods with practical examples in tamil. You can practice all popular methods like reduce(), every(), some(), find(), filter(),...</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/build-ui-using-html-css-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/JtgkaMlPpUQ/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLDJ-NK_cQ5mhchCSl1CP_RbPQO4qg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Build UI using HTML, CSS in Tamil</image:title>
+            <image:caption>Create attractive User interface with UX principles using the HTML, CSS &amp;amp; Javascript in the Tamil language.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/cyberdude-full-stack-live-internships</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/JtgkaMlPpUQ/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLDJ-NK_cQ5mhchCSl1CP_RbPQO4qg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>CyberDude Full Stack Live Internships</image:title>
+            <image:caption>Learn about Fullstack Web development practice through live coding sessions by CyberDude networks team, mentored by Anbuselvan Rocky.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/es6-modern-javascript-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/UlkK-vWX7y8/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLBzQf9hogESWddgwB4fxiK9j_Uclw&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>(ES6+) - Modern JavaScript in Tamil</image:title>
+            <image:caption>Learn about Modern Javascript and ECMAScript features such eas ES6, above. This playlist covers all important topics related to javascript. Learn these topic...</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/coding-workshop-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/DvKCuq3SsJM/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLDegPcbZPzqjQSy_er74c8K4aBpPg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Coding Workshop in Tamil</image:title>
+            <image:caption>In this workshop sessions, you can learn about web development live from Anbuselvan author.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/reactjs-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/cyU_4U1yHl4/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLBFgUzZaNJ3A6OhTuxOl46MK5RF4g&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>ReactJS in Tamil</image:title>
+            <image:caption>Learn ReactJS for Beginners in Tamil. This course is for absolute beginners who want to begin their career in Frontend &amp;amp; Fulstack technologies. Learn everyth...</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/building-practical-apps-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/jpJsZPlTzfg/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLCOpgD42iGmTLLaqoUsZ2soJrrw6Q&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Building Practical Apps in Tamil</image:title>
+            <image:caption>Build practical applications with logical thinking, best practices in the Tamil language.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/javascript-dom-js-dom-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/0Q8eftj5OA0/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLCo4-A2Pv2xY9mM29J4KYnNEWwp8A&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Javascript DOM (JS DOM) in Tamil</image:title>
+            <image:caption>Learn about HTML DOM using Javascript with in-depth concepts with practical examples. Learn all this free at 4K Ultra HD Quality in cyberdude channel.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/modern-landing-page-using-sass-amp-js</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/pCkascYaWXQ/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLBzEEt47EIm9V9nqDipLfKL8liq1g&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Modern Landing Page using SASS &amp;amp; JS</image:title>
+            <image:caption>Learn to build Modern Website using HTML, CSS &amp;amp; Javascript in Tamil</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/sass-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/yCs7jStuGIs/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLAqJaeEKtvCNvKMQ0d_xsxctbYpoQ&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>SASS in Tamil</image:title>
+            <image:caption>Learn Sass in Tamil with clear explanations &amp;amp; with a practical web projects.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/advanced-css</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/0Rbd9bLHLC4/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLDqBzsCcGLucIn_bw8iJsJbjzQedg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Advanced CSS</image:title>
+            <image:caption>Learn about CSS in-detail with practical examples. This series will cover almost all CSS tricks and tips.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/cyberdude-livestream</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/cD9TfQLy6HA/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLDtXNQivyfbOZIvhHXHUVdiysu8KQ&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>CyberDude Livestream</image:title>
+            <image:caption>Know about CyberDude updates and this playlist will have all livestreams in a single place. From design to coding.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/coding-tips-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/cpYYXRGpOXs/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLAE2OELxtphUI5l_OrAG8D8QwmSfg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Coding Tips in Tamil</image:title>
+            <image:caption>Everyone makes mistakes! In this playlist, we will make coding tips, programming tips, coding best practices, editor extensions, best editor to code, best ex...</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/tricks-and-hacks</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/i9igJMz73B4/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLCud07LkAAD4mDTlTWpwUd2Re55Aw&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Tricks and Hacks - (தமிழில்)</image:title>
+            <image:caption>Learn about tricks and tips in tamil related to any programming languages or technologies. Learn everything here in tamil</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/bootstrap-tutorials-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/RIAlNPgSkG8/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLCD2rxQLuGKWdDPcOj30E7f3zsjQw&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Bootstrap Tutorials in Tamil (தமிழில்)</image:title>
+            <image:caption>Build a beautiful User Interface with Bootstrap in the Tamil language, Learning HTML, CSS is mandatory. Learning JavaScript is optional, but suggested!</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/web-design-tutorials-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/Mr0z-2mvsTw/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLAC3IdsuLWtkOywSjZhYo2kiUWOmg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>Web design tutorials in Tamil (தமிழில்)</image:title>
+            <image:caption>Learn about web design in tamil. We will use HTML, CSS &amp;amp; Javascript to build webpages in this series. Learn everything in Tamil.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/css-flexbox-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/LkBlhvg2hqI/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLAcBWynWTfUb789oyXOyyVXXunweA&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>CSS Flexbox in Tamil (தமிழில்)</image:title>
+            <image:caption>CSS Flexbox is a CSS Layout Module where you can build great layouts using this flexbox models. Learn it clearly in Tamil.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/javascript-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/OuUqS8Po5ps/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLBzzv1Wf9zrJS_l7U4i8JETREpnfw&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>JavaScript in Tamil</image:title>
+            <image:caption>Learn Modern JavaScript (2023) in Tamil from beginners and become experts!</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/css-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/qv6ErWuquTY/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLBFoDIwlM-e47DJovxoYlpTqA3RHg&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>CSS in Tamil</image:title>
+            <image:caption>Learn entire CSS3 Course for Absolute beginner. If you want to improve your web design, development skills. Make use of this playlist.</image:caption>
+      
+    </image:image>
+  </url>
+  <url>
+    <loc>https://anbuselvan-annamalai.com/tutorials/html-course-in-tamil</loc>
+    <lastmod>2025-03-28T15:27:04.543Z</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+        <image:image>
+      <image:loc>https://i.ytimg.com/vi/aGHVddspRq0/hqdefault.jpg?sqp=-oaymwEXCOADEI4CSFryq4qpAwkIARUAAIhCGAE=&amp;amp;rs=AOn4CLCxm71QRuQkIYJ4g9FmOmSGBiZAEA&amp;amp;days_since_epoch=20175</image:loc>
+            <image:title>HTML Course in Tamil</image:title>
+            <image:caption>These videos will help you in building awesome webpages for modern web development. All lectures has been taught, as beginners in mind. This video series wil...</image:caption>
+      
+    </image:image>
   </url>
 </urlset>

@@ -126,6 +126,7 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 
 ```bash
 npm run generate-sitemap # generate sitemaps based on the routes.
+npm run fetch-playlists # generate youtube playlist and videos
 ```
 
 ## 📝 License

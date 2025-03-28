@@ -3,6 +3,7 @@ import path from "path";
 import { MetadataRoute } from "next";
 import dotenv from "dotenv";
 import { getAllPosts } from "../src/lib/blog";
+import { playlists } from "../src/data/playlists";
 
 // Load environment variables
 dotenv.config();
@@ -178,6 +179,41 @@ export async function generateXMLSitemap() {
     priority: 0.8,
   }));
 
+  // Generate tutorial entries
+  const tutorialEntries = playlists.map((playlist) => ({
+    url: `${baseUrl}/tutorials/${playlist.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "weekly" as
+      | "always"
+      | "hourly"
+      | "daily"
+      | "weekly"
+      | "monthly"
+      | "yearly"
+      | "never",
+    priority: 0.9,
+    images: [
+      {
+        url: playlist.thumbnail,
+        title: playlist.title,
+        caption: playlist.description,
+      },
+    ],
+  }));
+
+  // Add tutorials path entry
+  const tutorialsPathEntry: SitemapEntry = {
+    url: `${baseUrl}/tutorials`,
+    lastModified: new Date(),
+    changeFrequency: "weekly",
+    priority: 0.9,
+    images: playlists.slice(0, 3).map((playlist) => ({
+      url: playlist.thumbnail,
+      title: playlist.title,
+      caption: playlist.description,
+    })),
+  };
+
   // Add main routes
   allEntries = [
     ...mainRoutes.map((route) => {
@@ -192,6 +228,8 @@ export async function generateXMLSitemap() {
         ...(images && { images }),
       } as SitemapEntry;
     }),
+    // Add tutorials path
+    tutorialsPathEntry,
     // Add review routes
     ...reviewRoutes.map(
       (route) =>
@@ -204,6 +242,8 @@ export async function generateXMLSitemap() {
     ),
     // Add blog posts
     ...blogEntries,
+    // Add tutorial pages
+    ...tutorialEntries,
   ];
 
   // Generate XML
@@ -316,6 +356,15 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.8,
   }));
 
+  // Generate entries for tutorial pages
+  const tutorialEntries = playlists.map((playlist) => ({
+    url: `${baseUrl}/tutorials/${playlist.slug}`,
+    lastModified: new Date(),
+    changeFrequency:
+      "weekly" as MetadataRoute.Sitemap[number]["changeFrequency"],
+    priority: 0.9,
+  }));
+
   // Return combined entries for Next.js sitemap
-  return [...mainEntries, ...reviewEntries, ...blogEntries];
+  return [...mainEntries, ...reviewEntries, ...blogEntries, ...tutorialEntries];
 }
