@@ -590,8 +590,10 @@ export default function AboutPage() {
                   },
                   offers: {
                     "@type": "Offer",
-                    price: "Free",
+                    price: "0",
                     priceCurrency: "INR",
+                    availability: "https://schema.org/InStock",
+                    validFrom: "2024-04-10",
                   },
                   organizer: {
                     "@type": "Organization",
@@ -642,8 +644,10 @@ export default function AboutPage() {
                   },
                   offers: {
                     "@type": "Offer",
-                    price: "Free",
+                    price: "0",
                     priceCurrency: "INR",
+                    availability: "https://schema.org/InStock",
+                    validFrom: "2025-03-13",
                   },
                   eventAttendanceMode:
                     "https://schema.org/OfflineEventAttendanceMode",
@@ -685,8 +689,10 @@ export default function AboutPage() {
                   },
                   offers: {
                     "@type": "Offer",
-                    price: "Free",
+                    price: "0",
                     priceCurrency: "INR",
+                    availability: "https://schema.org/InStock",
+                    validFrom: "2024-03-01",
                   },
                   image: [
                     {
