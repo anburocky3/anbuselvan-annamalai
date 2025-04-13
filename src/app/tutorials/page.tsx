@@ -75,14 +75,24 @@ function generateStructuredData() {
       name: video.title,
       description: video.description,
       duration: `PT${video.duration.replace(/[^0-9]/g, "")}M`,
-      video: {
-        "@type": "VideoObject",
-        name: video.title,
-        description: video.description,
-        thumbnailUrl: video.thumbnailUrl,
-        uploadDate: video.publishedAt,
-        duration: `PT${video.duration.replace(/[^0-9]/g, "")}M`,
-        embedUrl: `https://www.youtube.com/embed/${video.videoId}`,
+    })),
+    video: course.videos.map((video) => ({
+      "@type": "VideoObject",
+      name: video.title,
+      description: video.description,
+      thumbnailUrl: video.thumbnailUrl,
+      uploadDate: video.publishedAt,
+      duration: `PT${video.duration.replace(/[^0-9]/g, "")}M`,
+      embedUrl: `https://www.youtube.com/embed/${video.videoId}`,
+      contentUrl: `https://www.youtube.com/watch?v=${video.videoId}`,
+      "@id": `https://anbuselvan-annamalai.com/tutorials/${course.slug}#video-${video.videoId}`,
+      publisher: {
+        "@type": "Organization",
+        name: "CyberDude Networks Pvt. Ltd.",
+        logo: {
+          "@type": "ImageObject",
+          url: "https://yt3.googleusercontent.com/ytc/AIdro_lthFgRIUu7ezCBpVQtnvQXhrSp9wvKuKYW-ONRfiF8xXw=s1080-c-k-c0x00ffffff-no-rj",
+        },
       },
     })),
   }));
