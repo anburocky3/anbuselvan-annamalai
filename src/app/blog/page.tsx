@@ -4,6 +4,7 @@ import { getAllPosts } from "@/lib/blog";
 import { formatDate } from "@/lib/utils";
 import { FaMedium } from "react-icons/fa6";
 import { baseUrl } from "../../../scripts/generate-sitemap";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Blog | Anbuselvan Annamalai",
@@ -123,35 +124,51 @@ export default async function BlogPage() {
             key={post.slug}
             className="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors"
           >
-            <Link href={`/blog/${post.slug}`}>
-              <h2 className="text-2xl font-semibold text-purple-400 mb-2 hover:text-purple-300">
-                {post.title}
-              </h2>
-            </Link>
-            <div className="flex items-center gap-4 text-gray-400 mb-4">
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
-              {post.readingTime && <span>· {post.readingTime} min read</span>}
-            </div>
-            <p className="text-gray-300 mb-4">{post.excerpt}</p>
-            <Link
-              href={`/blog/${post.slug}`}
-              className="text-purple-400 hover:text-purple-300 inline-flex items-center gap-2"
-            >
-              Read more
-              <svg
-                className="w-4 h-4"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M9 5l7 7-7 7"
+            <div className="flex items-start gap-4">
+              {post.image ? (
+                <Image
+                  src={post.image}
+                  alt={post.title}
+                  width={300}
+                  height={300}
+                  className="rounded-lg w-auto h-auto"
                 />
-              </svg>
-            </Link>
+              ) : null}
+              <div className="flex-1">
+                <Link href={`/blog/${post.slug}`}>
+                  <h2 className="text-2xl font-semibold text-purple-400 mb-2 hover:text-purple-300">
+                    {post.title}
+                  </h2>
+                </Link>
+                <div className="flex items-center gap-4 text-gray-400 mb-4">
+                  <time dateTime={post.date}>{formatDate(post.date)}</time>
+                  {post.readingTime && (
+                    <span>· {post.readingTime} min read</span>
+                  )}
+                </div>
+                <p className="text-gray-300 mb-4">{post.excerpt}</p>
+
+                <Link
+                  href={`/blog/${post.slug}`}
+                  className="text-purple-400 hover:text-purple-300 inline-flex items-center gap-2"
+                >
+                  Read more
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 5l7 7-7 7"
+                    />
+                  </svg>
+                </Link>
+              </div>
+            </div>
           </article>
         ))}
       </div>

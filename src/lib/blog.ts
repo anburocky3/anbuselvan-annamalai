@@ -9,6 +9,7 @@ export interface BlogPost {
   title: string;
   date: string;
   excerpt: string;
+  image: string;
   content: string;
   readingTime?: number;
   author?: string;
@@ -36,6 +37,7 @@ export async function getAllPosts(): Promise<BlogPost[]> {
           title: data.title,
           date: data.date,
           excerpt: data.excerpt || content.slice(0, 150) + "...",
+          image: data.image,
           content,
           readingTime,
           author: data.author,
@@ -66,6 +68,7 @@ export async function getPostBySlug(slug: string): Promise<BlogPost | null> {
       title: data.title,
       date: data.date,
       excerpt: data.excerpt || content.slice(0, 150) + "...",
+      image: data.image,
       content,
       readingTime,
       author: data.author,

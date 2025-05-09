@@ -14,6 +14,12 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "i.ytimg.com",
       },
+      {
+        protocol: "https",
+        hostname: "**", // This allows any hostname
+        port: "",
+        pathname: "**", // This allows any pathname
+      },
     ],
   },
   // Ensure service worker can be found
