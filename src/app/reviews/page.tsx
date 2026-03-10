@@ -65,7 +65,7 @@ export default function ReviewsPage() {
           {/* Links List */}
           <div className="space-y-4">
             {/* YouTube Reviews */}
-            <Link href={route("youtube")} className="block">
+            <Link href={"#"} className="block">
               <div className="flex items-center p-3 rounded-lg hover:bg-gray-50 transition-colors border border-gray-100">
                 <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-red-50 text-red-500">
                   <LuYoutube size={20} />

@@ -25,6 +25,7 @@ export function ReviewForm({ type }: ReviewFormProps) {
   } = useForm<ReviewInput>({
     resolver: zodResolver(reviewSchema),
     defaultValues: {
+      institution: "S.A. Engineering College",
       type,
       isAnonymous: false,
     },
@@ -88,7 +89,11 @@ export function ReviewForm({ type }: ReviewFormProps) {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="institution">Institution</Label>
-                  <Input id="institution" {...register("institution")} />
+                  <Input
+                    id="institution"
+                    {...register("institution")}
+                    disabled
+                  />
                   {errors.institution && (
                     <p className="text-sm text-red-500">
                       {errors.institution.message}
