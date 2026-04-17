@@ -66,6 +66,22 @@ const colleges = [
     name: "Vidyasagar College of Arts & Science",
     url: "https://vidyasagarcollege.org",
   },
+  {
+    name: "Stella Maris College",
+    url: "https://stellamariscollege.edu.in",
+  },
+  {
+    name: "SRM Easwari Engineering College",
+    url: "https://srmeaswari.ac.in",
+  },
+  {
+    name: "S.A. Engineering College",
+    url: "https://www.saec.ac.in",
+  },
+  {
+    name: "Jerusalem College of Engineering",
+    url: "https://www.jerusalemengg.ac.in",
+  },
 ];
 
 export default function AboutPage() {
