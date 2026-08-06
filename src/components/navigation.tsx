@@ -54,13 +54,13 @@ export function Navigation() {
                   "text-sm font-medium transition-colors hover:text-primary",
                   pathname === route("reviewsAbout")
                     ? "text-primary"
-                    : "text-muted-foreground"
+                    : "text-muted-foreground",
                 )}
               >
                 About
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 href={route("youtube")}
                 className={cn(
@@ -72,7 +72,7 @@ export function Navigation() {
               >
                 YouTube Reviews
               </Link>
-            </li>
+            </li> */}
             <li>
               <Link
                 href={route("events")}
@@ -80,7 +80,7 @@ export function Navigation() {
                   "text-sm font-medium transition-colors hover:text-primary",
                   pathname === route("events")
                     ? "text-primary"
-                    : "text-muted-foreground"
+                    : "text-muted-foreground",
                 )}
               >
                 Event Reviews
@@ -93,7 +93,7 @@ export function Navigation() {
                   "text-sm font-medium transition-colors hover:text-primary",
                   pathname === route("blog")
                     ? "text-primary"
-                    : "text-muted-foreground"
+                    : "text-muted-foreground",
                 )}
               >
                 Blog
