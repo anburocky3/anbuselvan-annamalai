@@ -1,0 +1,599 @@
+import { portfolio } from "./portfolio.chat";
+export {
+  buildMailto,
+  buildGmailCompose,
+  buildOutlookCompose,
+  openMailtoLink,
+  OWNER_EMAIL,
+} from "./mail.chat";
+
+export function normalize(text: string) {
+  return String(text || "")
+    .toLowerCase()
+    .trim()
+    .replace(/[!?.,;:]+/g, " ")
+    .replace(/\s+/g, " ");
+}
+
+export function detectLanguage(text: string) {
+  const original = String(text || "").trim();
+
+  if (/[\u0B80-\u0BFF]/.test(original)) {
+    return "tamil";
+  }
+
+  const q = original.toLowerCase();
+  const tanglishPatterns = [
+    /\bvanakkam\b/,
+    /\bvanakam\b/,
+    /\bepdi\b/,
+    /\benna\b/,
+    /\benga\b/,
+    /\bengae\b/,
+    /\bavar\b/,
+    /\bavaru\b/,
+    /\bavanga\b/,
+    /\bavaroda\b/,
+    /\bavaruoda\b/,
+    /\bpathi\b/,
+    /\bpanraru\b/,
+    /\bpanraaru\b/,
+    /\bpanniruk\b/,
+    /\bpannirukanga\b/,
+    /\btheriyuma\b/,
+    /\btheriyum\b/,
+    /\bsollunga\b/,
+    /\bkekka\b/,
+    /\bkekanum\b/,
+    /\birukku\b/,
+    /\birukura\b/,
+    /\bpesu\b/,
+    /\bpesunga\b/,
+    /\bvenum\b/,
+    /\bvenuma\b/,
+    /\bnga\b/,
+    /\byaaru\b/,
+    /\byaru\b/,
+  ];
+
+  if (tanglishPatterns.some((pattern) => pattern.test(q))) {
+    return "tanglish";
+  }
+
+  return "english";
+}
+
+const abusiveWords = [
+  "fuck",
+  "fucking",
+  "shit",
+  "bitch",
+  "bastard",
+  "idiot",
+  "stupid",
+  "asshole",
+  "moron",
+  "dumb",
+  "motherfucker",
+  "poruki",
+  "punda",
+  "ommala",
+  "sunni",
+  "dai",
+];
+
+export function containsAbusiveLanguage(text: string) {
+  const q = normalize(text);
+
+  return abusiveWords.some((word) => {
+    const escaped = word.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    return new RegExp(`\\b${escaped}\\b`, "i").test(q);
+  });
+}
+
+export function isGreeting(q: string) {
+  const greetings = [
+    "hi",
+    "hello",
+    "hey",
+    "hii",
+    "hiii",
+    "vanakkam",
+    "vanakam",
+    "good morning",
+    "good evening",
+    "good afternoon",
+  ];
+
+  return greetings.some(
+    (greeting) => q === greeting || q.startsWith(`${greeting} `),
+  );
+}
+
+export function isContactIntent(q: string) {
+  const keywords = [
+    "contact",
+    "hire",
+    "hiring",
+    "work with him",
+    "work with anbu",
+    "reach him",
+    "reach anbu",
+    "email him",
+    "email anbu",
+    "get in touch",
+    "collaborate",
+    "collaboration",
+    "mail anbu",
+    "send mail",
+    "send email",
+  ];
+
+  return keywords.some((keyword) => q.includes(keyword));
+}
+
+export function detectSectionRedirect(q: string) {
+  const showPatterns = [
+    "show me",
+    "take me",
+    "go to",
+    "open",
+    "scroll to",
+    "navigate",
+    "jump to",
+    "see the",
+    "view the",
+    "காட்டு",
+    "போ",
+  ];
+
+  const wantsNav = showPatterns.some((p) => q.includes(p));
+
+  for (const section of portfolio.sections) {
+    const hit = section.keywords.some((k) => q.includes(k));
+    if (hit && (wantsNav || q.includes("section") || q.startsWith("show"))) {
+      return section.id;
+    }
+    if (
+      (q.includes(`show ${section.id}`) ||
+        q.includes(`go to ${section.id}`) ||
+        q.includes(`open ${section.id}`)) &&
+      hit
+    ) {
+      return section.id;
+    }
+  }
+
+  // Soft redirects when user asks about a topic
+  if (
+    q.includes("project") ||
+    q.includes("projects") ||
+    q.includes("திட்டம்")
+  ) {
+    return "projects";
+  }
+  if (q.includes("skill") || q.includes("skills") || q.includes("technology")) {
+    return "skills";
+  }
+  if (q.includes("experience") || q.includes("career")) {
+    return "experience";
+  }
+  if (q.includes("service") || q.includes("services")) {
+    return "services";
+  }
+  if (
+    q.includes("about him") ||
+    q.includes("who is") ||
+    q.includes("avar yaaru") ||
+    q.includes("அவர் யார்")
+  ) {
+    return "about";
+  }
+  if (isContactIntent(q)) {
+    return "contact";
+  }
+
+  return null;
+}
+
+export function greetingAnswer(language: string, question: string) {
+  const hasNga = /\bnga\b/i.test(question);
+
+  if (language === "tamil") {
+    return hasNga
+      ? "வணக்கம் nga! 👋✨ Anbu பற்றி என்ன தெரிஞ்சிக்கணும்? Projects, skills, experience — எது வேணாலும் கேளுங்க!"
+      : "வணக்கம்! 👋✨ Anbu பற்றி என்ன தெரிஞ்சிக்கணும்? Projects, skills, experience — எது வேணாலும் கேளுங்க!";
+  }
+
+  if (language === "tanglish") {
+    return hasNga
+      ? "Vanakkam nga! 👋✨ Anbu pathi enna therinjikanum? Projects, skills, experience — edhuvum kekkalaam!"
+      : "Vanakkam! 👋✨ Anbu pathi enna therinjikanum? Projects, skills, experience — edhuvum kekkalaam!";
+  }
+
+  return hasNga
+    ? "Hi dude! 👋✨ What would you like to know about Anbu? Ask about projects, skills, experience — or say “show projects” to jump there."
+    : "Hey! 👋✨ What would you like to know about Anbu? Ask about projects, skills, experience — or say “show projects” to jump there.";
+}
+
+export function projectAnswer(language: string) {
+  const list = portfolio.projects
+    .map((p) => `• ${p.name} — ${p.description}`)
+    .join("\n\n");
+
+  if (language === "tamil") {
+    return `🚀 அவருடைய முக்கிய projects:\n\n${list}\n\n“show projects” சொன்னா அந்த section-க்கு போவேன்!`;
+  }
+
+  if (language === "tanglish") {
+    return `🚀 Avaroda main projects:\n\n${list}\n\n“show projects” nu sollunga — naan andha section-ku eduthuttu poren!`;
+  }
+
+  return `🚀 His main projects:\n\n${list}\n\nSay “show projects” and I’ll take you there!`;
+}
+
+export function skillAnswer(language: string) {
+  const skills = portfolio.skills.join(", ");
+  const tech = portfolio.technologies.join(", ");
+
+  if (language === "tamil") {
+    return `💻 Skills: ${skills}\n\n🛠️ Tools & tech: ${tech}`;
+  }
+
+  if (language === "tanglish") {
+    return `💻 Skills: ${skills}\n\n🛠️ Tools & tech: ${tech}`;
+  }
+
+  return `💻 Skills: ${skills}\n\n🛠️ Tools & tech: ${tech}`;
+}
+
+export function experienceAnswer(language: string) {
+  const rows = portfolio.experience
+    .map((e) => `• ${e.period} — ${e.role}, ${e.company}`)
+    .join("\n");
+
+  if (language === "tamil") {
+    return `👨‍💼 Work experience:\n\n${rows}`;
+  }
+
+  if (language === "tanglish") {
+    return `👨‍💼 Work experience:\n\n${rows}`;
+  }
+
+  return `👨‍💼 Work experience:\n\n${rows}`;
+}
+
+export function serviceAnswer(language: string) {
+  const list = portfolio.services.map((s) => `• ${s}`).join("\n");
+
+  if (language === "tamil") {
+    return `⚡ Services:\n\n${list}`;
+  }
+
+  if (language === "tanglish") {
+    return `⚡ Services:\n\n${list}`;
+  }
+
+  return `⚡ Services:\n\n${list}`;
+}
+
+export function aboutAnswer(language: string) {
+  if (language === "tamil") {
+    return `Anbuselvan Annamalai ஒரு Entrepreneur & Technology Mentor. ${portfolio.about}`;
+  }
+
+  if (language === "tanglish") {
+    return `Anbuselvan Annamalai oru Entrepreneur & Technology Mentor. ${portfolio.about}`;
+  }
+
+  return portfolio.about;
+}
+
+export function educationAnswer(language: string) {
+  const list = portfolio.education.map((e) => `• ${e}`).join("\n");
+
+  if (language === "tamil") {
+    return `🎓 Education:\n\n${list}`;
+  }
+
+  if (language === "tanglish") {
+    return `🎓 Education:\n\n${list}`;
+  }
+
+  return `🎓 Education:\n\n${list}`;
+}
+
+export function abuseAnswer(language: string) {
+  if (language === "tamil") {
+    return "😊 கொஞ்சம் respectful-ஆ பேசலாம் nga. நான் உதவ இங்கே இருக்கிறேன் — projects, skills, experience அல்லது services பற்றி கேளுங்கள்.";
+  }
+
+  if (language === "tanglish") {
+    return "😊 Konjam respectful-ah pesalaam nga. Naan help panna inga irukken — projects, skills, experience illa services pathi kekkalaam.";
+  }
+
+  return "😊 Let's keep things respectful. I'm here to help — ask about Anbu's projects, skills, experience or services.";
+}
+
+export function unknownAnswer(language: string) {
+  if (language === "tamil") {
+    return {
+      text: "😄 நல்ல கேள்வி! இந்த தகவல் இப்போது என்னிடம் இல்லை. Anbu-க்கு நேரடியாக mail அனுப்ப உங்கள் email கொடுங்க — Outlook / mail app திறக்கும்.",
+      needsEmail: true,
+    };
+  }
+
+  if (language === "tanglish") {
+    return {
+      text: "😄 Nice question! Indha details ippo ennoda kitta illa. Anbu-ku direct mail anuppa unga email kudunga — Outlook / mail app open aagum.",
+      needsEmail: true,
+    };
+  }
+
+  return {
+    text: "😄 Nice question! I don't have that detail yet. Share your email and I'll open Outlook / your mail app so you can send it to Anbu.",
+    needsEmail: true,
+  };
+}
+
+/**
+ * @returns {{
+ *   text: string,
+ *   language: string,
+ *   needsEmail?: boolean,
+ *   scrollTo?: string | null,
+ *   abusive?: boolean
+ * }}
+ */
+export function getChatResponse(question: string, conversationContext = null) {
+  const q = normalize(question);
+  const language = detectLanguage(question);
+  const scrollTo = detectSectionRedirect(q);
+
+  if (containsAbusiveLanguage(question)) {
+    return {
+      text: abuseAnswer(language),
+      language,
+      abusive: true,
+      scrollTo: null,
+    };
+  }
+
+  if (isGreeting(q)) {
+    return {
+      text: greetingAnswer(language, question),
+      language,
+      scrollTo: null,
+    };
+  }
+
+  if (
+    q.includes("education") ||
+    q.includes("degree") ||
+    q.includes("college") ||
+    q.includes("school") ||
+    q.includes("mba")
+  ) {
+    return {
+      text: educationAnswer(language),
+      language,
+      scrollTo: "about",
+    };
+  }
+
+  if (
+    q.includes("project") ||
+    q.includes("projects") ||
+    q.includes("avaroda project") ||
+    q.includes("avaruoda project") ||
+    q.includes("projects pathi") ||
+    q.includes("panniruk") ||
+    q.includes("திட்டம்")
+  ) {
+    return {
+      text: projectAnswer(language),
+      language,
+      scrollTo: "projects",
+      context: "projects",
+    };
+  }
+
+  if (
+    q.includes("skill") ||
+    q.includes("skills") ||
+    q.includes("technology") ||
+    q.includes("technologies") ||
+    q.includes("tech stack")
+  ) {
+    return {
+      text: skillAnswer(language),
+      language,
+      scrollTo: "skills",
+      context: "skills",
+    };
+  }
+
+  if (
+    q.includes("experience") ||
+    q.includes("career") ||
+    q.includes("worked") ||
+    q.includes("job") ||
+    q.includes("work pann")
+  ) {
+    return {
+      text: experienceAnswer(language),
+      language,
+      scrollTo: "experience",
+      context: "experience",
+    };
+  }
+
+  if (
+    q.includes("service") ||
+    q.includes("services") ||
+    q.includes("what can he do") ||
+    q.includes("enna service")
+  ) {
+    return {
+      text: serviceAnswer(language),
+      language,
+      scrollTo: "services",
+      context: "services",
+    };
+  }
+
+  if (
+    q.includes("who is he") ||
+    q.includes("who is anbuselvan") ||
+    q.includes("about him") ||
+    q.includes("about anbuselvan") ||
+    q.includes("what does he do") ||
+    q.includes("avar yaaru") ||
+    q.includes("avaru yaaru") ||
+    q.includes("avar pathi") ||
+    q.includes("அவர் யார்")
+  ) {
+    return {
+      text: aboutAnswer(language),
+      language,
+      scrollTo: "about",
+      context: "about",
+    };
+  }
+
+  if (isContactIntent(q)) {
+    const unknown = unknownAnswer(language);
+    return {
+      text: unknown.text,
+      language,
+      needsEmail: true,
+      scrollTo: "contact",
+      pendingQuestion: "The visitor wants to contact or hire Anbuselvan.",
+    };
+  }
+
+  // Explicit navigation-only phrases
+  if (
+    q.includes("show ") ||
+    q.includes("go to ") ||
+    q.includes("take me") ||
+    q.includes("scroll to") ||
+    q.includes("open ")
+  ) {
+    const section = portfolio.sections.find((s) =>
+      s.keywords.some((k) => q.includes(k)),
+    );
+    if (section) {
+      const label = section.label;
+      if (language === "tamil") {
+        return {
+          text: `✨ ${label} section-க்கு போறேன்!`,
+          language,
+          scrollTo: section.id,
+        };
+      }
+      if (language === "tanglish") {
+        return {
+          text: `✨ ${label} section-ku poren!`,
+          language,
+          scrollTo: section.id,
+        };
+      }
+      return {
+        text: `✨ Taking you to the ${label} section!`,
+        language,
+        scrollTo: section.id,
+      };
+    }
+  }
+
+  if (
+    conversationContext === "projects" &&
+    (q.includes("more") || q.includes("which one") || q.includes("ai"))
+  ) {
+    return {
+      text:
+        language === "tamil"
+          ? "✨ CyberDude.app — technology learning + AI support related project."
+          : language === "tanglish"
+            ? "✨ CyberDude.app — technology learning and AI support related project."
+            : "✨ CyberDude.app is a technology learning platform with AI support.",
+      language,
+      scrollTo: "projects",
+      context: "projects",
+    };
+  }
+
+  const unknown = unknownAnswer(language);
+  return {
+    text: unknown.text,
+    language,
+    needsEmail: true,
+    scrollTo,
+    pendingQuestion: question,
+  };
+}
+
+export const SUGGESTIONS = [
+  { label: "🚀 Projects", text: "What projects has Anbuselvan built?" },
+  { label: "💻 Skills", text: "What are his skills?" },
+  { label: "👤 Experience", text: "Tell me about his experience" },
+  { label: "⚡ Services", text: "What services does he provide?" },
+  { label: "📍 Show projects", text: "Show projects" },
+];
+
+const SECTION_LABELS: Record<string, string> = {
+  home: "Home",
+  about: "About",
+  projects: "Projects",
+  services: "Services",
+  skills: "Skills",
+  experience: "Experience",
+  contact: "Contact",
+  blog: "Blog",
+  assistant: "Assistant",
+};
+
+export function getSectionLabel(id: string) {
+  return SECTION_LABELS[id] || id;
+}
+
+/** Tell the user to look at the page section the bot just opened. */
+export function buildSectionNotice(sectionId: string, language = "english") {
+  const label = getSectionLabel(sectionId);
+  if (!sectionId) return "";
+
+  if (language === "tamil") {
+    return `📍 ${label} section-க்கு உங்களை எடுத்துச் சென்றேன் — கீழே scroll செய்து பாருங்கள்!`;
+  }
+
+  if (language === "tanglish") {
+    return `📍 ${label} section-ku eduthuttu poren — page-la scroll panni paathukonga!`;
+  }
+
+  return `📍 Taking you to ${label} — please look at that section on the page (scrolled below).`;
+}
+
+export function withSectionNotice(reply: {
+  text: string;
+  language: string;
+  scrollTo?: string;
+}): {
+  text: string;
+  language: string;
+  scrollTo?: string;
+} {
+  if (!reply?.scrollTo) return reply;
+  const notice = buildSectionNotice(reply.scrollTo, reply.language);
+  if (!notice) return reply;
+  if (
+    String(reply.text || "").includes(notice) ||
+    String(reply.text || "").includes("📍")
+  ) {
+    return reply;
+  }
+  return {
+    ...reply,
+    text: `${reply.text}\n\n${notice}`,
+  };
+}

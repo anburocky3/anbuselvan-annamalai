@@ -3,11 +3,12 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Toaster } from "react-hot-toast";
 import Footer from "@/components/site/Footer";
-import "./globals.css";
+import "@/app/globals.css";
 // import "@/styles/monokai-theme.css"; // Default theme
 import "@/styles/cyberdude-theme.css"; // Uncomment to use CyberDude theme instead
 import ScrollHandler from "@/components/ScrollHandler";
 import { ConditionalNavigation } from "@/components/conditional-navigation";
+import { ChatbotWrapper } from "@/components/chat/ChatbotWrapper";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anbuselvan-annamalai.com"),
@@ -121,6 +122,7 @@ export default function RootLayout({
         <Toaster position="bottom-right" />
         <Analytics />
         <SpeedInsights />
+        <ChatbotWrapper />
       </body>
     </html>
   );
