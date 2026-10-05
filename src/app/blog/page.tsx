@@ -111,11 +111,11 @@ export default async function BlogPage() {
         </h1>
         <a
           href="https://anbuselvan-annamalai.medium.com"
-          className="bg-green-500 hover:bg-green-600 border border-green-800 text-s px-4 py-2 rounded-md flex items-center gap-x-3"
+          className="bg-green-500 hover:bg-green-600 border border-green-800 text-s px-4 py-2 rounded-md flex items-center gap-x-3 flex-col sm:flex-row"
           target="_blank"
         >
           <FaMedium />
-          Medium blog
+          <span>Medium blog</span>
         </a>
       </div>
       <div className="grid gap-8">
@@ -124,7 +124,7 @@ export default async function BlogPage() {
             key={post.slug}
             className="bg-slate-800 rounded-lg p-6 hover:bg-slate-700 transition-colors"
           >
-            <div className="flex items-start gap-4">
+            <div className="flex flex-col sm:flex-row items-start gap-4">
               {post.image ? (
                 <Image
                   src={post.image}

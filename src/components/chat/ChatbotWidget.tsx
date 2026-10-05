@@ -11,8 +11,6 @@ import React, {
 import {
   SUGGESTIONS,
   buildMailto,
-  buildGmailCompose,
-  buildOutlookCompose,
   openMailtoLink,
   getChatResponse,
   withSectionNotice,
@@ -267,6 +265,19 @@ export default function ChatbotWidget({
   }, [open]);
 
   useEffect(() => {
+    const handleScroll = (): void => {
+      const chatLauncher = document.querySelector(".launcher-wrap");
+      if (!chatLauncher) return;
+
+      chatLauncher.classList.toggle("hidden", window.scrollY <= 400);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  useEffect(() => {
     return () => {
       try {
         recognitionRef.current?.stop();
@@ -483,19 +494,6 @@ export default function ChatbotWidget({
       playChatSfx("mic-stop");
     }
   }
-
-  window.addEventListener("scroll", () => {
-    const currentScroll = window.scrollY;
-    const chatLauncher = document.querySelector(".launcher-wrap");
-
-    if (chatLauncher) {
-      if (currentScroll > 400) {
-        chatLauncher.classList.remove("hidden");
-      } else {
-        chatLauncher.classList.add("hidden");
-      }
-    }
-  });
 
   return (
     <>

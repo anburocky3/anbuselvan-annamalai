@@ -153,7 +153,7 @@ export default async function BlogPostPage({
       <article className="prose prose-invert prose-purple max-w-none">
         <header className="mb-8">
           <h1 className="text-4xl font-bold text-white mb-4">{post.title}</h1>
-          <div className="flex items-center gap-4 text-gray-400">
+          <div className="flex flex-wrap items-center gap-4 text-gray-400">
             <time dateTime={post.date}>{formatDate(post.date)}</time>
             {post.readingTime && <span>· {post.readingTime} min read</span>}
             {post.author && (
@@ -163,7 +163,7 @@ export default async function BlogPostPage({
             )}
           </div>
           {post.tags && post.tags.length > 0 && (
-            <div className="flex gap-2 mt-4">
+            <div className="flex flex-wrap gap-2 mt-4">
               {post.tags.map((tag) => (
                 <span
                   key={tag}
