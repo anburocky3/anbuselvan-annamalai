@@ -484,6 +484,19 @@ export default function ChatbotWidget({
     }
   }
 
+  window.addEventListener("scroll", () => {
+    const currentScroll = window.scrollY;
+    const chatLauncher = document.querySelector(".launcher-wrap");
+
+    if (chatLauncher) {
+      if (currentScroll > 400) {
+        chatLauncher.classList.remove("hidden");
+      } else {
+        chatLauncher.classList.add("hidden");
+      }
+    }
+  });
+
   return (
     <>
       {trackBanner ? (
@@ -492,25 +505,28 @@ export default function ChatbotWidget({
         </div>
       ) : null}
 
-      <button
-        type="button"
-        className="chat-launcher"
-        aria-label="Open portfolio assistant"
-        onClick={() => (open ? onClose() : onOpen())}
-      >
-        <div className="launcher-wrap">
-          <span className="launcher-lines" aria-hidden="true" />
-          <span className="launcher-core">
-            <Image
-              src={CARTOON}
-              alt="Anbu cartoon assistant"
-              width={124}
-              height={124}
-            />
-          </span>
-          <span className="launcher-badge">Chat</span>
-        </div>
-      </button>
+      {!open && (
+        <button
+          type="button"
+          className="chat-launcher"
+          title="Open portfolio assistant"
+          aria-label="Open portfolio assistant"
+          onClick={() => (open ? onClose() : onOpen())}
+        >
+          <div className="launcher-wrap hidden">
+            <span className="launcher-lines" aria-hidden="true" />
+            <span className="launcher-core">
+              <Image
+                src={CARTOON}
+                alt="Anbu cartoon assistant"
+                width={124}
+                height={124}
+              />
+            </span>
+            <span className="launcher-badge">Chat</span>
+          </div>
+        </button>
+      )}
 
       {open && (
         <aside className="chat-panel" aria-label="Portfolio Assistant">
@@ -579,7 +595,9 @@ export default function ChatbotWidget({
                 </div>
                 <div className="msg bot">
                   <div className="email-box">
-                    <label htmlFor="visitorEmail">Your email</label>
+                    <label htmlFor="visitorEmail">
+                      Enter your email to continue
+                    </label>
                     <div className="email-row">
                       <input
                         id="visitorEmail"
@@ -618,7 +636,7 @@ export default function ChatbotWidget({
                       </p>
                     ) : (
                       <p style={{ fontSize: "0.74rem", color: "var(--muted)" }}>
-                        Sends to {OWNER_EMAIL}
+                        Say hi. No spam, no tracking.
                       </p>
                     )}
                   </div>

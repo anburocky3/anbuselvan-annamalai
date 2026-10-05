@@ -27,60 +27,64 @@ export const metadata: Metadata = {
 
 const colleges = [
   {
-    name: "VIT University",
+    name: "VIT University, Vellore.",
     url: "https://www.vit.ac.in",
   },
   {
-    name: "Anna University",
+    name: "Anna University, Chennai.",
     url: "https://www.annauniv.edu",
   },
   {
-    name: "Kongu Engineering College",
+    name: "Kongu Engineering College, Perundurai.",
     url: "https://www.kongu.edu",
   },
   {
-    name: "Sri Krishna College of Engineering and Technology",
+    name: "Sri Krishna College of Engineering and Technology, Coimbatore.",
     url: "https://www.skcet.ac.in",
   },
   {
-    name: "DMI College of Engineering",
+    name: "DMI College of Engineering, Chennai.",
     url: "https://www.dmice.ac.in",
   },
   {
-    name: "PSNA College of Engineering and Technology",
+    name: "PSNA College of Engineering and Technology, Dindigul.",
     url: "https://www.psnacet.edu.in",
   },
   {
-    name: "Sathyabama University",
+    name: "Sathyabama University, Chennai.",
     url: "https://www.sathyabama.ac.in",
   },
   {
-    name: "SRM Institute of Science and Technology",
+    name: "SRM Institute of Science and Technology, Chennai.",
     url: "https://www.srmist.edu.in",
   },
   {
-    name: "Sreenivasa Institute of Technology and Management Studies",
+    name: "Sreenivasa Institute of Technology and Management Studies (SITAMS), Chittoor.",
     url: "https://www.sitams.ac.in",
   },
   {
-    name: "Vidyasagar College of Arts & Science",
+    name: "Vidyasagar College of Arts & Science, Udumalapet.",
     url: "https://vidyasagarcollege.org",
   },
   {
-    name: "Stella Maris College",
+    name: "Stella Maris College, Chennai.",
     url: "https://stellamariscollege.edu.in",
   },
   {
-    name: "SRM Easwari Engineering College",
+    name: "SRM Easwari Engineering College, Chennai.",
     url: "https://srmeaswari.ac.in",
   },
   {
-    name: "S.A. Engineering College",
+    name: "S.A. Engineering College, Chennai.",
     url: "https://www.saec.ac.in",
   },
   {
-    name: "Jerusalem College of Engineering",
+    name: "Jerusalem College of Engineering, Chennai.",
     url: "https://www.jerusalemengg.ac.in",
+  },
+  {
+    name: "St. Joseph University, Chennai.",
+    url: "https://sju.ac.in/",
   },
 ];
 
@@ -88,7 +92,8 @@ export default function AboutPage() {
   return (
     <div className="container mx-auto px-4 py-20">
       <h1 className="text-4xl font-bold text-white mb-8">
-        About Anbuselvan Annamalai
+        About <br />
+        <span className="text-purple-400 text-2xl">Anbuselvan Annamalai</span>
       </h1>
 
       <div className="bg-slate-800 rounded-lg p-8 text-gray-300">
@@ -106,7 +111,7 @@ export default function AboutPage() {
           >
             CyberDude Networks Pvt. Ltd.
           </a>
-          . With over 10 years of experience in the technology industry, I
+          . With over 13 years of experience in the technology industry, I
           specialize in creating exceptional web and mobile applications using
           modern technologies like{" "}
           <Link
@@ -245,7 +250,7 @@ export default function AboutPage() {
               Teaching Hands-On Coding on YouTube
             </h4>
             <p className="mt-2">
-              I have created a{" "}
+              I created a{" "}
               <a
                 href={socialLinks.cyberdude.url}
                 target="_blank"
