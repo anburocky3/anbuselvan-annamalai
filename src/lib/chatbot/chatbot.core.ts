@@ -232,6 +232,93 @@ export function projectAnswer(language: string) {
   return `🚀 His main projects:\n\n${list}\n\nSay “show projects” and I’ll take you there!`;
 }
 
+export function socialAnswer(language: string) {
+  if (language === "tamil") {
+    return "Anbu-வின் social links கீழே கொடுத்திருக்கிறேன். பிடித்த platform-ஐ திறந்து follow பண்ணலாம்!";
+  }
+
+  if (language === "tanglish") {
+    return "Anbu-oda social links keezha irukku. Ungalukku pidicha platform-la follow pannunga!";
+  }
+
+  return "Here are Anbu’s social networks. Open a platform to follow his work and updates.";
+}
+
+export function identityAnswer(language: string, question: string) {
+  const asksCreator = /created|creator|built|made|developed|who are you/i.test(
+    question,
+  );
+
+  if (language === "tamil") {
+    return asksCreator
+      ? "நான் Dobby — Anbu-வின் assistant. என்னை Anbuselvan Annamalai உருவாக்கினார்; அவருடைய projects, skills மற்றும் services பற்றி சொல்ல நான் இங்கே இருக்கிறேன்."
+      : "நான் Dobby — Anbu-வின் assistant. நான் Anbuselvan Annamalai-யின் work, projects மற்றும் services பற்றி பதில் சொல்ல உதவுகிறேன்.";
+  }
+
+  if (language === "tanglish") {
+    return asksCreator
+      ? "Naan Dobby — Anbu-oda assistant. Enna Anbuselvan Annamalai create pannirukkaar; avaroda projects, skills and services pathi solla naan inga irukken."
+      : "Naan Dobby — Anbu-oda assistant. Anbuselvan Annamalai-oda work, projects and services pathi answer panna help panren.";
+  }
+
+  return asksCreator
+    ? "I’m Dobby, Anbu’s assistant. I was created by Anbuselvan Annamalai team to help visitors explore his projects, skills and services."
+    : "I’m Dobby, Anbu’s assistant. I help visitors learn about Anbuselvan Annamalai’s work, projects and services.";
+}
+
+export function basicAnswer(language: string, question: string) {
+  const q = normalize(question);
+  if (
+    q === "help" ||
+    q.includes("what can you do") ||
+    q.includes("how can you help")
+  ) {
+    return language === "tamil"
+      ? "Projects, skills, experience, education, services மற்றும் contact பற்றி கேளுங்கள். நான் சரியான section-க்கும் அழைத்துச் செல்வேன்."
+      : language === "tanglish"
+        ? "Projects, skills, experience, education, services and contact pathi kelunga. Naan correct section-kum koottittu poren."
+        : "Ask me about projects, skills, experience, education, services or contact. I can also take you to the relevant section.";
+  }
+
+  if (
+    q.includes("website") ||
+    q.includes("portfolio link") ||
+    q.includes("url")
+  ) {
+    return `You can explore the portfolio at ${portfolio.website}`;
+  }
+
+  if (q === "bye" || q.includes("goodbye") || q.includes("see you")) {
+    return language === "tamil"
+      ? "பார்க்கலாம்! Anbu-வின் portfolio-க்கு வந்ததற்கு நன்றி."
+      : language === "tanglish"
+        ? "Bye nga! Anbu-oda portfolio-ku vandhadhukku nandri."
+        : "Bye! Thanks for visiting Anbu’s portfolio.";
+  }
+
+  if (q.includes("thank") || q.includes("thanks")) {
+    return language === "tamil"
+      ? "உங்களை வரவேற்கிறேன்! இன்னும் ஏதாவது கேளுங்கள்."
+      : language === "tanglish"
+        ? "Welcome nga! Innum edhaavadhu kelunga."
+        : "You’re welcome! Ask me anything else about Anbu.";
+  }
+
+  if (
+    q.includes("location") ||
+    q.includes("where is he") ||
+    q.includes("based")
+  ) {
+    return language === "tamil"
+      ? "Anbu-வின் location பற்றிய தகவல் portfolio-வில் குறிப்பிடப்படவில்லை."
+      : language === "tanglish"
+        ? "Anbu enga based-nu portfolio-la specific-a mention pannala."
+        : "Anbu’s location is not specified in the portfolio yet.";
+  }
+
+  return "";
+}
+
 export function skillAnswer(language: string) {
   const skills = portfolio.skills.join(", ");
   const tech = portfolio.technologies.join(", ");
@@ -246,6 +333,15 @@ export function skillAnswer(language: string) {
 
   return `💻 Skills: ${skills}\n\n🛠️ Tools & tech: ${tech}`;
 }
+
+const skillLogoSlugs: Record<string, string> = {
+  "JavaScript / TypeScript": "typescript",
+  React: "react",
+  "Node.js": "nodedotjs",
+  Python: "python",
+  PHP: "php",
+  "Mobile Development": "android",
+};
 
 export function experienceAnswer(language: string) {
   const rows = portfolio.experience
@@ -368,6 +464,51 @@ export function getChatResponse(question: string, conversationContext = null) {
   }
 
   if (
+    q.includes("who are you") ||
+    q.includes("your name") ||
+    q.includes("what are you") ||
+    q.includes("are you human") ||
+    q.includes("who created you") ||
+    q.includes("who made you") ||
+    q.includes("who built you") ||
+    q.includes("your creator") ||
+    q.includes("உன்னை யார்") ||
+    q.includes("நீ யார்")
+  ) {
+    return {
+      text: identityAnswer(language, question),
+      language,
+      scrollTo: null,
+      context: "about",
+    };
+  }
+
+  if (
+    q.includes("social") ||
+    q.includes("instagram") ||
+    q.includes("github") ||
+    q.includes("git hub") ||
+    q.includes("linkedin") ||
+    q.includes("linked in") ||
+    q.includes("youtube") ||
+    q.includes("follow him") ||
+    q.includes("follow anbu")
+  ) {
+    return {
+      text: socialAnswer(language),
+      language,
+      scrollTo: "contact",
+      context: "contact",
+      socials: portfolio.socials,
+    };
+  }
+
+  const basic = basicAnswer(language, question);
+  if (basic) {
+    return { text: basic, language, scrollTo: null };
+  }
+
+  if (
     q.includes("education") ||
     q.includes("degree") ||
     q.includes("college") ||
@@ -395,6 +536,7 @@ export function getChatResponse(question: string, conversationContext = null) {
       language,
       scrollTo: "projects",
       context: "projects",
+      projects: portfolio.projects,
     };
   }
 
@@ -410,6 +552,10 @@ export function getChatResponse(question: string, conversationContext = null) {
       language,
       scrollTo: "skills",
       context: "skills",
+      skills: portfolio.skills.map((name) => ({
+        name,
+        logo: `https://cdn.simpleicons.org/${skillLogoSlugs[name] || "code"}`,
+      })),
     };
   }
 

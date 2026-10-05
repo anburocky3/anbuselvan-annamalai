@@ -19,8 +19,21 @@ import {
   getSectionLabel,
 } from "@/lib/chatbot/chatbot.core";
 import { OWNER_EMAIL } from "@/lib/chatbot/mail.chat";
+import { playChatSfx } from "@/lib/chatbot/chat.sfx";
 import "@/styles/chatbot.css";
 import Image from "next/image";
+import {
+  Bot,
+  ExternalLink,
+  EyeOff,
+  Github,
+  Instagram,
+  Linkedin,
+  Mic,
+  Send,
+  X,
+  Youtube,
+} from "lucide-react";
 
 const CARTOON: string = "/images/anbu-cartoon.jpg";
 
@@ -74,6 +87,25 @@ interface ChatMessage {
   id: string;
   role: "bot" | "user";
   text: string;
+  projects?: ProjectCard[];
+  skills?: SkillCard[];
+  socials?: SocialCard[];
+}
+
+interface ProjectCard {
+  name: string;
+  description: string;
+  tags: string[];
+}
+
+interface SkillCard {
+  name: string;
+  logo: string;
+}
+
+interface SocialCard {
+  name: string;
+  url: string;
 }
 
 // Extracted context type to avoid 'any'
@@ -85,12 +117,16 @@ interface ChatReply {
   scrollTo?: string;
   needsEmail?: boolean;
   pendingQuestion?: string;
+  projects?: ProjectCard[];
+  skills?: SkillCard[];
+  socials?: SocialCard[];
 }
 
 interface ChatWidgetProps {
   open: boolean;
   onOpen: () => void;
   onClose: () => void;
+  onHide: () => void;
 }
 
 interface EmailPayload {
@@ -113,16 +149,89 @@ function TypingDots(): JSX.Element {
   );
 }
 
+function ProjectCards({ projects }: { projects: ProjectCard[] }): JSX.Element {
+  return (
+    <div className="project-list" aria-label="Projects">
+      {projects.map((project) => (
+        <article className="project-item" key={project.name}>
+          <div className="project-item-heading">
+            <Bot size={15} aria-hidden="true" />
+            <strong>{project.name}</strong>
+          </div>
+          <p>{project.description}</p>
+          <div className="project-tags">
+            {project.tags.map((tag) => (
+              <span key={tag}>{tag}</span>
+            ))}
+          </div>
+        </article>
+      ))}
+    </div>
+  );
+}
+
+function SkillCards({ skills }: { skills: SkillCard[] }): JSX.Element {
+  return (
+    <div className="skill-list" aria-label="Skills">
+      {skills.map((skill) => (
+        <div className="skill-item" key={skill.name}>
+          <span
+            className="skill-logo"
+            aria-hidden="true"
+            style={{ backgroundImage: `url(${skill.logo})` }}
+          />
+          <span>{skill.name}</span>
+        </div>
+      ))}
+    </div>
+  );
+}
+
+function SocialCards({ socials }: { socials: SocialCard[] }): JSX.Element {
+  const icons: Record<string, JSX.Element> = {
+    Instagram: <Instagram size={17} aria-hidden="true" />,
+    GitHub: <Github size={17} aria-hidden="true" />,
+    LinkedIn: <Linkedin size={17} aria-hidden="true" />,
+    YouTube: <Youtube size={17} aria-hidden="true" />,
+    "CyberDude YouTube": <Youtube size={17} aria-hidden="true" />,
+  };
+
+  return (
+    <div className="social-list" aria-label="Social networks">
+      {socials.map((social) => (
+        <a
+          className="social-item"
+          href={social.url}
+          key={social.name}
+          target="_blank"
+          rel="noreferrer"
+        >
+          <span className="social-icon">
+            {icons[social.name] || <ExternalLink size={17} />}
+          </span>
+          <span>{social.name}</span>
+          <ExternalLink
+            className="social-external"
+            size={13}
+            aria-hidden="true"
+          />
+        </a>
+      ))}
+    </div>
+  );
+}
+
 export default function ChatbotWidget({
   open,
   onOpen,
   onClose,
+  onHide,
 }: ChatWidgetProps): JSX.Element {
   const [messages, setMessages] = useState<ChatMessage[]>([
     {
       id: "welcome",
       role: "bot",
-      text: "Hi dude! 👋✨ What would you like to know about Anbu? Ask about a section and I’ll take you there — watch the page scroll!",
+      text: "Hi Vanakkam! 👋✨ What would you like to know about Anbu? Ask about a section and I’ll take you there — watch the page scroll!",
     },
   ]);
   const [input, setInput] = useState<string>("");
@@ -135,6 +244,9 @@ export default function ChatbotWidget({
   const [voiceHint, setVoiceHint] = useState<string>("");
   const [mailStatus, setMailStatus] = useState<string>("");
   const [trackBanner, setTrackBanner] = useState<string | null>(null);
+  const [speechLanguage, setSpeechLanguage] = useState<"en-IN" | "ta-IN">(
+    "en-IN",
+  );
 
   const listRef = useRef<HTMLDivElement>(null);
   const recognitionRef = useRef<SpeechRecognition | null>(null);
@@ -237,7 +349,14 @@ export default function ChatbotWidget({
 
     setMessages((prev: ChatMessage[]) => [
       ...prev,
-      { id: crypto.randomUUID(), role: "bot", text: reply.text },
+      {
+        id: crypto.randomUUID(),
+        role: "bot",
+        text: reply.text,
+        projects: reply.projects,
+        skills: reply.skills,
+        socials: reply.socials,
+      },
     ]);
 
     if (reply.needsEmail) {
@@ -275,28 +394,6 @@ export default function ChatbotWidget({
     }
   }
 
-  function openGmail(): void {
-    const email: string | null = validateEmail();
-    if (!email) return;
-    window.open(
-      buildGmailCompose(getPayload(email)) as string,
-      "_blank",
-      "noopener,noreferrer",
-    );
-    setMailStatus("Opened Gmail compose — hit Send.");
-  }
-
-  function openOutlook(): void {
-    const email: string | null = validateEmail();
-    if (!email) return;
-    window.open(
-      buildOutlookCompose(getPayload(email)) as string,
-      "_blank",
-      "noopener,noreferrer",
-    );
-    setMailStatus("Opened Outlook Web — hit Send.");
-  }
-
   async function copyMailDetails(): Promise<void> {
     const email: string | null = validateEmail();
     if (!email) return;
@@ -319,12 +416,20 @@ export default function ChatbotWidget({
       return;
     }
 
-    if (listening && recognitionRef.current) {
-      recognitionRef.current.stop();
+    if (recognitionRef.current) {
+      playChatSfx("mic-stop");
+      try {
+        recognitionRef.current.stop();
+      } catch {
+        recognitionRef.current.abort();
+      }
+      recognitionRef.current = null;
       setListening(false);
+      setVoiceHint("");
       return;
     }
 
+    playChatSfx("mic-start");
     const recognition: SpeechRecognition = new SpeechRecognition();
     recognitionRef.current = recognition;
     const lastBot: ChatMessage | undefined = [...messages]
@@ -335,7 +440,7 @@ export default function ChatbotWidget({
       /[\u0B80-\u0BFF]/.test(input) ||
       /தமிழ்|vanakkam|vanakam/i.test(lastBot?.text || "");
 
-    recognition.lang = preferTamil ? "ta-IN" : "en-IN";
+    recognition.lang = preferTamil ? "ta-IN" : speechLanguage;
     recognition.interimResults = true;
     recognition.continuous = false;
 
@@ -345,11 +450,16 @@ export default function ChatbotWidget({
     };
 
     recognition.onerror = (): void => {
+      playChatSfx("mic-stop");
+      recognitionRef.current = null;
       setListening(false);
       setVoiceHint("Couldn’t catch that — try again.");
     };
 
-    recognition.onend = (): void => setListening(false);
+    recognition.onend = (): void => {
+      recognitionRef.current = null;
+      setListening(false);
+    };
 
     recognition.onresult = (event: SpeechRecognitionEvent): void => {
       let transcript: string = "";
@@ -358,12 +468,20 @@ export default function ChatbotWidget({
       }
       setInput(transcript.trim());
       if (event.results[event.results.length - 1]?.isFinal) {
+        if (/[\u0B80-\u0BFF]/.test(transcript)) setSpeechLanguage("ta-IN");
         setVoiceHint("");
         handleSend(transcript.trim());
       }
     };
 
-    recognition.start();
+    try {
+      recognition.start();
+    } catch {
+      recognitionRef.current = null;
+      setListening(false);
+      setVoiceHint("Couldn’t start the microphone — try again.");
+      playChatSfx("mic-stop");
+    }
   }
 
   return (
@@ -402,20 +520,31 @@ export default function ChatbotWidget({
                 <Image src={CARTOON} alt="" width={40} height={40} />
               </div>
               <div>
-                <h3>Dobby - Anbu&apos;s Edubudi</h3>
+                <h3>Dobby - Anbu&apos;s Assistant</h3>
                 <div className="chat-status">
                   <i /> Online
                 </div>
               </div>
             </div>
-            <button
-              type="button"
-              className="chat-close"
-              aria-label="Close chatbot"
-              onClick={onClose}
-            >
-              ×
-            </button>
+            <div className="chat-header-actions">
+              <button
+                type="button"
+                className="chat-close"
+                aria-label="Hide chatbot"
+                title="Hide it"
+                onClick={onHide}
+              >
+                <EyeOff size={17} aria-hidden="true" />
+              </button>
+              <button
+                type="button"
+                className="chat-close"
+                aria-label="Close chatbot"
+                onClick={onClose}
+              >
+                <X size={18} aria-hidden="true" />
+              </button>
+            </div>
           </div>
 
           <div className="chat-messages" ref={listRef}>
@@ -425,7 +554,14 @@ export default function ChatbotWidget({
                   <div className="mini-face">
                     <Image src={CARTOON} alt="" width={40} height={40} />
                   </div>
-                  <div className="msg bot">{msg.text}</div>
+                  <div className="msg bot">
+                    <div>{msg.text}</div>
+                    {msg.projects ? (
+                      <ProjectCards projects={msg.projects} />
+                    ) : null}
+                    {msg.skills ? <SkillCards skills={msg.skills} /> : null}
+                    {msg.socials ? <SocialCards socials={msg.socials} /> : null}
+                  </div>
                 </div>
               ) : (
                 <div key={msg.id} className="msg-row user">
@@ -461,17 +597,7 @@ export default function ChatbotWidget({
                     </div>
                     <div className="email-actions">
                       <button type="button" onClick={openMailApp}>
-                        Open Mail / Outlook
-                      </button>
-                      <button type="button" onClick={openGmail}>
-                        Open Gmail
-                      </button>
-                      <button
-                        type="button"
-                        className="ghost"
-                        onClick={openOutlook}
-                      >
-                        Outlook Web
+                        Compose a mail
                       </button>
                       <button
                         type="button"
@@ -520,11 +646,24 @@ export default function ChatbotWidget({
           <div className="chat-input-area">
             <button
               type="button"
+              className={`speech-language ${speechLanguage === "ta-IN" && "font-mono"}`}
+              aria-label={`Switch speech language to ${speechLanguage === "en-IN" ? "Tamil" : "English"}`}
+              title={`Speech: ${speechLanguage === "en-IN" ? "English" : "Tamil"}`}
+              onClick={() =>
+                setSpeechLanguage((current) =>
+                  current === "en-IN" ? "ta-IN" : "en-IN",
+                )
+              }
+            >
+              {speechLanguage === "en-IN" ? "EN" : "தமிழ்"}
+            </button>
+            <button
+              type="button"
               className={`icon-btn ${listening ? "listening" : ""}`}
               aria-label="Voice input"
               onClick={toggleVoice}
             >
-              🎤
+              <Mic size={18} aria-hidden="true" />
             </button>
             <input
               ref={inputRef}
@@ -549,7 +688,7 @@ export default function ChatbotWidget({
               aria-label="Send"
               onClick={() => handleSend()}
             >
-              ➤
+              <Send size={18} aria-hidden="true" />
             </button>
           </div>
         </aside>

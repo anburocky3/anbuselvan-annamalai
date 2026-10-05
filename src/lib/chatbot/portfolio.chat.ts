@@ -8,6 +8,16 @@ export const portfolio = {
     "Anbuselvan Annamalai is an entrepreneur and technology mentor. He designs, codes and builds digital products and enjoys learning, cracking problems and inventing.",
   email: OWNER_EMAIL,
   website: "https://anbuselvan-annamalai.com/",
+  socials: [
+    { name: "Instagram", url: "https://instagram.com/anbuselvanrocky" },
+    { name: "GitHub", url: "https://github.com/anburocky3" },
+    { name: "LinkedIn", url: "https://linkedin.com/in/anburocky3" },
+    { name: "YouTube", url: "https://youtube.com/@anbuselvanrocky" },
+    {
+      name: "CyberDude YouTube",
+      url: "https://youtube.com/@cyberdudenetworks",
+    },
+  ],
   projects: [
     {
       name: "Varam.app",
