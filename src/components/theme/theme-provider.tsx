@@ -32,7 +32,7 @@ export function ThemeProvider({
       if (stored && ["light", "dark", "system"].includes(stored)) {
         setThemeState(stored);
       }
-    } catch (_) {}
+    } catch {}
     setMounted(true);
   }, [storageKey]);
 
@@ -74,7 +74,7 @@ export function ThemeProvider({
   const setTheme = (newTheme: Theme) => {
     try {
       localStorage.setItem(storageKey, newTheme);
-    } catch (_) {}
+    } catch {}
     setThemeState(newTheme);
   };
 

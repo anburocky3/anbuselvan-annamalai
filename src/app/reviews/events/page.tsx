@@ -1,5 +1,5 @@
 import { ReviewForm } from "@/components/review-form";
-import { EVENT_INSTITUTION_PRESETS } from "@/lib/utils";
+// import { EVENT_INSTITUTION_PRESETS } from "@/lib/utils";
 
 /**
  * 🎓 EVENT INSTITUTION CONFIGURATION:

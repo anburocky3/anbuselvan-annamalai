@@ -9,6 +9,7 @@ import {
   trackEvent,
 } from "@/utils/analytics";
 import { useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 const navLinks = [
   { name: "About", href: "/about" },
@@ -19,21 +20,19 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
-import { usePathname } from "next/navigation";
-
 export default function Footer() {
   const [mounted, setMounted] = useState(false);
   const pathname = usePathname();
-
-  // Hide footer on reviews pages (not necessary for reviews UI)
-  if (pathname?.startsWith("/reviews")) {
-    return null;
-  }
 
   // Handle mounting to prevent hydration mismatch
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  // Hide footer on reviews pages (not necessary for reviews UI) or until mounted
+  if (!mounted || pathname?.startsWith("/reviews")) {
+    return null;
+  }
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -58,14 +57,8 @@ export default function Footer() {
     },
   };
 
-  // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
-
   return (
     <footer className="bg-[#0A0618] text-white py-12 relative overflow-hidden">
-      {/* Background Effects */}
       <div className="absolute inset-0">
         <motion.div
           initial={{ opacity: 0 }}
@@ -77,7 +70,6 @@ export default function Footer() {
           <div className="absolute w-[500px] h-[500px] bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
         </motion.div>
 
-        {/* Floating Particles */}
         {[...Array(8)].map((_, i) => (
           <motion.div
             key={i}

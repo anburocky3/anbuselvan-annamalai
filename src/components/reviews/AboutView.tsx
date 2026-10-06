@@ -1,20 +1,13 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  LuBook,
   LuCheck,
   LuCopy,
   LuExternalLink,
-  LuGithub,
-  LuLinkedin,
   LuMaximize,
   LuMinimize,
-  LuTwitter,
-  LuYoutube,
 } from "react-icons/lu";
 import { FaArrowRightLong } from "react-icons/fa6";
 import { applySocialIcons, cn, socialLinks } from "@/lib/utils";
@@ -22,7 +15,6 @@ import { QRCodeSVG } from "qrcode.react";
 import { motion } from "framer-motion";
 import { AnimatedAvatar } from "./AnimatedAvatar";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
-import { useTheme } from "@/components/theme/theme-provider";
 import toast from "react-hot-toast";
 
 interface AboutViewProps {
@@ -132,7 +124,7 @@ const SocialLinkItem = ({
 };
 
 export function AboutView({ fullUrl }: AboutViewProps) {
-  const { resolvedTheme } = useTheme();
+  // const { resolvedTheme } = useTheme();
   const [copied, setCopied] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const mainRef = useRef<HTMLElement>(null);
@@ -187,7 +179,7 @@ export function AboutView({ fullUrl }: AboutViewProps) {
       setCopied(true);
       toast.success("Reviews link copied to clipboard!");
       setTimeout(() => setCopied(false), 2000);
-    } catch (_) {
+    } catch {
       toast.error("Failed to copy link");
     }
   };
