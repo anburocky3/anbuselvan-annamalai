@@ -25,19 +25,54 @@ export function formatDate(dateString: string): string {
 
 // List of institutions for the review form
 export const institutions = [
-  "Anna University",
-  "SRM University",
-  "VIT University",
-  "PSG College of Technology",
-  "Kongu Engineering College",
-  "Thiagarajar College of Engineering",
-  "Government College of Technology",
-  "Sri Krishna College of Engineering",
-  "Kumaraguru College of Technology",
-  "Other",
+  // "S.A. Engineering College",
+  // "SRM Institute of Science and Technology (SRMIST)",
+  // "SRMIST - Kattankulathur Campus",
+  "SRMIST - Ramapuram Campus",
+  // "SRMIST - Vadapalani Campus",
+  // "Anna University",
+  // "VIT University",
+  // "PSG College of Technology",
+  // "SSN College of Engineering",
+  // "Coimbatore Institute of Technology",
+  // "Sri Venkateswara College of Engineering (SVCE)",
+  // "Rajalakshmi Engineering College (REC)",
+  // "St. Joseph's College of Engineering",
+  // "Sri Sairam Engineering College",
+  // "Kongu Engineering College",
+  // "Thiagarajar College of Engineering",
+  // "Government College of Technology (GCT)",
+  // "Sri Krishna College of Engineering and Technology",
+  // "Kumaraguru College of Technology",
+  // "Bannari Amman Institute of Technology",
+  // "Easwari Engineering College",
+  // "Meenakshi Sundararajan Engineering College",
+  // "Panimalar Engineering College",
+  // "Mepco Schlenk Engineering College",
+  // "National Engineering College",
+  // "K.L.N. College of Engineering",
+  // "PSNA College of Engineering and Technology",
+  // "Velammal Engineering College",
+  // "Loyola-ICAM College of Engineering (LICET)",
+  // "B.S. Abdur Rahman Crescent Institute",
+  // "Hindustan Institute of Technology and Science",
+  // "Sathyabama Institute of Science and Technology",
+  // "CyberDude Community / YouTube",
+  // "Other (Custom Institution)",
 ] as const;
 
 export type Institution = (typeof institutions)[number];
+
+export const EVENT_INSTITUTION_PRESETS = {
+  SRMIST: "SRM Institute of Science and Technology (SRMIST)",
+  SRMIST_KTR: "SRMIST - Kattankulathur Campus",
+  SRMIST_RAMAPURAM: "SRMIST - Ramapuram Campus",
+  SRMIST_VADAPALANI: "SRMIST - Vadapalani Campus",
+  SAEC: "S.A. Engineering College",
+  ANNA_UNIVERSITY: "Anna University",
+  VIT: "VIT University",
+  PSG: "PSG College of Technology",
+} as const;
 
 export const applySocialIcons = (social: string): ReactElement => {
   switch (social) {

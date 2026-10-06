@@ -19,8 +19,16 @@ const navLinks = [
   { name: "Contact", href: "/contact" },
 ];
 
+import { usePathname } from "next/navigation";
+
 export default function Footer() {
   const [mounted, setMounted] = useState(false);
+  const pathname = usePathname();
+
+  // Hide footer on reviews pages (not necessary for reviews UI)
+  if (pathname?.startsWith("/reviews")) {
+    return null;
+  }
 
   // Handle mounting to prevent hydration mismatch
   useEffect(() => {

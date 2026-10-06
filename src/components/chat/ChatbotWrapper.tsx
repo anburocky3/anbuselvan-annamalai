@@ -1,14 +1,20 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import ChatbotWidget from "./ChatbotWidget";
 import { playChatSfx } from "@/lib/chatbot/chat.sfx";
 
 export function ChatbotWrapper() {
   const [chatOpen, setChatOpen] = useState(false);
   const [hidden, setHidden] = useState(false);
+  const pathname = usePathname();
+
+  // Hide chatbot completely on review pages
+  const isReviewPage = pathname?.startsWith("/reviews");
 
   useEffect(() => {
+    if (isReviewPage) return;
     if (localStorage.getItem("portfolioChatHidden") === "true") {
       setHidden(true);
       return;
@@ -22,17 +28,18 @@ export function ChatbotWrapper() {
       }, 5000);
       return () => clearTimeout(t);
     }
-  }, []);
+  }, [isReviewPage]);
 
   useEffect(() => {
+    if (isReviewPage) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") setChatOpen(false);
     };
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, []);
+  }, [isReviewPage]);
 
-  if (hidden) return null;
+  if (isReviewPage || hidden) return null;
 
   return (
     <ChatbotWidget
