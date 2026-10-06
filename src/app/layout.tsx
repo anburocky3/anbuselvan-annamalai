@@ -9,6 +9,7 @@ import "@/styles/cyberdude-theme.css"; // Uncomment to use CyberDude theme inste
 import ScrollHandler from "@/components/ScrollHandler";
 import { ConditionalNavigation } from "@/components/conditional-navigation";
 import { ChatbotWrapper } from "@/components/chat/ChatbotWrapper";
+import { ThemeProvider } from "@/components/theme/theme-provider";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://anbuselvan-annamalai.com"),
@@ -110,19 +111,38 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <link rel="canonical" href="https://anbuselvan-annamalai.com" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var stored = localStorage.getItem('theme');
+                  var systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+                  if (stored === 'dark' || (!stored && systemDark)) {
+                    document.documentElement.classList.add('dark');
+                  } else {
+                    document.documentElement.classList.remove('dark');
+                  }
+                } catch (e) {}
+              })();
+            `,
+          }}
+        />
       </head>
-      <body className="bg-slate-900">
-        <ConditionalNavigation />
-        <main>{children}</main>
-        <Footer />
-        <ScrollHandler />
-        <Toaster position="bottom-right" />
-        <Analytics />
-        <SpeedInsights />
-        <ChatbotWrapper />
+      <body className="bg-background text-foreground min-h-screen">
+        <ThemeProvider>
+          <ConditionalNavigation />
+          <main>{children}</main>
+          <Footer />
+          <ScrollHandler />
+          <Toaster position="bottom-right" />
+          <Analytics />
+          <SpeedInsights />
+          <ChatbotWrapper />
+        </ThemeProvider>
       </body>
     </html>
   );
