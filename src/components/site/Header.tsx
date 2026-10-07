@@ -2,17 +2,16 @@
 
 import { useState, useEffect, useRef } from "react";
 import {
-  motion,
   AnimatePresence,
   useScroll,
   useMotionValueEvent,
 } from "framer-motion";
+import { motion } from "motion/react"
 import MenuButton from "./navigations/MenuButton";
 import {
-  FaTwitter,
+  FaInstagram,
   FaLinkedin,
   FaGithub,
-  FaInstagram,
   FaX,
 } from "react-icons/fa6";
 import Logo from "./Logo";
@@ -44,7 +43,6 @@ const navLinks = [
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [mounted, setMounted] = useState(false);
   const [activeSection, setActiveSection] = useState("");
   const pathname = usePathname();
   const navRef = useRef<HTMLUListElement>(null);
@@ -54,14 +52,11 @@ export default function Header() {
   // Function to check if a link is active
   const isLinkActive = (href: string, sectionId: string) => {
     if (pathname === "/") {
-      // Special case for home section
       if (sectionId === "home" && activeSection === "") {
         return true;
       }
-      // On home page, use section-based active state
       return activeSection === sectionId;
     }
-    // On other pages, use route-based active state
     if (href === "/") {
       return pathname === "/";
     }
@@ -69,27 +64,37 @@ export default function Header() {
   };
 
   const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-    if (typeof window !== "undefined") {
-      document.body.style.overflow = isMenuOpen ? "auto" : "hidden";
-    }
+    setIsMenuOpen((prev) => !prev);
   };
 
-  // Handle mounting
+  // Scroll position initialization & listener
   useEffect(() => {
-    setMounted(true);
+    if (typeof window !== "undefined") {
+      setIsScrolled(window.scrollY > 50);
+    }
   }, []);
 
-  // Use Framer Motion's useScroll hook for smooth header background transition
   useMotionValueEvent(scrollY, "change", (latest) => {
     setIsScrolled(latest > 50);
   });
 
-  // Setup Intersection Observer for section detection
+  // Manage body scroll locking when mobile menu opens/closes
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    if (isMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "auto";
+    }
+    return () => {
+      document.body.style.overflow = "auto";
+    };
+  }, [isMenuOpen]);
+
+  // Setup Intersection Observer for section detection on the homepage
   useEffect(() => {
     if (typeof window === "undefined" || pathname !== "/") return;
 
-    // Cleanup previous observer
     if (observerRef.current) {
       observerRef.current.disconnect();
     }
@@ -99,126 +104,60 @@ export default function Header() {
       threshold: [0, 0.25, 0.5, 0.75, 1],
     };
 
-    // Keep track of section visibility ratios
-    const sectionVisibility = new Map();
-
-    // Special handling for projects section
-    let projectsInView = false;
+    const sectionVisibility = new Map<string, number>();
 
     observerRef.current = new IntersectionObserver((entries) => {
-      // Special handling for projects section
       entries.forEach((entry) => {
-        if (entry.target.id === "projects") {
-          projectsInView = entry.isIntersecting;
-        }
+        sectionVisibility.set(entry.target.id, entry.intersectionRatio);
       });
 
-      // Update visibility ratios for all entries
-      entries.forEach((entry) => {
-        // Give projects section a slight boost in visibility if it's in view
-        const visibilityRatio =
-          entry.target.id === "projects" && projectsInView
-            ? Math.max(entry.intersectionRatio, 0.2) // Ensure projects has at least 0.2 ratio when visible
-            : entry.intersectionRatio;
-
-        sectionVisibility.set(entry.target.id, visibilityRatio);
-      });
-
-      // Find the most visible section
       let maxRatio = 0;
       let mostVisibleSection = "";
 
       sectionVisibility.forEach((ratio, sectionId) => {
-        // Only consider sections that are actually visible
-        if (ratio > 0 && ratio > maxRatio) {
+        if (ratio > maxRatio) {
           maxRatio = ratio;
           mostVisibleSection = sectionId;
         }
       });
 
-      // Only update if we found a visible section
       if (mostVisibleSection && maxRatio > 0.1) {
         setActiveSection(mostVisibleSection);
       }
     }, options);
 
-    // Observe all sections with a slight delay to ensure DOM is ready
-    setTimeout(() => {
-      // First, try to find all sections by ID
+    const timer = setTimeout(() => {
       navLinks.forEach(({ sectionId }) => {
         const element = document.getElementById(sectionId);
         if (element) {
           observerRef.current?.observe(element);
-          // Initialize visibility map
           sectionVisibility.set(sectionId, 0);
         }
       });
-
-      // Special handling for projects section - try to find it by other means if not found by ID
-      if (!document.getElementById("projects")) {
-        // Try to find by class or other attributes
-        const possibleProjectsSections = document.querySelectorAll(
-          'section[data-section="projects"], .projects-section, section:nth-of-type(3)'
-        );
-
-        if (possibleProjectsSections.length > 0) {
-          // Use the first match
-          const projectsSection = possibleProjectsSections[0];
-          // Set ID if missing
-          if (!projectsSection.id) {
-            projectsSection.id = "projects";
-          }
-          observerRef.current?.observe(projectsSection);
-          sectionVisibility.set("projects", 0);
-        }
-      }
     }, 100);
 
     return () => {
+      clearTimeout(timer);
       if (observerRef.current) {
         observerRef.current.disconnect();
       }
-      document.body.style.overflow = "auto";
     };
   }, [pathname]);
 
-  // Reset body overflow when pathname changes
+  // Reset menu on route change
   useEffect(() => {
-    // Reset body overflow to ensure scrolling works after navigation
-    document.body.style.overflow = "auto";
-    // Close menu when pathname changes
     setIsMenuOpen(false);
   }, [pathname]);
 
   const handleNavClick = (name: string, href: string, sectionId: string) => {
     setIsMenuOpen(false);
-    document.body.style.overflow = "auto"; // Reset body overflow when navigating
 
-    // If on home page and clicking a section, handle smooth scroll
     if (pathname === "/" && href === "/") {
-      // Force set the active section immediately for better UX
       setActiveSection(sectionId);
 
-      // Try to find the element
-      let element = document.getElementById(sectionId);
-
-      // Special handling for projects section
-      if (!element && sectionId === "projects") {
-        const possibleProjectsSections = document.querySelectorAll(
-          'section[data-section="projects"], .projects-section, section:nth-of-type(3)'
-        );
-        if (possibleProjectsSections.length > 0) {
-          element = possibleProjectsSections[0] as HTMLElement;
-          // Set ID if missing
-          if (!element.id) {
-            element.id = "projects";
-          }
-        }
-      }
-
+      const element = document.getElementById(sectionId);
       if (element) {
-        // Calculate offset based on header height
-        const headerHeight = 100; // Adjust based on your header height
+        const headerHeight = 80;
         const offsetTop = element.offsetTop - headerHeight;
 
         window.scrollTo({
@@ -235,40 +174,19 @@ export default function Header() {
     });
   };
 
-  // Animation variants
-  const underlineVariants = {
-    inactive: {
-      width: 0,
-      x: "50%",
-      opacity: 0,
-      transition: { duration: 0.3 },
-    },
-    active: {
-      width: "100%",
-      x: 0,
-      opacity: 1,
-      transition: { duration: 0.3 },
-    },
-  };
-
   const headerVariants = {
     top: {
-      backgroundColor: "rgba(0, 0, 0, 0)",
+      backgroundColor: "rgba(10, 6, 24, 0)",
       boxShadow: "none",
-      transition: { duration: 0.3, ease: "easeInOut" },
+      transition: { duration: 0.3, ease: "easeInOut" as const },
     },
     scrolled: {
-      backgroundColor: "rgba(22, 7, 42, 0.9)",
+      backgroundColor: "rgba(10, 6, 24, 0.85)",
       boxShadow:
-        "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)",
-      transition: { duration: 0.3, ease: "easeInOut" },
+        "0 4px 20px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(120, 50, 255, 0.08)",
+      transition: { duration: 0.3, ease: "easeInOut" as const },
     },
   };
-
-  // Don't render anything until mounted to prevent hydration mismatch
-  if (!mounted) {
-    return null;
-  }
 
   return (
     <>
@@ -276,11 +194,12 @@ export default function Header() {
       <motion.header
         variants={headerVariants}
         animate={isScrolled ? "scrolled" : "top"}
-        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-3 sm:py-5 backdrop-blur-xs`}
+        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-3 sm:py-4 backdrop-blur-md transition-colors`}
       >
-        <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-14 sm:h-16">
             <motion.div
+              className="flex items-center"
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
@@ -288,52 +207,79 @@ export default function Header() {
               <Logo />
             </motion.div>
 
-            {/* Desktop Menu */}
-            <nav className="hidden lg:block relative">
-              <ul ref={navRef} className="flex space-x-8 font-medium relative">
-                {navLinks.map((link, index) => (
-                  <motion.li
-                    key={link.name}
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: index * 0.1 }}
-                    className="relative py-2"
-                  >
-                    <Link
-                      href={link.href}
-                      onClick={() =>
-                        handleNavClick(link.name, link.href, link.sectionId)
-                      }
-                      className="text-white hover:text-purple-400 transition-colors duration-300 px-4 py-2 relative"
+            {/* Desktop Navigation */}
+            <nav className="hidden lg:flex items-center" aria-label="Main Navigation">
+              <ul ref={navRef} className="flex items-center gap-1 xl:gap-2 font-medium relative">
+                {navLinks.map((link, index) => {
+                  const active = isLinkActive(link.href, link.sectionId);
+                  return (
+                    <motion.li
+                      key={link.name}
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.4, delay: index * 0.05 }}
+                      className="relative"
                     >
-                      {link.name}
-                      <motion.div
-                        variants={underlineVariants}
-                        initial="inactive"
-                        animate={
-                          isLinkActive(link.href, link.sectionId)
-                            ? "active"
-                            : "inactive"
+                      <Link
+                        href={link.href}
+                        onClick={() =>
+                          handleNavClick(link.name, link.href, link.sectionId)
                         }
-                        className="absolute bottom-0 left-0 h-1 bg-linear-to-r from-purple-400 to-purple-600 rounded-full"
-                      />
-                    </Link>
-                  </motion.li>
-                ))}
+                        className={`relative block px-3 py-2 text-sm xl:text-base font-medium rounded-lg transition-colors duration-200  ${
+                          active
+                            ? "text-purple-400 font-semibold"
+                            : "text-gray-200 hover:text-white hover:bg-white/5"
+                        }`}
+                      >
+                        {link.name}
+                        {active && (
+                          <motion.div
+                            layoutId="activeNavUnderline"
+                            className="absolute bottom-0 left-3 right-3 h-0.5 bg-linear-to-r from-purple-400 to-indigo-500 rounded-full"
+                            transition={{
+                              type: "spring",
+                              stiffness: 380,
+                              damping: 30,
+                            }}
+                          />
+                        )}
+                      </Link>
+                    </motion.li>
+                  );
+                })}
               </ul>
             </nav>
 
             {/* Social Icons - Desktop */}
-            <div className="hidden lg:flex space-x-4">
+            <div className="hidden lg:flex items-center gap-2 xl:gap-3 shrink-0">
               {[
-                { icon: <FaX />, href: socialLinks.x.url },
-                { icon: <FaInstagram />, href: socialLinks.instagram.url },
-                { icon: <FaLinkedin />, href: socialLinks.linkedin.url },
-                { icon: <FaGithub />, href: socialLinks.github.url },
+                {
+                  icon: <FaX className="w-3.5 h-3.5" />,
+                  href: socialLinks.x.url,
+                  label: "X (Twitter)",
+                },
+                {
+                  icon: <FaInstagram className="w-4 h-4" />,
+                  href: socialLinks.instagram.url,
+                  label: "Instagram",
+                },
+                {
+                  icon: <FaLinkedin className="w-4 h-4" />,
+                  href: socialLinks.linkedin.url,
+                  label: "LinkedIn",
+                },
+                {
+                  icon: <FaGithub className="w-4 h-4" />,
+                  href: socialLinks.github.url,
+                  label: "GitHub",
+                },
               ].map((social, index) => (
                 <motion.a
                   key={index}
                   href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={social.label}
                   onClick={() => {
                     trackEvent({
                       action: ANALYTICS_ACTIONS.SOCIAL_LINK_CLICK,
@@ -341,12 +287,12 @@ export default function Header() {
                       label: social.href,
                     });
                   }}
-                  initial={{ opacity: 0, y: -20 }}
+                  initial={{ opacity: 0, y: -10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                  className="text-white hover:text-purple-400 border border-white/20 hover:border-purple-400 rounded-full p-2 transition-all duration-300"
-                  whileHover={{ y: -3 }}
-                  target="_blank"
+                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
+                  whileHover={{ y: -2, scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="flex items-center justify-center w-9 h-9 rounded-full text-gray-300 hover:text-white border border-white/15 hover:border-purple-400/60 bg-white/5 hover:bg-purple-500/10 transition-all duration-200"
                 >
                   {social.icon}
                 </motion.a>
@@ -358,7 +304,7 @@ export default function Header() {
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.5 }}
-              className="lg:hidden"
+              className="lg:hidden flex items-center"
             >
               <MenuButton isOpen={isMenuOpen} onClick={toggleMenu} />
             </motion.div>
@@ -366,101 +312,96 @@ export default function Header() {
         </div>
       </motion.header>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Drawer */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
-            initial="closed"
-            animate="open"
-            exit="closed"
-            className="fixed inset-0 z-40 lg:hidden bg-linear-to-b from-[#0A0618] to-[#1a103d]"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 lg:hidden bg-linear-to-b from-[#0A0618]/95 via-[#120B2E]/95 to-[#1a103d]/98 backdrop-blur-xl"
           >
-            <div className="container mx-auto px-4 pt-28 pb-8 h-full flex flex-col">
-              <nav className="flex-1">
-                <motion.ul className="space-y-6 text-center">
-                  {navLinks.map((link) => (
-                    <motion.li
-                      key={link.name}
-                      initial={{ opacity: 0, y: -20 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{
-                        duration: 0.5,
-                        delay:
-                          link.name === "Home"
-                            ? 0.1
-                            : link.name === "Projects"
-                            ? 0.2
-                            : link.name === "Services"
-                            ? 0.3
-                            : link.name === "About"
-                            ? 0.4
-                            : link.name === "Skills"
-                            ? 0.5
-                            : 0.6,
-                      }}
-                      className="overflow-hidden"
-                    >
-                      <Link
-                        href={link.href}
-                        onClick={() =>
-                          handleNavClick(link.name, link.href, link.sectionId)
-                        }
-                        className={`relative inline-block text-gray-300 hover:text-white text-2xl font-medium transition-colors duration-300 py-2 px-4 ${
-                          isLinkActive(link.href, link.sectionId)
-                            ? "text-purple-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-linear-to-r after:from-purple-400 after:to-purple-600"
-                            : ""
-                        }`}
+            <div className="container mx-auto px-6 pt-24 pb-10 h-full flex flex-col justify-between overflow-y-auto">
+              <nav className="my-auto py-6" aria-label="Mobile Navigation">
+                <motion.ul className="flex flex-col items-center gap-3 text-center">
+                  {navLinks.map((link, index) => {
+                    const active = isLinkActive(link.href, link.sectionId);
+                    return (
+                      <motion.li
+                        key={link.name}
+                        initial={{ opacity: 0, y: 15 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.3, delay: 0.05 * index }}
+                        className="w-full max-w-xs"
                       >
-                        {link.name}
-                      </Link>
-                    </motion.li>
-                  ))}
+                        <Link
+                          href={link.href}
+                          onClick={() =>
+                            handleNavClick(link.name, link.href, link.sectionId)
+                          }
+                          className={`block w-full py-3 px-6 text-xl font-medium rounded-xl transition-all duration-200 ${
+                            active
+                              ? "text-white bg-linear-to-r from-purple-600/30 to-indigo-600/30 border border-purple-500/40 font-semibold"
+                              : "text-gray-300 hover:text-white hover:bg-white/5"
+                          }`}
+                        >
+                          {link.name}
+                        </Link>
+                      </motion.li>
+                    );
+                  })}
                 </motion.ul>
               </nav>
 
               {/* Social Icons - Mobile */}
               <motion.div
-                initial={{ opacity: 0, y: -20 }}
+                initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: 0.3 }}
-                className="flex justify-center space-x-8 mt-12"
+                transition={{ duration: 0.4, delay: 0.25 }}
+                className="flex justify-center items-center gap-4 pt-6 pb-4 border-t border-white/10"
               >
-                <motion.a
-                  href={socialLinks.x.url}
-                  target="_blank"
-                  className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-125 transform"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaTwitter className="w-6 h-6" />
-                </motion.a>
-                <motion.a
-                  href={socialLinks.instagram.url}
-                  target="_blank"
-                  className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-125 transform"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaInstagram className="w-6 h-6" />
-                </motion.a>
-                <motion.a
-                  href={socialLinks.linkedin.url}
-                  target="_blank"
-                  className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-125 transform"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaLinkedin className="w-6 h-6" />
-                </motion.a>
-                <motion.a
-                  href={socialLinks.github.url}
-                  target="_blank"
-                  className="text-gray-400 hover:text-white transition-all duration-300 hover:scale-125 transform"
-                  whileHover={{ y: -5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <FaGithub className="w-6 h-6" />
-                </motion.a>
+                {[
+                  {
+                    icon: <FaX className="w-4 h-4" />,
+                    href: socialLinks.x.url,
+                    label: "X (Twitter)",
+                  },
+                  {
+                    icon: <FaInstagram className="w-4 h-4" />,
+                    href: socialLinks.instagram.url,
+                    label: "Instagram",
+                  },
+                  {
+                    icon: <FaLinkedin className="w-4 h-4" />,
+                    href: socialLinks.linkedin.url,
+                    label: "LinkedIn",
+                  },
+                  {
+                    icon: <FaGithub className="w-4 h-4" />,
+                    href: socialLinks.github.url,
+                    label: "GitHub",
+                  },
+                ].map((social, index) => (
+                  <motion.a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    onClick={() => {
+                      trackEvent({
+                        action: ANALYTICS_ACTIONS.SOCIAL_LINK_CLICK,
+                        category: ANALYTICS_CATEGORIES.SOCIAL,
+                        label: social.href,
+                      });
+                    }}
+                    className="flex items-center justify-center w-11 h-11 rounded-full text-gray-300 hover:text-white border border-white/20 bg-white/5 active:scale-95 transition-all duration-200"
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    {social.icon}
+                  </motion.a>
+                ))}
               </motion.div>
             </div>
           </motion.div>

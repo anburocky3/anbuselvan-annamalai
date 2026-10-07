@@ -90,7 +90,7 @@ const colleges = [
 
 export default function AboutPage() {
   return (
-    <div className="container mx-auto px-4 py-20">
+    <div className="container mx-auto px-4 py-24">
       <h1 className="text-4xl font-bold text-white mb-8">
         About <br />
         <span className="text-purple-400 text-2xl">Anbuselvan Annamalai</span>

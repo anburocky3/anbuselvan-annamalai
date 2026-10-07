@@ -132,10 +132,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="bg-background text-foreground min-h-screen">
+      <body className="bg-background text-foreground min-h-screen flex flex-col">
         <ThemeProvider>
           <ConditionalNavigation />
-          <main>{children}</main>
+          <main className="flex-1 flex flex-col">{children}</main>
           <Footer />
           <ScrollHandler />
           <Toaster position="bottom-right" />

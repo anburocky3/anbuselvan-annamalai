@@ -21,8 +21,8 @@ export const metadata: Metadata = {
 
 export default function SkillsPage() {
   return (
-    <div className="pt-10 bg-[#0A0618]">
-      <SkillSection />
+    <div className="pt-16 sm:pt-20 bg-[#0A0618] flex-1 flex flex-col justify-center">
+      <SkillSection className="flex-1 flex flex-col justify-center" />
     </div>
   );
 }

@@ -36,7 +36,7 @@ export default function ServicesSection() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -48,7 +48,7 @@ export default function ServicesSection() {
       scale: 1,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
     hover: {
@@ -66,7 +66,7 @@ export default function ServicesSection() {
       scale: 1,
       rotate: 0,
       transition: {
-        type: "spring",
+        type: "spring" as const,
         stiffness: 200,
         damping: 20,
       },
@@ -76,7 +76,7 @@ export default function ServicesSection() {
       rotate: 5,
       transition: {
         duration: 0.2,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };

@@ -52,13 +52,13 @@ export default function Footer() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
 
   return (
-    <footer className="bg-[#0A0618] text-white py-12 relative overflow-hidden">
+    <footer className="bg-[#0A0618] text-white py-12 relative overflow-hidden mt-auto">
       <div className="absolute inset-0">
         <motion.div
           initial={{ opacity: 0 }}
@@ -66,8 +66,8 @@ export default function Footer() {
           transition={{ duration: 1 }}
           className="absolute inset-0"
         >
-          <div className="absolute w-[500px] h-[500px] bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20" />
-          <div className="absolute w-[500px] h-[500px] bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
+          <div className="absolute w-125 h-125 bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20" />
+          <div className="absolute w-125 h-125 bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
         </motion.div>
 
         {[...Array(8)].map((_, i) => (
