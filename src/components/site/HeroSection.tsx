@@ -78,7 +78,7 @@ export default function HeroSection() {
       id="home"
       role="banner"
       aria-label="Hero Section"
-      className={`${fontSora.className} relative min-h-screen flex items-center bg-gradient-to-r from-slate-900 to-purple-900 text-white overflow-hidden`}
+      className={`${fontSora.className} relative min-h-screen flex items-center bg-linear-to-r from-slate-900 to-purple-900 text-white overflow-hidden`}
     >
       {/* Background text */}
       <motion.div
@@ -168,7 +168,7 @@ export default function HeroSection() {
                   </motion.h1>
                   <motion.h2
                     variants={itemVariants}
-                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-purple-500 to-indigo-400 inline-block text-transparent bg-clip-text"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold bg-linear-to-r from-purple-500 to-indigo-400 inline-block text-transparent bg-clip-text"
                     title="Entrepreneur | Mentor"
                   >
                     Entrepreneur | Mentor
@@ -239,7 +239,7 @@ export default function HeroSection() {
           delay: 1,
           rotate: { duration: 1.2, ease: "easeOut" },
         }}
-        className="bg-gradient-to-r from-purple-950 to-black px-10 py-6 absolute bottom-5 sm:bottom-24 -left-10 w-[calc(100%+5rem)] flex justify-center items-center"
+        className="bg-linear-to-r from-purple-950 to-black px-10 py-6 absolute bottom-5 sm:bottom-24 -left-10 w-[calc(100%+5rem)] flex justify-center items-center"
         aria-label="Anbuselvan Annamalai's Technology Skills"
       >
         <Marquee speed={20}>

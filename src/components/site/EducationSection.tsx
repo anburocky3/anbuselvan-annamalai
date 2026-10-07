@@ -42,7 +42,7 @@ export default function EducationSection() {
   return (
     <section
       id="about"
-      className="bg-gradient-to-r from-slate-900 to-gray-900 py-20 text-white relative overflow-hidden"
+      className="bg-linear-to-r from-slate-900 to-gray-900 py-20 text-white relative overflow-hidden"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
@@ -68,7 +68,7 @@ export default function EducationSection() {
           variants={titleVariants}
           className="flex flex-col items-center justify-center mb-10 space-y-4"
         >
-          <h2 className="text-4xl font-black tracking-wider text-center bg-gradient-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text">
+          <h2 className="text-4xl font-black tracking-wider text-center bg-linear-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text">
             My Journey
           </h2>
           <small className="text-gray-400 text-center tracking-widest">
@@ -82,7 +82,7 @@ export default function EducationSection() {
             <h3 className="text-2xl font-semibold">Education</h3>
             <div className="space-y-10 mt-10 relative">
               {/* Connecting Line */}
-              <div className="absolute left-[4rem] top-6 bottom-6 w-0.5 bg-gradient-to-b from-purple-500/50 to-purple-900/20" />
+              <div className="absolute left-16 top-6 bottom-6 w-0.5 bg-linear-to-b from-purple-500/50 to-purple-900/20" />
 
               {timelineData.education.map((item, index) => (
                 <motion.div
@@ -125,7 +125,7 @@ export default function EducationSection() {
             <h3 className="text-2xl font-semibold">Work Experience</h3>
             <div className="space-y-10 mt-10 relative">
               {/* Connecting Line */}
-              <div className="absolute left-[4rem] top-6 bottom-6 w-0.5 bg-gradient-to-b from-purple-500/50 to-purple-900/20" />
+              <div className="absolute left-16 top-6 bottom-6 w-0.5 bg-linear-to-b from-purple-500/50 to-purple-900/20" />
 
               {timelineData.experience.map((item, index) => (
                 <motion.div

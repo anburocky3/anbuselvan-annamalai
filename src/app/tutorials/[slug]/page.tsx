@@ -181,7 +181,7 @@ export default async function CoursePage(props: {
         >
           <ArrowLeft className="h-8 w-8" />
         </Link>
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+        <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
         <div className="absolute bottom-0 left-0 right-0 p-8 text-white">
           <div className="flex items-center gap-2 mb-4">
             <Badge

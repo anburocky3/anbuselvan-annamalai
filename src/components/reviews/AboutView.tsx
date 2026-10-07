@@ -89,14 +89,14 @@ const SocialLinkItem = ({
           "group relative flex items-center justify-between p-3.5 sm:p-4 rounded-2xl sm:rounded-full cursor-pointer",
           "border border-slate-200/90 dark:border-slate-800",
           "bg-white/80 dark:bg-slate-900/70 backdrop-blur-md",
-          "shadow-sm hover:shadow-md transition-all duration-300",
+          "shadow-xs hover:shadow-md transition-all duration-300",
           brand.hoverBorder
         )}
       >
         <div className="flex items-center space-x-3.5 sm:space-x-4">
           <div
             className={cn(
-              "flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full text-lg sm:text-xl transition-transform duration-300 group-hover:scale-110 shadow-sm",
+              "flex items-center justify-center w-10 h-10 sm:w-11 sm:h-11 rounded-full text-lg sm:text-xl transition-transform duration-300 group-hover:scale-110 shadow-xs",
               brand.bg
             )}
           >
@@ -195,17 +195,17 @@ export function AboutView({ fullUrl }: AboutViewProps) {
     >
       {/* Decorative ambient background glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[550px] h-[350px] bg-gradient-to-tr from-purple-500/15 via-indigo-500/10 to-blue-500/15 dark:from-purple-600/20 dark:via-indigo-600/15 dark:to-cyan-600/15 rounded-full blur-3xl opacity-75" />
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[550px] h-[350px] bg-linear-to-tr from-purple-500/15 via-indigo-500/10 to-blue-500/15 dark:from-purple-600/20 dark:via-indigo-600/15 dark:to-cyan-600/15 rounded-full blur-3xl opacity-75" />
         <div className="absolute top-[40%] right-[-50px] w-[350px] h-[350px] bg-pink-500/10 dark:bg-purple-800/20 rounded-full blur-3xl opacity-60" />
       </div>
 
       {/* Floating Controls Banner: Full Screen & Theme Switcher */}
       <div className="w-full max-w-4xl flex justify-end items-center mb-6 relative z-10">
-        <div className="flex items-center gap-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/90 dark:border-slate-800 rounded-full px-3.5 py-1.5 shadow-sm">
+        <div className="flex items-center gap-2 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-slate-200/90 dark:border-slate-800 rounded-full px-3.5 py-1.5 shadow-xs">
           <button
             type="button"
             onClick={toggleFullScreen}
-            className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors cursor-pointer select-none focus:outline-none"
+            className="flex items-center gap-1.5 text-xs font-semibold text-slate-700 dark:text-slate-200 hover:text-purple-600 dark:hover:text-purple-400 transition-colors cursor-pointer select-none focus:outline-hidden"
             title={isFullscreen ? "Exit Full Screen (Esc)" : "Enter Full Screen"}
             aria-label={isFullscreen ? "Exit Full Screen" : "Enter Full Screen"}
           >

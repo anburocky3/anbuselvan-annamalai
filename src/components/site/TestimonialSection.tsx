@@ -34,7 +34,7 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="bg-gradient-to-r from-slate-900 to-gray-900 py-20 text-white relative overflow-hidden">
+    <section className="bg-linear-to-r from-slate-900 to-gray-900 py-20 text-white relative overflow-hidden">
       {/* Background Effects */}
       <div className="absolute inset-0">
         <motion.div
@@ -80,7 +80,7 @@ export default function Testimonials() {
         className="container mx-auto px-6 text-center relative"
       >
         <motion.div variants={itemVariants} className="space-y-2">
-          <h2 className="text-4xl font-black tracking-wider bg-gradient-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text">
+          <h2 className="text-4xl font-black tracking-wider bg-linear-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text">
             What People Say
           </h2>
           <p className="text-gray-400 tracking-widest">ABOUT ME</p>
@@ -126,7 +126,7 @@ export default function Testimonials() {
                 >
                   {/* Card Glow Effect */}
                   <motion.div
-                    className="absolute inset-0 -z-10 bg-gradient-to-r from-purple-500/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 rounded-xl"
+                    className="absolute inset-0 -z-10 bg-linear-to-r from-purple-500/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 rounded-xl"
                     initial={false}
                   />
 
@@ -135,7 +135,7 @@ export default function Testimonials() {
                     whileHover={{ scale: 1.1 }}
                     className="relative inline-block"
                   >
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-indigo-500 rounded-full blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
+                    <div className="absolute inset-0 bg-linear-to-r from-purple-500 to-indigo-500 rounded-full blur-md opacity-50 group-hover:opacity-75 transition-opacity" />
                     <Image
                       width={0}
                       height={0}
@@ -155,7 +155,7 @@ export default function Testimonials() {
                   </motion.p>
 
                   <motion.div className="mt-4 space-y-1">
-                    <h4 className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-indigo-300 text-transparent bg-clip-text">
+                    <h4 className="text-lg font-semibold bg-linear-to-r from-purple-400 to-indigo-300 text-transparent bg-clip-text">
                       {testimonial.name}
                     </h4>
                     <p className="text-gray-500 text-sm">{testimonial.role}</p>

@@ -92,7 +92,7 @@ export default function FAQSection() {
               duration: 1,
               ease: "easeOut",
             }}
-            className="text-4xl font-black tracking-wider text-center bg-gradient-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text relative"
+            className="text-4xl font-black tracking-wider text-center bg-linear-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text relative"
           >
             Answers to your questions
             {/* Decorative elements */}
@@ -130,7 +130,7 @@ export default function FAQSection() {
             initial={{ scaleY: 0 }}
             animate={{ scaleY: 1 }}
             transition={{ duration: 1, ease: "easeOut" }}
-            className="absolute left-0 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500/50 via-indigo-500/30 to-transparent"
+            className="absolute left-0 top-0 bottom-0 w-0.5 bg-linear-to-b from-purple-500/50 via-indigo-500/30 to-transparent"
           />
 
           {faqsData.map((faq, index) => (
@@ -145,7 +145,7 @@ export default function FAQSection() {
                 initial={{ scale: 0 }}
                 animate={{ scale: activeIndex === index ? 1.2 : 1 }}
                 transition={{ duration: 0.3 }}
-                className="absolute -left-[3px] top-6 w-[7px] h-[7px] rounded-full bg-purple-500"
+                className="absolute left-[-3px] top-6 w-[7px] h-[7px] rounded-full bg-purple-500"
               />
               <div className="pl-6">
                 <Accordion

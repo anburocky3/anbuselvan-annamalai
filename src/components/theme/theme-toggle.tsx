@@ -46,11 +46,11 @@ export function ThemeToggle({
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.92 }}
       className={cn(
-        "relative inline-flex items-center justify-center rounded-full transition-colors cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-primary select-none",
+        "relative inline-flex items-center justify-center rounded-full transition-colors cursor-pointer focus:outline-hidden focus-visible:ring-2 focus-visible:ring-primary select-none",
         "border border-slate-200 dark:border-slate-700",
         "bg-white/80 dark:bg-slate-900/80 backdrop-blur-md",
         "text-slate-700 dark:text-slate-200 hover:text-amber-500 dark:hover:text-yellow-400",
-        "shadow-sm hover:shadow-md",
+        "shadow-xs hover:shadow-md",
         size === "sm" && "w-8 h-8 text-sm",
         size === "default" && "w-9 h-9 text-base",
         size === "lg" && "w-11 h-11 text-lg px-3 py-1.5",

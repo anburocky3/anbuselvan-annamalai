@@ -28831,7 +28831,7 @@ export const playlists: Course[] = [
         "duration": "3:15",
         "description": "#12 CSS Outline - (Tamil) (Tutorial) | CSS3 CourseCSS Course in Tamil - Cyberdude Networks channelThis video will help you learn, educate and understand the ...",
         "tags": [
-          "outline",
+          "outline-solid",
           "(tamil)",
           "(tutorial)",
           "css3",

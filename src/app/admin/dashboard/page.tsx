@@ -135,7 +135,7 @@ export default function AdminDashboard() {
 
         {/* QR Codes Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <Card className="overflow-hidden shadow-sm border-muted/60">
+          <Card className="overflow-hidden shadow-xs border-muted/60">
             <CardHeader className="bg-muted/30 pb-4">
               <CardTitle className="text-lg flex items-center justify-between">
                 YouTube Workshop URL
@@ -143,7 +143,7 @@ export default function AdminDashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6 flex flex-col sm:flex-row items-center gap-6">
-              <div className="p-3 bg-white rounded-xl shadow-sm border">
+              <div className="p-3 bg-white rounded-xl shadow-xs border">
                 {originUrl ? (
                   <QRCodeSVG
                     value={`${originUrl}/youtube-reviews`}
@@ -173,7 +173,7 @@ export default function AdminDashboard() {
             </CardContent>
           </Card>
 
-          <Card className="overflow-hidden shadow-sm border-muted/60">
+          <Card className="overflow-hidden shadow-xs border-muted/60">
             <CardHeader className="bg-muted/30 pb-4">
               <CardTitle className="text-lg flex items-center justify-between">
                 Event Workshop URL
@@ -181,7 +181,7 @@ export default function AdminDashboard() {
               </CardTitle>
             </CardHeader>
             <CardContent className="pt-6 flex flex-col sm:flex-row items-center gap-6">
-              <div className="p-3 bg-white rounded-xl shadow-sm border">
+              <div className="p-3 bg-white rounded-xl shadow-xs border">
                 {originUrl ? (
                   <QRCodeSVG value={`${originUrl}/event-reviews`} size={110} />
                 ) : (

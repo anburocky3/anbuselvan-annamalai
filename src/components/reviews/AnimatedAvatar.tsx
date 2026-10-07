@@ -73,7 +73,7 @@ export function AnimatedAvatar({
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute -inset-[3px] rounded-full p-[3px] pointer-events-none"
+          className="absolute inset-[-3px] rounded-full p-[3px] pointer-events-none"
           style={{
             background:
               "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)",
@@ -97,7 +97,7 @@ export function AnimatedAvatar({
               initial={{ x: "-100%", opacity: 0 }}
               whileHover={{ x: "100%", opacity: 0.25 }}
               transition={{ duration: 0.75, ease: "easeInOut" }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent pointer-events-none -skew-x-12"
+              className="absolute inset-0 bg-linear-to-r from-transparent via-white to-transparent pointer-events-none -skew-x-12"
             />
           </div>
         </div>

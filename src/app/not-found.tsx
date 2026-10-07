@@ -32,7 +32,7 @@ export default function NotFound() {
   if (!mounted) return null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#0A0618] to-[#1a103d] flex flex-col items-center justify-center px-4 py-16">
+    <div className="min-h-screen bg-linear-to-b from-[#0A0618] to-[#1a103d] flex flex-col items-center justify-center px-4 py-16">
       <div className="max-w-4xl w-full text-center">
         <motion.div
           initial={{ opacity: 0, y: -20 }}

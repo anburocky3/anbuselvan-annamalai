@@ -91,7 +91,7 @@ export default function SkillSection() {
           variants={itemVariants}
           className="flex flex-col items-center justify-center mb-10 space-y-4"
         >
-          <h2 className="text-4xl font-black tracking-wider text-center bg-gradient-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text">
+          <h2 className="text-4xl font-black tracking-wider text-center bg-linear-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text">
             My Skills
           </h2>
           <small className="text-gray-400 text-center tracking-widest">
@@ -112,7 +112,7 @@ export default function SkillSection() {
               >
                 {/* Glow Effect */}
                 <motion.div
-                  className="absolute inset-0 -z-10 bg-gradient-to-r from-purple-500/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 rounded-xl"
+                  className="absolute inset-0 -z-10 bg-linear-to-r from-purple-500/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 rounded-xl"
                   initial={false}
                 />
 
@@ -158,7 +158,7 @@ export default function SkillSection() {
                 <motion.p
                   initial={{ opacity: 0.7 }}
                   whileHover={{ opacity: 1 }}
-                  className="text-xl font-semibold mt-3 bg-gradient-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent"
+                  className="text-xl font-semibold mt-3 bg-linear-to-r from-purple-400 to-indigo-300 bg-clip-text text-transparent"
                 >
                   {skill.proficiency}
                 </motion.p>

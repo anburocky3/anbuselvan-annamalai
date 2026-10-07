@@ -276,7 +276,7 @@ export default function Header() {
       <motion.header
         variants={headerVariants}
         animate={isScrolled ? "scrolled" : "top"}
-        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-3 sm:py-5 backdrop-blur-sm`}
+        className={`${fontSora.className} fixed top-0 left-0 w-full z-50 py-3 sm:py-5 backdrop-blur-xs`}
       >
         <div className="container mx-auto px-4">
           <div className="flex justify-between items-center">
@@ -315,7 +315,7 @@ export default function Header() {
                             ? "active"
                             : "inactive"
                         }
-                        className="absolute bottom-0 left-0 h-1 bg-gradient-to-r from-purple-400 to-purple-600 rounded-full"
+                        className="absolute bottom-0 left-0 h-1 bg-linear-to-r from-purple-400 to-purple-600 rounded-full"
                       />
                     </Link>
                   </motion.li>
@@ -373,7 +373,7 @@ export default function Header() {
             initial="closed"
             animate="open"
             exit="closed"
-            className="fixed inset-0 z-40 lg:hidden bg-gradient-to-b from-[#0A0618] to-[#1a103d]"
+            className="fixed inset-0 z-40 lg:hidden bg-linear-to-b from-[#0A0618] to-[#1a103d]"
           >
             <div className="container mx-auto px-4 pt-28 pb-8 h-full flex flex-col">
               <nav className="flex-1">
@@ -407,7 +407,7 @@ export default function Header() {
                         }
                         className={`relative inline-block text-gray-300 hover:text-white text-2xl font-medium transition-colors duration-300 py-2 px-4 ${
                           isLinkActive(link.href, link.sectionId)
-                            ? "text-purple-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-gradient-to-r after:from-purple-400 after:to-purple-600"
+                            ? "text-purple-400 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-1 after:bg-linear-to-r after:from-purple-400 after:to-purple-600"
                             : ""
                         }`}
                       >
