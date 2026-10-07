@@ -28,7 +28,7 @@ export default function CourseComponent() {
         </h1>
         <div className="flex items-center gap-2">
           <Button
-            variant={viewMode === "grid" ? "outline-solid" : "default"}
+            variant={viewMode === "grid" ? "outline" : "default"}
             size="icon"
             onClick={() => setViewMode("grid")}
             aria-label="Grid view"
@@ -37,7 +37,7 @@ export default function CourseComponent() {
             <Grid className="h-4 w-4" />
           </Button>
           <Button
-            variant={viewMode === "list" ? "outline-solid" : "default"}
+            variant={viewMode === "list" ? "outline" : "default"}
             size="icon"
             onClick={() => setViewMode("list")}
             aria-label="List view"

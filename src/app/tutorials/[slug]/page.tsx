@@ -73,7 +73,7 @@ export default async function CoursePage(props: {
   }
 
   return (
-    <div className="container mx-auto py-8 px-4 mt-16">
+    (<div className="container mx-auto py-8 px-4 mt-16">
       {/* Structured Data */}
       <script
         type="application/ld+json"
@@ -354,6 +354,6 @@ export default async function CoursePage(props: {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </div>)
   );
 }

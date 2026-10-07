@@ -3,7 +3,11 @@
 import { skillsData } from "@/data/skills";
 import { motion } from "framer-motion";
 
-export default function SkillSection() {
+export default function SkillSection({
+  className = "",
+}: {
+  className?: string;
+} = {}) {
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -22,7 +26,7 @@ export default function SkillSection() {
       y: 0,
       transition: {
         duration: 0.5,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -33,7 +37,7 @@ export default function SkillSection() {
       rotate: [0, -10, 10, -5, 5, 0],
       transition: {
         duration: 0.6,
-        ease: "easeInOut",
+        ease: "easeInOut" as const,
       },
     },
   };
@@ -41,7 +45,7 @@ export default function SkillSection() {
   return (
     <section
       id="skills"
-      className="bg-[#0A0618] text-white py-20 relative overflow-hidden"
+      className={`bg-[#0A0618] text-white py-20 relative overflow-hidden ${className}`}
     >
       {/* Background Effects */}
       <div className="absolute inset-0">

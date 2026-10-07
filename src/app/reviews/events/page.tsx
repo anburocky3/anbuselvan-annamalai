@@ -25,7 +25,8 @@ interface PageProps {
   }>;
 }
 
-export default async function EventReviews({ searchParams }: PageProps) {
+export default async function EventReviews(props: PageProps) {
+  const searchParams = await props.searchParams;
   const params = searchParams ? await searchParams : {};
   const activeInstitution =
     CURRENT_EVENT_INSTITUTION || params.institution || params.campus;

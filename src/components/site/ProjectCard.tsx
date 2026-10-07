@@ -58,7 +58,7 @@ export default function ProjectCard({
       scale: 1.05,
       transition: {
         duration: 0.3,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };

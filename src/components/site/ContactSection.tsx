@@ -67,7 +67,7 @@ export default function ContactSection() {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.22, 1, 0.36, 1],
+        ease: [0.22, 1, 0.36, 1] as const,
       },
     },
   };
@@ -79,7 +79,7 @@ export default function ContactSection() {
       opacity: 1,
       transition: {
         duration: 0.8,
-        ease: "easeOut",
+        ease: "easeOut" as const,
       },
     },
   };
@@ -87,7 +87,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-linear-to-r from-slate-900 to-gray-900 py-20 text-white relative overflow-hidden min-h-[60vh] flex items-center"
+      className="bg-linear-to-r from-slate-900 to-gray-900 py-20 text-white relative overflow-hidden min-h-[70vh] flex items-center"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
