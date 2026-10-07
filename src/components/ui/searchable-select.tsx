@@ -184,8 +184,8 @@ export function SearchableSelect({
           "border bg-white dark:bg-slate-900",
           "border-slate-200 dark:border-slate-800",
           "hover:border-slate-300 dark:hover:border-slate-700",
-          "focus:outline-none focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 dark:focus:border-purple-400",
-          "shadow-sm select-none",
+          "focus:outline-hidden focus:ring-2 focus:ring-purple-500/30 focus:border-purple-500 dark:focus:border-purple-400",
+          "shadow-xs select-none",
           disabled && "opacity-50 cursor-not-allowed bg-slate-100 dark:bg-slate-800",
           error && "border-destructive dark:border-destructive focus:ring-destructive/30"
         )}
@@ -201,7 +201,7 @@ export function SearchableSelect({
           {displayLabel || placeholder}
         </span>
 
-        <div className="flex items-center space-x-1 flex-shrink-0 text-slate-400 dark:text-slate-500">
+        <div className="flex items-center space-x-1 shrink-0 text-slate-400 dark:text-slate-500">
           {value && !disabled && (
             <span
               role="button"
@@ -257,7 +257,7 @@ export function SearchableSelect({
                     "border-slate-200 dark:border-slate-700",
                     "text-slate-900 dark:text-slate-100",
                     "placeholder:text-slate-400 dark:placeholder:text-slate-500",
-                    "focus:outline-none focus:ring-1 focus:ring-purple-500"
+                    "focus:outline-hidden focus:ring-1 focus:ring-purple-500"
                   )}
                 />
                 {searchQuery && (
@@ -276,7 +276,7 @@ export function SearchableSelect({
             <ul
               ref={listRef}
               role="listbox"
-              className="max-h-60 overflow-y-auto p-1.5 space-y-0.5 text-sm focus:outline-none"
+              className="max-h-60 overflow-y-auto p-1.5 space-y-0.5 text-sm focus:outline-hidden"
             >
               {filteredOptions.length > 0 ? (
                 filteredOptions.map((opt, idx) => {
@@ -300,7 +300,7 @@ export function SearchableSelect({
                     >
                       <span className="truncate pr-4">{opt.label}</span>
                       {isSelected && (
-                        <LuCheck className="w-4 h-4 text-purple-600 dark:text-purple-400 flex-shrink-0" />
+                        <LuCheck className="w-4 h-4 text-purple-600 dark:text-purple-400 shrink-0" />
                       )}
                     </li>
                   );
@@ -328,7 +328,7 @@ export function SearchableSelect({
                   <span className="text-xs truncate font-medium">
                     Use &ldquo;<span className="font-semibold">{searchQuery.trim()}</span>&rdquo; as institution
                   </span>
-                  <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 ml-2 flex-shrink-0">
+                  <span className="text-[10px] uppercase font-bold tracking-wider px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 ml-2 shrink-0">
                     Custom
                   </span>
                 </li>

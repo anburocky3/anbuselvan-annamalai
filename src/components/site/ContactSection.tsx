@@ -87,7 +87,7 @@ export default function ContactSection() {
   return (
     <section
       id="contact"
-      className="bg-gradient-to-r from-slate-900 to-gray-900 py-20 text-white relative overflow-hidden min-h-[60vh] flex items-center"
+      className="bg-linear-to-r from-slate-900 to-gray-900 py-20 text-white relative overflow-hidden min-h-[60vh] flex items-center"
     >
       {/* Background Effects */}
       <div className="absolute inset-0">
@@ -195,7 +195,7 @@ export default function ContactSection() {
 
             {/* Animated gradient line */}
             <motion.div
-              className="absolute -left-8 top-1/2 w-6 h-[2px] bg-gradient-to-r from-purple-500/50 to-transparent"
+              className="absolute -left-8 top-1/2 w-6 h-[2px] bg-linear-to-r from-purple-500/50 to-transparent"
               animate={{
                 scaleX: isHovered ? 1.5 : 1,
                 opacity: isHovered ? 1 : 0.5,
@@ -203,7 +203,7 @@ export default function ContactSection() {
               transition={{ duration: 1 }}
             />
             <motion.div
-              className="absolute -right-8 top-1/2 w-6 h-[2px] bg-gradient-to-l from-purple-500/50 to-transparent"
+              className="absolute -right-8 top-1/2 w-6 h-[2px] bg-linear-to-l from-purple-500/50 to-transparent"
               animate={{
                 scaleX: isHovered ? 1.5 : 1,
                 opacity: isHovered ? 1 : 0.5,
@@ -230,15 +230,15 @@ export default function ContactSection() {
             >
               {/* Enhanced button glow effect */}
               <motion.div
-                className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                className="absolute inset-0 bg-linear-to-r from-purple-500/20 to-indigo-500/20 rounded-lg blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                 initial={false}
               />
 
               {/* Button border gradient */}
-              <motion.div className="absolute inset-0 rounded-lg border border-transparent bg-gradient-to-r from-purple-500/50 to-indigo-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <motion.div className="absolute inset-0 rounded-lg border border-transparent bg-linear-to-r from-purple-500/50 to-indigo-500/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
               <motion.span
-                className="relative z-10 bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent font-semibold"
+                className="relative z-10 bg-linear-to-r from-white to-purple-200 bg-clip-text text-transparent font-semibold"
                 whileHover={{ y: -2 }}
               >
                 {getEmail()}

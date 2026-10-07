@@ -98,7 +98,7 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
-      className="bg-gradient-to-r from-slate-900 to-gray-900 py-20 relative overflow-hidden"
+      className="bg-linear-to-r from-slate-900 to-gray-900 py-20 relative overflow-hidden"
     >
       {/* Floating Particles */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -148,11 +148,11 @@ export default function ServicesSection() {
           className="flex flex-col items-center justify-center mb-10 space-y-4"
         >
           <div className="relative">
-            <h2 className="text-4xl font-black tracking-wider text-center bg-gradient-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text">
+            <h2 className="text-4xl font-black tracking-wider text-center bg-linear-to-r from-purple-500 to-indigo-400 text-transparent bg-clip-text">
               Services
             </h2>
             <motion.div
-              className="absolute -inset-1 bg-gradient-to-r from-purple-500/20 to-indigo-400/20 blur-lg -z-10"
+              className="absolute -inset-1 bg-linear-to-r from-purple-500/20 to-indigo-400/20 blur-lg -z-10"
               initial={{ opacity: 0, scale: 0.8 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -164,7 +164,7 @@ export default function ServicesSection() {
               WHICH I&apos;M EXPERT AT
             </motion.small>
             <motion.span
-              className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-gradient-to-r from-purple-500 to-indigo-400"
+              className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 w-12 h-0.5 bg-linear-to-r from-purple-500 to-indigo-400"
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               viewport={{ once: true }}
@@ -180,11 +180,11 @@ export default function ServicesSection() {
                 key={index}
                 variants={serviceVariants}
                 whileHover="hover"
-                className="group relative p-10 border border-purple-500/30 rounded-lg backdrop-blur-sm bg-purple-900/10 hover:border-purple-400 transition-all duration-300"
+                className="group relative p-10 border border-purple-500/30 rounded-lg backdrop-blur-xs bg-purple-900/10 hover:border-purple-400 transition-all duration-300"
               >
                 {/* Service Card Glow Effect */}
                 <motion.div
-                  className="absolute inset-0 -z-10 bg-gradient-to-r from-purple-500/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"
+                  className="absolute inset-0 -z-10 bg-linear-to-r from-purple-500/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500"
                   initial={false}
                 />
 
@@ -207,7 +207,7 @@ export default function ServicesSection() {
                   transition={{ duration: 0.5, delay: 0.2 }}
                   className="text-white mt-4 space-y-3"
                 >
-                  <h4 className="text-2xl font-bold bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent">
+                  <h4 className="text-2xl font-bold bg-linear-to-r from-white to-gray-300 bg-clip-text text-transparent">
                     {service.title}
                   </h4>
                   <p className="text-gray-400 group-hover:text-gray-300 transition-colors duration-300">

@@ -26,7 +26,7 @@ export default function ReviewsPage() {
   return (
     <>
       {/* Gradient Header */}
-      <div className="relative h-[200px] bg-gradient-to-b from-blue-500 to-purple-400">
+      <div className="relative h-[200px] bg-linear-to-b from-blue-500 to-purple-400">
         <h1 className="text-center pt-16 text-white text-3xl font-semibold">
           Hi, I&apos;m Anbuselvan
         </h1>
@@ -47,7 +47,7 @@ export default function ReviewsPage() {
 
       {/* Featured Links Card */}
       <div className="max-w-3xl mx-auto px-4 mt-8">
-        <div className="bg-white rounded-xl shadow-sm p-6">
+        <div className="bg-white rounded-xl shadow-xs p-6">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-lg font-medium text-gray-800">
               Featured Links

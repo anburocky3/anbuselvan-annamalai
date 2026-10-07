@@ -114,11 +114,11 @@ export default function CounterSection() {
               <motion.div
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
-                className="relative flex flex-col items-center p-6 rounded-xl bg-purple-900/10 border border-purple-500/20 backdrop-blur-sm hover:border-purple-500/40 transition-all duration-300"
+                className="relative flex flex-col items-center p-6 rounded-xl bg-purple-900/10 border border-purple-500/20 backdrop-blur-xs hover:border-purple-500/40 transition-all duration-300"
               >
                 {/* Card Glow Effect */}
                 <motion.div
-                  className="absolute inset-0 -z-10 bg-gradient-to-r from-purple-500/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 rounded-xl"
+                  className="absolute inset-0 -z-10 bg-linear-to-r from-purple-500/10 to-indigo-400/10 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 rounded-xl"
                   initial={false}
                 />
 
@@ -128,7 +128,7 @@ export default function CounterSection() {
                     duration={item.duration}
                     stiffness={item.stiffness}
                     damping={item.damping}
-                    className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-white to-purple-200 bg-clip-text text-transparent"
+                    className="text-4xl md:text-5xl font-bold bg-linear-to-r from-white to-purple-200 bg-clip-text text-transparent"
                   />
                   {item.suffix && (
                     <motion.span

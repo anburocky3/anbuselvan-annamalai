@@ -64,7 +64,7 @@ export default function ProjectCard({
   };
 
   return (
-    <div className="bg-gradient-to-r from-slate-900 to-purple-900 border border-purple-800/30 p-6 md:p-10 justify-between rounded-2xl text-white max-w-6xl mx-auto flex flex-col md:flex-row sm:space-x-10 space-y-10 sm:space-y-0 hover:border-purple-600/50 transition-colors duration-300">
+    <div className="bg-linear-to-r from-slate-900 to-purple-900 border border-purple-800/30 p-6 md:p-10 justify-between rounded-2xl text-white max-w-6xl mx-auto flex flex-col md:flex-row sm:space-x-10 space-y-10 sm:space-y-0 hover:border-purple-600/50 transition-colors duration-300">
       <div className="space-y-10">
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -129,7 +129,7 @@ export default function ProjectCard({
             <motion.span
               variants={tagVariants}
               whileHover="hover"
-              className="bg-blue-900/50 backdrop-blur-sm flex items-center justify-center text-white text-sm px-4 py-1 rounded-full capitalize"
+              className="bg-blue-900/50 backdrop-blur-xs flex items-center justify-center text-white text-sm px-4 py-1 rounded-full capitalize"
               key={tag}
             >
               {tag}

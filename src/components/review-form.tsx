@@ -495,7 +495,7 @@ export function ReviewForm({
           <Button
             type="submit"
             size="lg"
-            className="w-full h-13 sm:h-14 text-base sm:text-lg font-semibold rounded-2xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg shadow-purple-500/25 dark:shadow-purple-950/50 transition-all hover:scale-[1.01] active:scale-98 cursor-pointer disabled:opacity-60"
+            className="w-full h-13 sm:h-14 text-base sm:text-lg font-semibold rounded-2xl bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 text-white shadow-lg shadow-purple-500/25 dark:shadow-purple-950/50 transition-all hover:scale-[1.01] active:scale-98 cursor-pointer disabled:opacity-60"
             disabled={isSubmitting}
           >
             {isSubmitting ? (

@@ -147,7 +147,7 @@ export default function Footer() {
           >
             {/* Logo glow effect */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-indigo-500/20 rounded-full blur-xl opacity-0 hover:opacity-100 transition-opacity duration-300"
+              className="absolute inset-0 bg-linear-to-r from-purple-500/20 to-indigo-500/20 rounded-full blur-xl opacity-0 hover:opacity-100 transition-opacity duration-300"
               initial={false}
             />
             <div className="relative z-10">
@@ -173,7 +173,7 @@ export default function Footer() {
             >
               {/* Link hover effect */}
               <motion.div
-                className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-500 to-indigo-500 group-hover:w-full transition-all duration-300"
+                className="absolute -bottom-1 left-0 w-0 h-[2px] bg-linear-to-r from-purple-500 to-indigo-500 group-hover:w-full transition-all duration-300"
                 initial={false}
               />
               {link.name}
@@ -202,7 +202,7 @@ export default function Footer() {
             >
               {/* Name hover effect */}
               <motion.span
-                className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-to-r from-purple-500 to-indigo-500 group-hover:w-full transition-all duration-300"
+                className="absolute -bottom-1 left-0 w-0 h-[2px] bg-linear-to-r from-purple-500 to-indigo-500 group-hover:w-full transition-all duration-300"
                 initial={false}
               />
               Anbuselvan Annamalai

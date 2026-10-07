@@ -1,6 +1,24 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@config '../../tailwind.config.ts';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
 
 @layer base {
   :root {
@@ -67,43 +85,45 @@
   }
 }
 
-/* Preloader Animation */
-.preloader {
-  @apply fixed inset-0 z-50 bg-gray-900 flex items-center justify-center;
-}
-
-.load-text {
-  @apply text-white text-2xl;
-}
-
-.load-text span {
-  @apply inline-block animate-bounce;
-  animation-delay: calc(var(--i) * 0.1s);
-}
-
-/* Back to Top Button */
-.progress-wrap {
-  @apply fixed bottom-8 right-8 h-12 w-12 cursor-pointer flex items-center justify-center bg-blue-600 rounded-full opacity-0 invisible transition-all duration-300 z-50;
-}
-
-.progress-wrap.active-progress {
-  @apply opacity-100 visible;
-}
-
-/* Custom Animations */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translate3d(0, 100%, 0);
+@layer utilities {
+  /* Preloader Animation */
+  .preloader {
+    @apply fixed inset-0 z-50 bg-gray-900 flex items-center justify-center;
   }
-  to {
-    opacity: 1;
-    transform: translate3d(0, 0, 0);
-  }
-}
 
-.animate-fadeInUp {
-  animation: fadeInUp 1s ease-out;
+  .load-text {
+    @apply text-white text-2xl;
+  }
+
+  .load-text span {
+    @apply inline-block animate-bounce;
+    animation-delay: calc(var(--i) * 0.1s);
+  }
+
+  /* Back to Top Button */
+  .progress-wrap {
+    @apply fixed bottom-8 right-8 h-12 w-12 cursor-pointer flex items-center justify-center bg-blue-600 rounded-full opacity-0 invisible transition-all duration-300 z-50;
+  }
+
+  .progress-wrap.active-progress {
+    @apply opacity-100 visible;
+  }
+
+  /* Custom Animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translate3d(0, 100%, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 1s ease-out;
+  }
 }
 
 
