@@ -97,8 +97,8 @@ export default function ContactSection() {
           transition={{ duration: 1 }}
           className="absolute inset-0"
         >
-          <div className="absolute w-[500px] h-[500px] bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20" />
-          <div className="absolute w-[500px] h-[500px] bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
+          <div className="absolute w-125 h-125 bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20" />
+          <div className="absolute w-125 h-125 bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
         </motion.div>
 
         {/* Enhanced Floating Particles */}
@@ -195,7 +195,7 @@ export default function ContactSection() {
 
             {/* Animated gradient line */}
             <motion.div
-              className="absolute -left-8 top-1/2 w-6 h-[2px] bg-linear-to-r from-purple-500/50 to-transparent"
+              className="absolute -left-8 top-1/2 w-6 h-0.5 bg-linear-to-r from-purple-500/50 to-transparent"
               animate={{
                 scaleX: isHovered ? 1.5 : 1,
                 opacity: isHovered ? 1 : 0.5,
@@ -203,7 +203,7 @@ export default function ContactSection() {
               transition={{ duration: 1 }}
             />
             <motion.div
-              className="absolute -right-8 top-1/2 w-6 h-[2px] bg-linear-to-l from-purple-500/50 to-transparent"
+              className="absolute -right-8 top-1/2 w-6 h-0.5 bg-linear-to-l from-purple-500/50 to-transparent"
               animate={{
                 scaleX: isHovered ? 1.5 : 1,
                 opacity: isHovered ? 1 : 0.5,

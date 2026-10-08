@@ -106,13 +106,13 @@ export function WorkshopSurveyTable() {
                   readOnly
                 />
               </TableCell>
-              <TableCell className="max-w-[200px] truncate">
+              <TableCell className="max-w-50 truncate">
                 {survey["workshop-like"] || "N/A"}
               </TableCell>
-              <TableCell className="max-w-[200px] truncate">
+              <TableCell className="max-w-50 truncate">
                 {survey["workshop-dislike"] || "N/A"}
               </TableCell>
-              <TableCell className="max-w-[200px] truncate">
+              <TableCell className="max-w-50 truncate">
                 {survey["workshop-improve"] || "N/A"}
               </TableCell>
               <TableCell>

@@ -195,8 +195,8 @@ export function AboutView({ fullUrl }: AboutViewProps) {
     >
       {/* Decorative ambient background glows */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
-        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[550px] h-[350px] bg-linear-to-tr from-purple-500/15 via-indigo-500/10 to-blue-500/15 dark:from-purple-600/20 dark:via-indigo-600/15 dark:to-cyan-600/15 rounded-full blur-3xl opacity-75" />
-        <div className="absolute top-[40%] right-[-50px] w-[350px] h-[350px] bg-pink-500/10 dark:bg-purple-800/20 rounded-full blur-3xl opacity-60" />
+        <div className="absolute top-10 left-1/2 -translate-x-1/2 w-137.5 h-87.5 bg-linear-to-tr from-purple-500/15 via-indigo-500/10 to-blue-500/15 dark:from-purple-600/20 dark:via-indigo-600/15 dark:to-cyan-600/15 rounded-full blur-3xl opacity-75" />
+        <div className="absolute top-[40%] -right-12.5 w-87.5 h-87.5 bg-pink-500/10 dark:bg-purple-800/20 rounded-full blur-3xl opacity-60" />
       </div>
 
       {/* Floating Controls Banner: Full Screen & Theme Switcher */}
@@ -358,7 +358,7 @@ export function AboutView({ fullUrl }: AboutViewProps) {
 
             {/* Direct Copy Action */}
             <div className="w-full mt-5 pt-4 border-t border-slate-100 dark:border-slate-800 flex items-center justify-between gap-2">
-              <span className="text-xs text-slate-500 dark:text-slate-400 truncate max-w-[200px] text-left">
+              <span className="text-xs text-slate-500 dark:text-slate-400 truncate max-w-50 text-left">
                 {fullUrl}
               </span>
               <Button

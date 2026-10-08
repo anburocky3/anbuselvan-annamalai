@@ -150,7 +150,7 @@ export default function AdminDashboard() {
                     size={110}
                   />
                 ) : (
-                  <Skeleton className="w-[110px] h-[110px]" />
+                  <Skeleton className="w-27.5 h-27.5" />
                 )}
               </div>
               <div className="space-y-3 flex-1 text-center sm:text-left">
@@ -185,7 +185,7 @@ export default function AdminDashboard() {
                 {originUrl ? (
                   <QRCodeSVG value={`${originUrl}/event-reviews`} size={110} />
                 ) : (
-                  <Skeleton className="w-[110px] h-[110px]" />
+                  <Skeleton className="w-27.5 h-27.5" />
                 )}
               </div>
               <div className="space-y-3 flex-1 text-center sm:text-left">

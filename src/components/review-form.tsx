@@ -438,7 +438,7 @@ export function ReviewForm({
                 id="workshop-like"
                 placeholder="e.g., The hands-on examples were incredibly helpful..."
                 {...register("workshop-like")}
-                className="min-h-[120px] resize-y bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:ring-purple-500/30 focus-visible:border-purple-500 text-sm sm:text-base p-4 rounded-xl"
+                className="min-h-30 resize-y bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:ring-purple-500/30 focus-visible:border-purple-500 text-sm sm:text-base p-4 rounded-xl"
               />
               {errors["workshop-like"] && (
                 <p className="text-xs sm:text-sm font-medium text-destructive">
@@ -459,7 +459,7 @@ export function ReviewForm({
                 id="workshop-dislike"
                 placeholder="e.g., I wish we spent a bit more time on the advanced configurations..."
                 {...register("workshop-dislike")}
-                className="min-h-[120px] resize-y bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:ring-purple-500/30 focus-visible:border-purple-500 text-sm sm:text-base p-4 rounded-xl"
+                className="min-h-30 resize-y bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:ring-purple-500/30 focus-visible:border-purple-500 text-sm sm:text-base p-4 rounded-xl"
               />
               {errors["workshop-dislike"] && (
                 <p className="text-xs sm:text-sm font-medium text-destructive">
@@ -482,7 +482,7 @@ export function ReviewForm({
                 id="workshop-improve"
                 placeholder="Any future topics you'd like to see, or general feedback..."
                 {...register("workshop-improve")}
-                className="min-h-[120px] resize-y bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:ring-purple-500/30 focus-visible:border-purple-500 text-sm sm:text-base p-4 rounded-xl"
+                className="min-h-30 resize-y bg-white dark:bg-slate-900 border-slate-200 dark:border-slate-700 text-slate-900 dark:text-slate-100 placeholder:text-slate-400 dark:placeholder:text-slate-500 focus-visible:ring-purple-500/30 focus-visible:border-purple-500 text-sm sm:text-base p-4 rounded-xl"
               />
               {errors["workshop-improve"] && (
                 <p className="text-xs sm:text-sm font-medium text-destructive">

@@ -26,7 +26,7 @@ export default function ReviewsPage() {
   return (
     <>
       {/* Gradient Header */}
-      <div className="relative h-[200px] bg-linear-to-b from-blue-500 to-purple-400">
+      <div className="relative h-50 bg-linear-to-b from-blue-500 to-purple-400">
         <h1 className="text-center pt-16 text-white text-3xl font-semibold">
           Hi, I&apos;m Anbuselvan
         </h1>

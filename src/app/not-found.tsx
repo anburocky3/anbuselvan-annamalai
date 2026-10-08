@@ -48,7 +48,7 @@ export default function NotFound() {
           transition={{ duration: 0.7, delay: 0.2 }}
           className="relative mb-12"
         >
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[250px] h-[250px] bg-purple-500/20 rounded-full blur-[100px] z-0" />
+          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-62.5 h-62.5 bg-purple-500/20 rounded-full blur-[100px] z-0" />
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 relative z-10">
             Page Not Found
           </h2>

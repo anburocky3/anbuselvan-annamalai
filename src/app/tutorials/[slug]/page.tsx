@@ -165,7 +165,7 @@ export default async function CoursePage(props: {
         }}
       />
       {/* Hero Section */}
-      <div className="relative h-[400px] rounded-xl overflow-hidden mb-8">
+      <div className="relative h-100 rounded-xl overflow-hidden mb-8">
         <Image
           src={course.videos[0]?.thumbnails.maxres || course.thumbnail}
           alt={course.title}

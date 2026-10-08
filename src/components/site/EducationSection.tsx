@@ -52,8 +52,8 @@ export default function EducationSection() {
           transition={{ duration: 1 }}
           className="absolute inset-0"
         >
-          <div className="absolute w-[500px] h-[500px] bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20" />
-          <div className="absolute w-[500px] h-[500px] bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
+          <div className="absolute w-125 h-125 bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20" />
+          <div className="absolute w-125 h-125 bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
         </motion.div>
       </div>
 

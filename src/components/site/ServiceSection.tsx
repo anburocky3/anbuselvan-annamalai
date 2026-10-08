@@ -128,11 +128,11 @@ export default function ServicesSection() {
       >
         <motion.div
           animate={controls}
-          className="absolute w-[500px] h-[500px] bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20"
+          className="absolute w-125 h-125 bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20"
         />
         <motion.div
           animate={controls}
-          className="absolute w-[500px] h-[500px] bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20"
+          className="absolute w-125 h-125 bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20"
         />
       </motion.div>
 

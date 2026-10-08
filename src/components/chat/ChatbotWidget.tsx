@@ -69,8 +69,7 @@ interface SpeechRecognition extends EventTarget {
   onstart: ((this: SpeechRecognition, ev: Event) => void) | null;
   onend: ((this: SpeechRecognition, ev: Event) => void) | null;
   onresult:
-    | ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => void)
-    | null;
+    ((this: SpeechRecognition, ev: SpeechRecognitionEvent) => void) | null;
 }
 
 declare global {
@@ -133,7 +132,7 @@ interface EmailPayload {
 
 function TypingDots(): JSX.Element {
   return (
-    <div className="flex gap-2 items-end animate-[msgIn_0.25s_ease]">
+    <div className="flex gap-2 items-end animate-msg-in">
       <div className="w-7 h-7 rounded-full overflow-hidden border-[1.5px] border-[#ff9a1f]/70 shrink-0 mb-1">
         <Image
           src={CARTOON}
@@ -148,9 +147,9 @@ function TypingDots(): JSX.Element {
         className="inline-flex gap-1.5 items-center px-4 py-3 rounded-2xl rounded-bl-xs bg-slate-100 dark:bg-white/[0.07] border border-slate-200 dark:border-white/10"
         aria-label="Assistant is typing"
       >
-        <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] animate-[blink_1s_infinite_ease-in-out]" />
-        <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] animate-[blink_1s_infinite_ease-in-out] [animation-delay:0.15s]" />
-        <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] animate-[blink_1s_infinite_ease-in-out] [animation-delay:0.3s]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] animate-blink" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] animate-blink [animation-delay:0.15s]" />
+        <span className="w-1.5 h-1.5 rounded-full bg-[#ff6a00] animate-blink [animation-delay:0.3s]" />
       </div>
     </div>
   );
@@ -161,7 +160,7 @@ function ProjectCards({ projects }: { projects: ProjectCard[] }): JSX.Element {
     <div className="grid gap-2 mt-3" aria-label="Projects">
       {projects.map((project) => (
         <article
-          className="p-2.5 rounded-xl bg-black/[0.03] dark:bg-black/30 border border-[#ff6a00]/25 dark:border-[#ff9a1f]/20"
+          className="p-2.5 rounded-xl bg-black/3 dark:bg-black/30 border border-[#ff6a00]/25 dark:border-[#ff9a1f]/20"
           key={project.name}
         >
           <div className="flex items-center gap-1.5 text-xs font-semibold text-orange-700 dark:text-[#ffd7a8]">
@@ -192,11 +191,11 @@ function SkillCards({ skills }: { skills: SkillCard[] }): JSX.Element {
     <div className="grid grid-cols-2 gap-2 mt-3" aria-label="Skills">
       {skills.map((skill) => (
         <div
-          className="flex items-center gap-2 min-w-0 p-2 rounded-lg text-xs font-semibold bg-black/[0.03] dark:bg-black/30 border border-[#ff6a00]/25 dark:border-[#ff9a1f]/20 text-slate-900 dark:text-[#f4f0ea]"
+          className="flex items-center gap-2 min-w-0 p-2 rounded-lg text-xs font-semibold bg-black/3 dark:bg-black/30 border border-[#ff6a00]/25 dark:border-[#ff9a1f]/20 text-slate-900 dark:text-[#f4f0ea]"
           key={skill.name}
         >
           <span
-            className="w-6 h-6 shrink-0 rounded-md bg-center bg-no-repeat bg-[length:15px] bg-slate-200/70 dark:bg-white/[0.08]"
+            className="w-6 h-6 shrink-0 rounded-md bg-center bg-no-repeat bg-size-[15px] bg-slate-200/70 dark:bg-white/8"
             aria-hidden="true"
             style={{ backgroundImage: `url(${skill.logo})` }}
           />
@@ -222,7 +221,7 @@ function SocialCards({ socials }: { socials: SocialCard[] }): JSX.Element {
     <div className="grid gap-2 mt-3" aria-label="Social networks">
       {socials.map((social) => (
         <a
-          className="flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs font-semibold no-underline transition-colors bg-black/[0.03] dark:bg-black/30 border border-[#ff6a00]/25 dark:border-[#ff9a1f]/20 text-slate-900 dark:text-[#f4f0ea] hover:border-[#ff9a1f]/70 hover:bg-[#ff6a00]/10 dark:hover:bg-[#ff6a00]/20"
+          className="flex items-center gap-2 px-2.5 py-2 rounded-lg text-xs font-semibold no-underline transition-colors bg-black/3 dark:bg-black/30 border border-[#ff6a00]/25 dark:border-[#ff9a1f]/20 text-slate-900 dark:text-[#f4f0ea] hover:border-[#ff9a1f]/70 hover:bg-[#ff6a00]/10 dark:hover:bg-[#ff6a00]/20"
           href={social.url}
           key={social.name}
           target="_blank"
@@ -524,7 +523,7 @@ export default function ChatbotWidget({
     <div className="chatbot-container">
       {trackBanner ? (
         <div
-          className="fixed top-20 left-1/2 -translate-x-1/2 z-[150] text-white font-extrabold text-sm px-4 py-2.5 rounded-full shadow-[0_12px_30px_rgba(255,106,0,0.4)] pointer-events-none whitespace-nowrap max-w-[calc(100vw-2rem)] truncate animate-[bannerIn_0.3s_ease] bg-gradient-to-r from-[#ff6a00] to-[#ff8c1a]"
+          className="fixed top-20 left-1/2 -translate-x-1/2 z-150 text-white font-extrabold text-sm px-4 py-2.5 rounded-full shadow-[0_12px_30px_rgba(255,106,0,0.4)] pointer-events-none whitespace-nowrap max-w-[calc(100vw-2rem)] truncate animate-banner-in bg-linear-to-r from-[#ff6a00] to-[#ff8c1a]"
           role="status"
           aria-live="polite"
         >
@@ -535,7 +534,7 @@ export default function ChatbotWidget({
       {!open && (
         <button
           type="button"
-          className={`fixed z-[140] w-24 h-24 sm:w-28 sm:h-28 border-0 bg-transparent cursor-pointer p-0 right-4 sm:right-20 md:right-24 bottom-4 sm:bottom-6 transition-all duration-300 ease-out ${
+          className={`fixed z-140 w-24 h-24 sm:w-28 sm:h-28 border-0 bg-transparent cursor-pointer p-0 right-4 sm:right-20 md:right-24 bottom-4 sm:bottom-6 transition-all duration-300 ease-out ${
             launcherVisible
               ? "opacity-100 translate-y-0 pointer-events-auto"
               : "opacity-0 translate-y-6 pointer-events-none"
@@ -547,7 +546,7 @@ export default function ChatbotWidget({
           <div className="relative w-20 h-20 sm:w-24 sm:h-24 mx-auto group">
             {/* Spinning decorative rays */}
             <span
-              className="absolute -inset-2.5 rounded-full blur-[0.2px] opacity-85 animate-[spinSlow_8s_linear_infinite]"
+              className="absolute -inset-2.5 rounded-full blur-[0.2px] opacity-85 animate-spin-slow"
               style={{
                 background:
                   "repeating-conic-gradient(from 0deg, transparent 0deg 10deg, rgba(255,106,0,0.55) 10deg 12deg)",
@@ -561,12 +560,11 @@ export default function ChatbotWidget({
                 alt="Anbu cartoon assistant"
                 width={124}
                 height={124}
-                className="w-full h-full object-cover scale-[1.55] saturate-[1.15] contrast-[1.05] animate-[faceWiggle_2.2s_ease-in-out_infinite]"
-                style={{ objectPosition: "52% 18%" }}
+                className="w-full h-full object-cover saturate-[1.15] contrast-[1.05] animate-face-wiggle"
               />
             </span>
             {/* Chat badge */}
-            <span className="absolute left-1/2 -bottom-1 -translate-x-1/2 z-20 text-white text-[0.62rem] font-extrabold tracking-wider uppercase px-2 py-0.5 rounded-full border-[1.5px] border-[#fff4d8] shadow-[0_4px_10px_rgba(0,0,0,0.35)] bg-gradient-to-r from-[#ff6a00] to-[#ff8c1a]">
+            <span className="absolute left-1/2 -bottom-1 -translate-x-1/2 z-20 text-white text-[0.62rem] font-extrabold tracking-wider uppercase px-2 py-0.5 rounded-full border-[1.5px] border-[#fff4d8] shadow-[0_4px_10px_rgba(0,0,0,0.35)] bg-linear-to-r from-[#ff6a00] to-[#ff8c1a]">
               Chat
             </span>
           </div>
@@ -575,7 +573,7 @@ export default function ChatbotWidget({
 
       {open && (
         <aside
-          className="fixed z-[140] flex flex-col rounded-3xl overflow-hidden backdrop-blur-xl animate-[panelIn_0.32s_ease] right-4 sm:right-6 md:right-8 bottom-4 sm:bottom-6 w-[min(380px,calc(100vw-1.5rem))] h-[min(580px,calc(100dvh-5rem))] bg-white/95 dark:bg-[#100a18]/90 border border-black/10 dark:border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.16)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.5)] text-slate-900 dark:text-[#f4f0ea] font-sans transition-colors duration-200"
+          className="fixed z-140 flex flex-col rounded-3xl overflow-hidden backdrop-blur-xl animate-panel-in right-4 sm:right-6 md:right-8 bottom-4 sm:bottom-6 w-[min(380px,calc(100vw-1.5rem))] h-[min(580px,calc(100dvh-5rem))] bg-white/95 dark:bg-[#100a18]/90 border border-black/10 dark:border-white/15 shadow-[0_20px_50px_rgba(0,0,0,0.16)] dark:shadow-[0_24px_60px_rgba(0,0,0,0.5)] text-slate-900 dark:text-[#f4f0ea] font-sans transition-colors duration-200"
           aria-label="Portfolio Assistant"
         >
           {/* Header */}
@@ -596,7 +594,8 @@ export default function ChatbotWidget({
                   Dobby - Anbu&apos;s Assistant
                 </h3>
                 <div className="flex items-center gap-1.5 text-xs text-slate-600 dark:text-white/70 mt-0.5">
-                  <i className="inline-block w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#22c55e]" /> Online
+                  <i className="inline-block w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_#22c55e]" />{" "}
+                  Online
                 </div>
               </div>
             </div>
@@ -630,7 +629,7 @@ export default function ChatbotWidget({
               msg.role === "bot" ? (
                 <div
                   key={msg.id}
-                  className="flex gap-2 items-end animate-[msgIn_0.25s_ease]"
+                  className="flex gap-2 items-end animate-msg-in"
                 >
                   <div className="w-7 h-7 rounded-full overflow-hidden border-[1.5px] border-[#ff9a1f]/70 shrink-0 mb-1">
                     <Image
@@ -642,7 +641,7 @@ export default function ChatbotWidget({
                       style={{ objectPosition: "52% 18%" }}
                     />
                   </div>
-                  <div className="max-w-[min(270px,78%)] px-3.5 py-3 rounded-2xl rounded-bl-xs text-[0.92rem] leading-relaxed whitespace-pre-wrap break-words bg-slate-100 dark:bg-white/[0.07] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-[#f4f0ea] shadow-xs">
+                  <div className="max-w-[min(270px,78%)] px-3.5 py-3 rounded-2xl rounded-bl-xs text-[0.92rem] leading-relaxed whitespace-pre-wrap wrap-break-word bg-slate-100 dark:bg-white/[0.07] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-[#f4f0ea] shadow-xs">
                     <div>{msg.text}</div>
                     {msg.projects ? (
                       <ProjectCards projects={msg.projects} />
@@ -654,9 +653,9 @@ export default function ChatbotWidget({
               ) : (
                 <div
                   key={msg.id}
-                  className="flex gap-2 items-end justify-end animate-[msgIn_0.25s_ease]"
+                  className="flex gap-2 items-end justify-end animate-msg-in"
                 >
-                  <div className="max-w-[min(270px,78%)] px-3.5 py-3 rounded-2xl rounded-br-xs text-[0.92rem] leading-relaxed whitespace-pre-wrap break-words text-white bg-gradient-to-r from-[#ff6a00] to-[#ff8c1a] shadow-xs">
+                  <div className="max-w-[min(270px,78%)] px-3.5 py-3 rounded-2xl rounded-br-xs text-[0.92rem] leading-relaxed whitespace-pre-wrap wrap-break-word text-white bg-linear-to-r from-[#ff6a00] to-[#ff8c1a] shadow-xs">
                     {msg.text}
                   </div>
                 </div>
@@ -666,7 +665,7 @@ export default function ChatbotWidget({
             {typing && <TypingDots />}
 
             {showEmailForm && (
-              <div className="flex gap-2 items-end animate-[msgIn_0.25s_ease]">
+              <div className="flex gap-2 items-end animate-msg-in">
                 <div className="w-7 h-7 rounded-full overflow-hidden border-[1.5px] border-[#ff9a1f]/70 shrink-0 mb-1">
                   <Image
                     src={CARTOON}
@@ -677,7 +676,7 @@ export default function ChatbotWidget({
                     style={{ objectPosition: "52% 18%" }}
                   />
                 </div>
-                <div className="max-w-[min(270px,78%)] px-3.5 py-3 rounded-2xl rounded-bl-xs text-[0.92rem] leading-relaxed whitespace-pre-wrap break-words bg-slate-100 dark:bg-white/[0.07] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-[#f4f0ea] shadow-xs">
+                <div className="max-w-[min(270px,78%)] px-3.5 py-3 rounded-2xl rounded-bl-xs text-[0.92rem] leading-relaxed whitespace-pre-wrap wrap-break-word bg-slate-100 dark:bg-white/[0.07] border border-slate-200 dark:border-white/10 text-slate-900 dark:text-[#f4f0ea] shadow-xs">
                   <div className="grid gap-2">
                     <label
                       htmlFor="visitorEmail"
@@ -705,7 +704,7 @@ export default function ChatbotWidget({
                       <button
                         type="button"
                         onClick={openMailApp}
-                        className="rounded-lg p-2 text-xs font-bold text-white cursor-pointer border border-[#ff9a1f]/45 bg-gradient-to-r from-[#ff6a00] to-[#ff8c1a] hover:brightness-105 active:scale-95 transition-all"
+                        className="rounded-lg p-2 text-xs font-bold text-white cursor-pointer border border-[#ff9a1f]/45 bg-linear-to-r from-[#ff6a00] to-[#ff8c1a] hover:brightness-105 active:scale-95 transition-all"
                       >
                         Compose a mail
                       </button>
@@ -737,7 +736,7 @@ export default function ChatbotWidget({
                   <button
                     key={s.text}
                     type="button"
-                    className="rounded-full px-3 py-1.5 text-xs font-semibold cursor-pointer transition-colors border border-black/10 dark:border-white/15 bg-slate-100 dark:bg-white/[0.06] text-slate-800 dark:text-white hover:border-[#ff9a1f]/60 hover:text-[#ea580c] hover:bg-[#ff6a00]/10 dark:hover:bg-[#ff6a00]/20"
+                    className="rounded-full px-3 py-1.5 text-xs font-semibold cursor-pointer transition-colors border border-black/10 dark:border-white/15 bg-slate-100 dark:bg-white/6 text-slate-800 dark:text-white hover:border-[#ff9a1f]/60 hover:text-[#ea580c] hover:bg-[#ff6a00]/10 dark:hover:bg-[#ff6a00]/20"
                     onClick={() => handleSend(s.text)}
                   >
                     {s.label}
@@ -757,7 +756,7 @@ export default function ChatbotWidget({
           <div className="flex items-center gap-2 p-3.5 border-t border-black/10 dark:border-white/10 bg-white/85 dark:bg-transparent shrink-0">
             <button
               type="button"
-              className={`min-w-[42px] h-[42px] px-1.5 rounded-xl text-xs font-extrabold cursor-pointer transition-colors border border-black/10 dark:border-white/15 bg-slate-100 dark:bg-white/[0.06] text-orange-600 dark:text-[#f5c76a] hover:bg-[#ff6a00]/10 dark:hover:bg-[#ff6a00]/20 flex items-center justify-center shrink-0 ${
+              className={`min-w-10.5 h-10.5 px-1.5 rounded-xl text-xs font-extrabold cursor-pointer transition-colors border border-black/10 dark:border-white/15 bg-slate-100 dark:bg-white/6 text-orange-600 dark:text-[#f5c76a] hover:bg-[#ff6a00]/10 dark:hover:bg-[#ff6a00]/20 flex items-center justify-center shrink-0 ${
                 speechLanguage === "ta-IN" ? "font-mono" : ""
               }`}
               aria-label={`Switch speech language to ${speechLanguage === "en-IN" ? "Tamil" : "English"}`}
@@ -772,9 +771,9 @@ export default function ChatbotWidget({
             </button>
             <button
               type="button"
-              className={`w-[42px] h-[42px] rounded-xl cursor-pointer flex items-center justify-center shrink-0 transition-all border border-black/10 dark:border-white/15 bg-slate-100 dark:bg-white/[0.06] text-slate-800 dark:text-white hover:bg-[#ff6a00]/10 dark:hover:bg-[#ff6a00]/20 ${
+              className={`w-10.5 h-10.5 rounded-xl cursor-pointer flex items-center justify-center shrink-0 transition-all border border-black/10 dark:border-white/15 bg-slate-100 dark:bg-white/6 text-slate-800 dark:text-white hover:bg-[#ff6a00]/10 dark:hover:bg-[#ff6a00]/20 ${
                 listening
-                  ? "!bg-rose-600 !text-white !border-rose-500 animate-[listenPulse_0.9s_ease-in-out_infinite]"
+                  ? "bg-rose-600! text-white! border-rose-500! animate-listen-pulse"
                   : ""
               }`}
               aria-label="Voice input"
@@ -802,7 +801,7 @@ export default function ChatbotWidget({
             />
             <button
               type="button"
-              className="w-[42px] h-[42px] rounded-xl cursor-pointer flex items-center justify-center shrink-0 transition-transform active:scale-95 text-white bg-gradient-to-r from-[#ff6a00] to-[#ff8c1a] shadow-xs hover:brightness-105 border-0"
+              className="w-10.5 h-10.5 rounded-xl cursor-pointer flex items-center justify-center shrink-0 transition-transform active:scale-95 text-white bg-linear-to-r from-[#ff6a00] to-[#ff8c1a] shadow-xs hover:brightness-105 border-0"
               aria-label="Send"
               onClick={() => handleSend()}
             >

@@ -45,8 +45,8 @@ export default function FAQSection() {
           transition={{ duration: 1 }}
           className="absolute inset-0"
         >
-          <div className="absolute w-[500px] h-[500px] bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20" />
-          <div className="absolute w-[500px] h-[500px] bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
+          <div className="absolute w-125 h-125 bg-purple-500 rounded-full blur-[128px] -top-48 -right-24 opacity-20" />
+          <div className="absolute w-125 h-125 bg-blue-500 rounded-full blur-[128px] -bottom-48 -left-24 opacity-20" />
         </motion.div>
 
         {/* Floating Particles */}
@@ -145,7 +145,7 @@ export default function FAQSection() {
                 initial={{ scale: 0 }}
                 animate={{ scale: activeIndex === index ? 1.2 : 1 }}
                 transition={{ duration: 0.3 }}
-                className="absolute left-[-3px] top-6 w-[7px] h-[7px] rounded-full bg-purple-500"
+                className="absolute -left-0.75 top-6 w-1.75 h-1.75 rounded-full bg-purple-500"
               />
               <div className="pl-6">
                 <Accordion

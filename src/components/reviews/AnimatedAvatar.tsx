@@ -73,7 +73,7 @@ export function AnimatedAvatar({
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute inset-[-3px] rounded-full p-[3px] pointer-events-none"
+          className="absolute -inset-0.75 rounded-full p-0.75 pointer-events-none"
           style={{
             background:
               "linear-gradient(135deg, #3b82f6 0%, #8b5cf6 50%, #ec4899 100%)",
@@ -81,7 +81,7 @@ export function AnimatedAvatar({
         />
 
         {/* Inner Avatar Frame */}
-        <div className="relative rounded-full p-[3px] bg-white dark:bg-slate-900 shadow-xl dark:shadow-2xl dark:shadow-purple-950/40 transition-colors duration-300">
+        <div className="relative rounded-full p-0.75 bg-white dark:bg-slate-900 shadow-xl dark:shadow-2xl dark:shadow-purple-950/40 transition-colors duration-300">
           <div className="relative overflow-hidden rounded-full w-32 h-32 sm:w-36 sm:h-36">
             <Image
               src={src}
